@@ -1,9 +1,9 @@
 .shimmer-text{
-  --shimmer-base:#b7b7b7;
+  --shimmer-base:#9a9a9a;
   --shimmer-contrast:#fff;
   display:inline-block;
   max-width:100%;
-  background-image:linear-gradient(100deg,var(--shimmer-base) 35%,var(--shimmer-contrast) 50%,var(--shimmer-base) 65%);
+  background-image:linear-gradient(100deg,var(--shimmer-base) 32%,var(--shimmer-contrast) 45%,var(--shimmer-contrast) 55%,var(--shimmer-base) 68%);
   background-position:100% 0;
   background-repeat:no-repeat;
   -webkit-background-clip:text;
@@ -11,9 +11,13 @@
   -webkit-text-fill-color:transparent;
 }
 
+.section h2 .shimmer-text{
+  --shimmer-base:#757575;
+}
+
 .education-step-card:nth-child(odd) .shimmer-text{
   --shimmer-base:#171717;
-  --shimmer-contrast:#888;
+  --shimmer-contrast:#777;
 }
 
 @media (prefers-reduced-motion:reduce){

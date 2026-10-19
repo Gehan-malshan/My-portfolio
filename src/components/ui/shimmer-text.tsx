@@ -13,8 +13,8 @@ export interface ShimmerTextProps {
 export function ShimmerText({
   children,
   className,
-  duration = 1.5,
-  delay = 1.5,
+  duration = 2.4,
+  delay = 0,
   spread = 200,
 }: ShimmerTextProps) {
   const reducedMotion = useReducedMotion()
@@ -29,7 +29,7 @@ export function ShimmerText({
         duration,
         delay,
         repeat: Infinity,
-        repeatDelay: 1.5,
+        repeatDelay: 0,
         ease: 'linear',
       }}
     >
