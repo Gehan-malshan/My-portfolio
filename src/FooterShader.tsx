@@ -1,26 +1,72 @@
 import { useEffect, useRef } from 'react'
 
 const vertexSource = `
-attribute vec2 aPosition;
+attribute vec2 position;
+varying vec2 vUv;
 void main() {
-  gl_Position = vec4(aPosition, 0.0, 1.0);
+  vUv = position * 0.5 + 0.5;
+  gl_Position = vec4(position, 0.0, 1.0);
 }`
 
+// Adapted from the supplied Velaris gradient, using only shades of gray.
 const fragmentSource = `
-precision mediump float;
+precision highp float;
+varying vec2 vUv;
 uniform vec2 uResolution;
-uniform vec2 uPointer;
 uniform float uTime;
+uniform float uGrain;
+uniform vec3 uColors[4];
+uniform vec3 uBackground;
+
+vec3 permute(vec3 x) { return mod(((x * 34.0) + 1.0) * x, 289.0); }
+
+float snoise(vec2 v) {
+  const vec4 C = vec4(0.211324865405187, 0.366025403784439,
+    -0.577350269189626, 0.024390243902439);
+  vec2 i = floor(v + dot(v, C.yy));
+  vec2 x0 = v - i + dot(i, C.xx);
+  vec2 i1 = x0.x > x0.y ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+  vec4 x12 = x0.xyxy + C.xxzz;
+  x12.xy -= i1;
+  i = mod(i, 289.0);
+  vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0))
+    + i.x + vec3(0.0, i1.x, 1.0));
+  vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy),
+    dot(x12.zw, x12.zw)), 0.0);
+  m = m * m;
+  m = m * m;
+  vec3 x = 2.0 * fract(p * C.www) - 1.0;
+  vec3 h = abs(x) - 0.5;
+  vec3 ox = floor(x + 0.5);
+  vec3 a0 = x - ox;
+  m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
+  vec3 g;
+  g.x = a0.x * x0.x + h.x * x0.y;
+  g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+  return 130.0 * dot(m, g);
+}
 
 void main() {
-  vec2 uv = gl_FragCoord.xy / uResolution;
-  float wave = 0.045 * sin(uv.y * 5.0 - uTime * 0.48 + sin(uv.x * 4.0 + uTime * 0.24));
-  float broadLight = exp(-pow((uv.x - 0.08 - wave) / 0.43, 2.0)) * 0.19;
-  float ribbon = exp(-pow((uv.x - 0.15 - 0.07 * sin(uv.y * 4.0 + uTime * 0.32)) / 0.23, 2.0)) * 0.07;
-  float pointerLight = exp(-distance(uv, uPointer) * 5.5) * 0.12;
-  float grain = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) - 0.5;
-  float shade = clamp(0.012 + broadLight + ribbon + pointerLight + grain * 0.006, 0.0, 0.35);
-  gl_FragColor = vec4(vec3(shade), 1.0);
+  vec2 p = vUv - 0.5;
+  p.x *= uResolution.x / uResolution.y;
+  float t = uTime * 0.1;
+  float n1 = snoise(p * 0.4 + vec2(t * 0.2, -t * 0.3));
+  float n2 = snoise(p * 0.55 + vec2(-t * 0.15, t * 0.25) + n1 * 0.25);
+  float n3 = snoise(p * 0.75 + vec2(t * 0.1, -t * 0.2) + n2 * 0.2);
+
+  vec3 color = uBackground;
+  color = mix(color, uColors[0], smoothstep(-0.2, 0.5, n1) * 0.85);
+  color = mix(color, uColors[1], smoothstep(-0.1, 0.6, n2) * 0.7);
+  color = mix(color, uColors[2], smoothstep(-0.3, 0.4, n3) * 0.6);
+  color = mix(color, uColors[3], smoothstep(0.0, 0.7, n1 * n2) * 0.5);
+
+  float distanceFromCenter = length(p) * 1.5;
+  float vignette = 1.0 - smoothstep(0.3, 1.2, distanceFromCenter);
+  color += uColors[1] * smoothstep(0.8, 0.0, distanceFromCenter) * 0.3;
+  color = mix(color * 0.2, color, vignette);
+  float grain = fract(sin(dot(vUv, vec2(12.9898, 78.233))) * 43758.5453 + uTime);
+  color += (grain - 0.5) * uGrain * 0.1;
+  gl_FragColor = vec4(color, 1.0);
 }`
 
 function compileShader(gl: WebGLRenderingContext, type: number, source: string) {
@@ -59,15 +105,22 @@ export default function FooterShader() {
     const buffer = gl.createBuffer()
     if (!buffer) return
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW)
-    const position = gl.getAttribLocation(program, 'aPosition')
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW)
+    const position = gl.getAttribLocation(program, 'position')
     gl.enableVertexAttribArray(position)
     gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0)
 
     const resolution = gl.getUniformLocation(program, 'uResolution')
-    const pointer = gl.getUniformLocation(program, 'uPointer')
     const time = gl.getUniformLocation(program, 'uTime')
-    const mouse = { x: -10, y: -10 }
+    const grain = gl.getUniformLocation(program, 'uGrain')
+    const colors = gl.getUniformLocation(program, 'uColors[0]')
+    const background = gl.getUniformLocation(program, 'uBackground')
+    gl.uniform3fv(colors, new Float32Array([
+      .16, .16, .16, .32, .32, .32, .07, .07, .07, .42, .42, .42,
+    ]))
+    gl.uniform3f(background, .005, .005, .005)
+    gl.uniform1f(grain, .12)
+
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const started = performance.now()
     let frameId = 0
@@ -84,26 +137,14 @@ export default function FooterShader() {
         gl.viewport(0, 0, width, height)
       }
       gl.uniform2f(resolution, width, height)
-      gl.uniform2f(pointer, mouse.x, mouse.y)
-      gl.uniform1f(time, reducedMotion ? 0 : (now - started) / 1000)
-      gl.drawArrays(gl.TRIANGLES, 0, 3)
+      gl.uniform1f(time, reducedMotion ? 0 : (now - started) / 1000 * 2)
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 
     const tick = (now: number) => {
       if (!visible) { frameId = 0; return }
       draw(now)
       frameId = requestAnimationFrame(tick)
-    }
-    const onPointerMove = (event: PointerEvent) => {
-      const bounds = host.getBoundingClientRect()
-      mouse.x = (event.clientX - bounds.left) / bounds.width
-      mouse.y = 1 - (event.clientY - bounds.top) / bounds.height
-      if (reducedMotion) draw(performance.now())
-    }
-    const onPointerLeave = () => {
-      mouse.x = -10
-      mouse.y = -10
-      if (reducedMotion) draw(performance.now())
     }
     const resizeObserver = new ResizeObserver(() => draw(performance.now()))
     resizeObserver.observe(host)
@@ -112,8 +153,6 @@ export default function FooterShader() {
       if (visible && !frameId && !reducedMotion) frameId = requestAnimationFrame(tick)
     })
     intersectionObserver.observe(host)
-    host.addEventListener('pointermove', onPointerMove)
-    host.addEventListener('pointerleave', onPointerLeave)
     draw(started)
     if (!reducedMotion) frameId = requestAnimationFrame(tick)
 
@@ -121,8 +160,6 @@ export default function FooterShader() {
       cancelAnimationFrame(frameId)
       resizeObserver.disconnect()
       intersectionObserver.disconnect()
-      host.removeEventListener('pointermove', onPointerMove)
-      host.removeEventListener('pointerleave', onPointerLeave)
       gl.deleteBuffer(buffer)
       gl.deleteProgram(program)
       gl.deleteShader(vertex)

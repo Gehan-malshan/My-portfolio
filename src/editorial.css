@@ -225,6 +225,8 @@
 
 /* The contact invitation now closes the page without the three-column footer. */
 .contact-shell{min-height:0;overflow:hidden;border-top:0}
+.contact-shell{background:radial-gradient(ellipse at 50% 45%,#292929 0%,#101010 48%,#020202 100%)}
+.contact-shell .footer-invitation{background:transparent}
 .footer-invitation{min-height:650px;padding:100px 30px 42px;border-bottom:0}
 .footer-invitation .contact-name{width:100%;margin:0 auto 25px;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(58px,9.5vw,125px);font-weight:800;line-height:.9;letter-spacing:-.095em;white-space:nowrap}
 .footer-invitation .contact-intro{max-width:620px;margin:0 auto;color:#b8b8b8;font-size:clamp(16px,1.4vw,19px);line-height:1.5}
