@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
-import { ArrowUp, ArrowUpRight, Dribbble, Github, Instagram, Linkedin } from 'lucide-react'
+import { ArrowUp, ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import FooterShader from './FooterShader'
 import TacticalLink from './TacticalLink'
@@ -18,12 +18,27 @@ declare module '@tanstack/react-router' { interface Register { router: typeof ro
 const links = [['Projects', '#projects'], ['About', '#about'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
-  { label: 'Instagram', href: portfolio.instagram, Icon: Instagram },
+  { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
   { label: 'Dribbble', href: portfolio.dribbble, Icon: Dribbble },
   { label: 'LinkedIn', href: portfolio.linkedin, Icon: Linkedin },
 ]
 
+function ContactIcon({ label, href, Icon, variant, onMissing }: { label: string, href: string, Icon: LucideIcon, variant: 'hero' | 'footer', onMissing: (label: string) => void }) {
+  const className = variant === 'hero' ? 'contact-icon' : 'contact-orb contact-icon'
+  const content = <><span className="contact-icon-tooltip" aria-hidden="true">{label}</span><span className="contact-icon-surface"><span className="contact-icon-fill"/><Icon aria-hidden="true"/></span></>
+  return href
+    ? <a className={className} href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel={href.startsWith('mailto:') ? undefined : 'noreferrer'} aria-label={label}>{content}</a>
+    : <button className={className} type="button" aria-label={label} onClick={() => onMissing(label)}>{content}</button>
+}
+
 function Home() {
+  const [contactNotice, setContactNotice] = React.useState('')
+  React.useEffect(() => {
+    if (!contactNotice) return
+    const timeout = window.setTimeout(() => setContactNotice(''), 4000)
+    return () => window.clearTimeout(timeout)
+  }, [contactNotice])
+  const onMissingContact = (label: string) => setContactNotice(`${label} contact details are coming soon.`)
   return <>
     <PagePreloader/>
     <PageScrollBlur/>
@@ -45,9 +60,8 @@ function Home() {
             <p className="hero-description">{portfolio.intro}</p>
           </div>
           <nav className="hero-socials" aria-label="Social links">
-            {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) => href
-              ? <a href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon aria-hidden="true"/></a>
-              : <span className="is-placeholder" aria-label={`${label} link coming soon`} title={`Add your ${label} URL in src/data/portfolio.ts`} key={label}><Icon aria-hidden="true"/></span>)}
+            {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
+              <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
           </nav>
         </div>
         <div className="hero-cta"><TacticalLink href="#contact" label="Contact me"/></div>
@@ -65,17 +79,15 @@ function Home() {
           <h2 id="contact-title"><span className="contact-spark" aria-hidden="true"/>Your turn. Say hello</h2>
           <p>Have an opportunity, want to collaborate on something cool, or just say hello?</p>
           <div className="footer-contact-row">
-            {contactPlatforms.slice(0, 2).map(({ label, href, Icon }) => href
-              ? <a className="contact-orb" href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon aria-hidden="true"/></a>
-              : <span className="contact-orb is-placeholder" aria-label={`${label} link coming soon`} title={`Add your ${label} URL in src/data/portfolio.ts`} key={label}><Icon aria-hidden="true"/></span>)}
+            {contactPlatforms.slice(0, 2).map(({ label, href, Icon }) =>
+              <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
             {portfolio.email
               ? <a className="contact-email" href={`mailto:${portfolio.email}`}>Email me <ArrowUpRight aria-hidden="true"/></a>
-              : <span className="contact-email is-placeholder" aria-label="Email link coming soon" title="Add your email in src/data/portfolio.ts">Email me</span>}
-            {contactPlatforms.slice(2).map(({ label, href, Icon }) => href
-              ? <a className="contact-orb" href={href} target="_blank" rel="noreferrer" aria-label={label} key={label}><Icon aria-hidden="true"/></a>
-              : <span className="contact-orb is-placeholder" aria-label={`${label} link coming soon`} title={`Add your ${label} URL in src/data/portfolio.ts`} key={label}><Icon aria-hidden="true"/></span>)}
+              : <button className="contact-email" type="button" onClick={() => onMissingContact('Email')}>Email me</button>}
+            {contactPlatforms.slice(2).map(({ label, href, Icon }) =>
+              <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
           </div>
-          {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to activate these buttons.</small>}
+          {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
         </div>
       </section>
       <div className="footer-content">
@@ -88,6 +100,7 @@ function Home() {
         <div className="footer-bottom"><small>© {new Date().getFullYear()} Gehan Malshan</small><a href="#top">Back to top <ArrowUp size={15}/></a></div>
       </div>
     </footer>
+    {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
   </>
 }
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><RouterProvider router={router}/></React.StrictMode>)
