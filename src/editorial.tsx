@@ -10,7 +10,6 @@ import TechLogos from './TechLogos'
 import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
-import HeroScrollIntro from './HeroScrollIntro'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -47,8 +46,7 @@ function Home() {
     <PageScrollBlur/>
     <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
-      <div className="hero-scroll-stage">
-       <section className="hero hero-no-photo" aria-label="Introduction">
+      <section className="hero hero-no-photo" aria-label="Introduction">
         <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#171717" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={70} hover={85}/></div>
         <div className="hero-copy">
           <BlurredHeroTicker words={portfolio.heroWords}/>
@@ -62,9 +60,7 @@ function Home() {
           </nav>
         </div>
         <div className="hero-cta"><TacticalLink href="#contact" label="Contact me"/></div>
-        <HeroScrollIntro/>
-       </section>
-      </div>
+      </section>
       <section className="section projects" id="projects"><div className="section-inner"><h2>Some projects<span>.</span></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3>{project.title}</h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
         <div className="about-feature-inner">
