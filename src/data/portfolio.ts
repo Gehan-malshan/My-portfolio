@@ -12,6 +12,7 @@ export const portfolio = {
     'I enjoy frontend development, problem solving, and the details that make software useful. This portfolio shares what I build, learn, and contribute to along the way.',
   email: '',
   github: '',
+  githubUsername: '',
   dribbble: '',
   linkedin: '',
   cvPath: '/Gehan-Malshan-CV-Template.pdf',

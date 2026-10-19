@@ -1,0 +1,28 @@
+.github-activity{padding:90px 0 95px;background:#020202}
+.github-activity .section-inner{width:min(100% - 80px,1160px)}
+.github-activity-eyebrow{margin:0 0 17px;color:#989898;font:11px/1.4 'Spline Sans Mono',monospace;letter-spacing:.24em;text-align:center;text-transform:uppercase}
+.github-activity h2{margin:0 0 50px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(45px,5vw,70px);font-weight:400;line-height:1.05;letter-spacing:-.055em;text-align:center}
+.github-activity h2 em{font-weight:400;color:#bcbcbc}
+.github-calendar-scroll{max-width:100%;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#444 transparent}
+.github-calendar{width:max-content;margin:auto}
+.github-calendar-months{display:grid;grid-template-columns:repeat(var(--calendar-weeks),13px);column-gap:4px;height:25px;color:#bdbdbd;font:11px/1 'Spline Sans Mono',monospace}
+.github-calendar-months span{white-space:nowrap}
+.github-calendar-weeks{display:flex;gap:4px}
+.github-calendar-week{display:flex;flex-direction:column;gap:4px}
+.github-calendar-day{display:block;flex:none;width:13px;height:13px;border:1px solid #ffffff0b;border-radius:2px;transition:transform .18s,box-shadow .18s,background-color .18s}
+.github-calendar-day.level-0{background:#1b1d20}
+.github-calendar-day.level-1{background:#393b3e}
+.github-calendar-day.level-2{background:#626569}
+.github-calendar-day.level-3{background:#a0a3a6}
+.github-calendar-day.level-4{background:#f2f2f2}
+.github-calendar-weeks .github-calendar-day:hover{position:relative;z-index:1;transform:scale(1.3);box-shadow:0 0 10px #ffffff75}
+.github-calendar-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(100%,897px);margin:15px auto 0;color:#aaa;font-size:12px}
+.github-calendar-bottom p{margin:0;line-height:1.5}
+.github-calendar-legend{display:flex;align-items:center;gap:4px;white-space:nowrap}
+.github-calendar-legend span:first-child{margin-right:5px}
+.github-calendar-legend span:last-child{margin-left:5px}
+.github-calendar-legend .github-calendar-day{width:12px;height:12px}
+.github-activity-profile{display:block;width:min(100%,897px);margin:22px auto 0;color:#8d8d8d;font-size:12px}
+.github-activity-profile:hover{color:#fff}
+@media(max-width:700px){.github-activity{padding:75px 0 80px}.github-activity .section-inner{width:calc(100% - 36px)}.github-activity h2{margin-bottom:37px}.github-calendar{margin:0}.github-calendar-bottom{align-items:flex-start;flex-direction:column;gap:11px}}
+@media(prefers-reduced-motion:reduce){.github-calendar-day{transition:none}}

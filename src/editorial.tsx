@@ -11,6 +11,7 @@ import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
 import EducationProgress from './EducationProgress'
+import GithubCalendar from './GithubCalendar'
 import ShimmerText from './components/ui/shimmer-text'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
@@ -19,7 +20,7 @@ const rootRoute = createRootRoute({ component: () => <Outlet /> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
 const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute]) })
 declare module '@tanstack/react-router' { interface Register { router: typeof router } }
-const links = [['Projects', '#projects'], ['About', '#about'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
+const links = [['Projects', '#projects'], ['About', '#about'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
   { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
@@ -81,6 +82,7 @@ function Home() {
         </div>
       </section>
       <TechLogos/>
+      <GithubCalendar username={portfolio.githubUsername}/>
       <section className="section education" id="education"><div className="section-inner"><h2><ShimmerText>Education<span>.</span></ShimmerText></h2><p className="section-intro">My academic path, qualifications, and continued learning.</p><EducationProgress items={portfolio.education}/><p className="section-note">Update these education steps in <code>src/data/portfolio.ts</code>.</p><div className="cv-row"><div><h3><ShimmerText>Resume.</ShimmerText></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><ShimmerText>Volunteering<span>.</span></ShimmerText></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><div className="timeline">{portfolio.volunteering.map((item, index) => <article className={`timeline-item timeline-item-${index % 2}`} key={`${item.category}-${index}`}><div className="timeline-meta"><span className="timeline-icon">✳</span><strong>{item.organization}</strong><small>{item.period}</small></div><div className="timeline-card"><span>{item.category}</span><h3><ShimmerText>{item.role}</ShimmerText></h3><p>{item.description}</p></div></article>)}</div><p className="section-note">Add your real roles and dates in <code>src/data/portfolio.ts</code>.</p></div></section>
     </main>
