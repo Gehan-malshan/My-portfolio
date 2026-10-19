@@ -65,7 +65,7 @@ function Home() {
       <section className="section projects" id="projects"><div className="section-inner"><h2>Some projects<span>.</span></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3>{project.title}</h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
         <div className="about-feature-inner">
-          <div className="about-portrait"><img src="/gehan-about-hoodie.png" alt="Black and white portrait of Gehan Malshan wearing a dark hoodie" loading="lazy"/></div>
+          <div className="about-portrait"><img src="/gehan-about-hoodie-profile.png" alt="Black and white profile portrait of Gehan Malshan in a hoodie, looking down to the right" loading="lazy"/></div>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
             <h2 id="about-title">Curious about code and <em>everything around it.</em></h2>
