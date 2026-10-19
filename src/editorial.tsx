@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
-import { ArrowUp, ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
+import { ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import FooterShader from './FooterShader'
 import TacticalLink from './TacticalLink'
@@ -82,24 +82,14 @@ function Home() {
           <div className="footer-contact-row">
             {contactPlatforms.slice(0, 2).map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
-            {portfolio.email
-              ? <a className="contact-email" href={`mailto:${portfolio.email}`}>Email me <ArrowUpRight aria-hidden="true"/></a>
-              : <button className="contact-email" type="button" onClick={() => onMissingContact('Email')}>Email me</button>}
+            <TacticalLink label="Contact me" href={portfolio.email ? `mailto:${portfolio.email}` : undefined} onClick={() => onMissingContact('Email')}/>
             {contactPlatforms.slice(2).map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
           </div>
           {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
+          <div className="contact-signoff"><strong>GEHAN <span>MALSHAN.</span></strong><small>© {new Date().getFullYear()} Gehan Malshan</small></div>
         </div>
       </section>
-      <div className="footer-content">
-        <strong className="footer-wordmark">GEHAN <span>MALSHAN.</span></strong>
-        <div className="footer-columns">
-          <div className="footer-about"><h2>About</h2><p>{portfolio.intro}</p></div>
-          <nav aria-label="Footer navigation"><h2>Explore</h2>{links.map(([label, href]) => <a href={href} key={href}>{label}</a>)}</nav>
-          <div className="footer-connect"><h2>Connect</h2><p>Based in Sri Lanka<br/>Open to connect</p>{portfolio.email && <a href={`mailto:${portfolio.email}`}>{portfolio.email}</a>}{portfolio.github && <a href={portfolio.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={14}/></a>}{portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noreferrer">LinkedIn <ArrowUpRight size={14}/></a>}</div>
-        </div>
-        <div className="footer-bottom"><small>© {new Date().getFullYear()} Gehan Malshan</small><a href="#top">Back to top <ArrowUp size={15}/></a></div>
-      </div>
     </footer>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
     <BackToTop/>

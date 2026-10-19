@@ -214,3 +214,13 @@
 .back-to-top:hover .back-to-top-value{stroke:#fff}
 @media(max-width:600px){.back-to-top{right:20px;bottom:20px;width:50px;height:50px}.back-to-top-progress{inset:-10px}}
 @media(prefers-reduced-motion:reduce){.back-to-top,.back-to-top-value{transition:none}}
+
+/* The contact invitation now closes the page without the three-column footer. */
+.site-footer{min-height:0}
+.footer-invitation{min-height:720px;padding-bottom:44px;border-bottom:0}
+.footer-contact-row .tactical-button{width:100%;height:100px;min-height:100px;font-size:16px}
+.contact-signoff{display:flex;flex-direction:column;align-items:center;gap:34px;margin-top:98px}
+.contact-signoff strong{display:block;width:100%;color:#fff;font-size:clamp(58px,10vw,132px);font-weight:800;line-height:.86;letter-spacing:-.095em;white-space:nowrap}
+.contact-signoff small{color:#aaa;font-size:12px;letter-spacing:.01em}
+@media(max-width:850px){.footer-contact-row .tactical-button{height:72px;min-height:72px;font-size:14px}.contact-signoff strong{font-size:clamp(55px,9.8vw,90px)}}
+@media(max-width:600px){.footer-invitation{min-height:0;padding-bottom:38px}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:1;height:68px;min-height:68px}.contact-signoff{gap:27px;margin-top:92px}.contact-signoff strong{font-size:clamp(58px,14vw,92px);white-space:normal}.contact-signoff strong span{display:block}}

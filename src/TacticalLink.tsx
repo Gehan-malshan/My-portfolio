@@ -3,13 +3,14 @@ import { useEffect, useRef, useState } from 'react'
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
 type TacticalLinkProps = {
-  href: string
+  href?: string
   label: string
   download?: boolean
   ariaLabel?: string
+  onClick?: () => void
 }
 
-export default function TacticalLink({ href, label, download, ariaLabel }: TacticalLinkProps) {
+export default function TacticalLink({ href, label, download, ariaLabel, onClick }: TacticalLinkProps) {
   const [visibleLabel, setVisibleLabel] = useState(label)
   const timer = useRef<number | undefined>(undefined)
 
@@ -34,11 +35,15 @@ export default function TacticalLink({ href, label, download, ariaLabel }: Tacti
     }, 35)
   }
 
-  return <a className="tactical-button" href={href} download={download} aria-label={ariaLabel ?? label} onMouseEnter={startScramble} onMouseLeave={stopScramble} onFocus={startScramble} onBlur={stopScramble}>
+  const content = <>
     <span className="tactical-corner tactical-corner-tl" aria-hidden="true"/>
     <span className="tactical-corner tactical-corner-tr" aria-hidden="true"/>
     <span className="tactical-corner tactical-corner-bl" aria-hidden="true"/>
     <span className="tactical-corner tactical-corner-br" aria-hidden="true"/>
     <span className="tactical-label" aria-hidden="true">{visibleLabel}</span>
-  </a>
+  </>
+  const interactions = { onMouseEnter: startScramble, onMouseLeave: stopScramble, onFocus: startScramble, onBlur: stopScramble }
+  return href
+    ? <a className="tactical-button" href={href} download={download} aria-label={ariaLabel ?? label} {...interactions}>{content}</a>
+    : <button className="tactical-button" type="button" aria-label={ariaLabel ?? label} onClick={onClick} {...interactions}>{content}</button>
 }
