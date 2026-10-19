@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
 import { ArrowUp, ArrowUpRight, Dribbble, Github, Instagram, Linkedin } from 'lucide-react'
-import HeroEffects from './HeroEffects'
+import GridTrails from './GridTrails'
 import FooterShader from './FooterShader'
 import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
@@ -30,7 +30,7 @@ function Home() {
     <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
       <section className="hero" aria-label="Introduction">
-        <HeroEffects/>
+        <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#171717" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={70} hover={85}/></div>
         <div className="hero-photo"><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan in a navy suit" fetchPriority="high"/></div>
         <div className="hero-copy">
           <h1>{portfolio.heroHeadline.map(line => <span key={line}>{line}</span>)}</h1>
