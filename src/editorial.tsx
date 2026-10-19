@@ -11,7 +11,6 @@ import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
 import EducationProgress from './EducationProgress'
-import ModernNavbar from './ModernNavbar'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -19,7 +18,7 @@ const rootRoute = createRootRoute({ component: () => <Outlet /> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
 const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute]) })
 declare module '@tanstack/react-router' { interface Register { router: typeof router } }
-const links = [['Projects', '#projects'], ['About', '#about'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']] as const
+const links = [['Projects', '#projects'], ['About', '#about'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
   { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
@@ -46,7 +45,7 @@ function Home() {
   return <>
     <PagePreloader/>
     <PageScrollBlur/>
-    <ModernNavbar links={links}/>
+    <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
       <section className="hero hero-no-photo" aria-label="Introduction">
         <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#171717" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={70} hover={85}/></div>
