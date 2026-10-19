@@ -1,3 +1,5 @@
+import ShimmerText from './components/ui/shimmer-text'
+
 const logos = [
   ['JavaScript', 'javascript'],
   ['TypeScript', 'typescript'],
@@ -54,7 +56,7 @@ const loopRows = [logos.slice(0, 24), logos.slice(24)]
 export default function TechLogos() {
   return <section className="section tech-section" id="toolkit" aria-labelledby="toolkit-title">
     <div className="section-inner">
-      <h2 id="toolkit-title">Technologies</h2>
+      <h2 id="toolkit-title"><ShimmerText>Technologies</ShimmerText></h2>
       <div className="tech-loop-stack">
         {loopRows.map((row, index) => <LogoLoop
           key={index}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import ShimmerText from './components/ui/shimmer-text'
 
 export default function BlurredHeroTicker({ words }: { words: string[] }) {
   const [index, setIndex] = useState(1)
@@ -31,7 +32,7 @@ export default function BlurredHeroTicker({ words }: { words: string[] }) {
   return <h1 className="hero-word-ticker" aria-label={words.join('. ') + '.'}>
     <span className="hero-word-window" aria-hidden="true">
       <span className={`hero-word-track${resetting ? ' is-resetting' : ''}`} style={{ transform: `translateY(${(1 - index) * 0.96}em)` }}>
-        {items.map((word, itemIndex) => <span className={`hero-word${itemIndex === index ? ' is-active' : ''}${Math.abs(itemIndex - index) === 1 ? ' is-adjacent' : ''}`} key={`${word}-${itemIndex}`}>{word}</span>)}
+        {items.map((word, itemIndex) => <span className={`hero-word${itemIndex === index ? ' is-active' : ''}${Math.abs(itemIndex - index) === 1 ? ' is-adjacent' : ''}`} key={`${word}-${itemIndex}`}><ShimmerText>{word}</ShimmerText></span>)}
       </span>
     </span>
   </h1>
