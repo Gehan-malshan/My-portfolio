@@ -13,7 +13,7 @@ Open the local URL printed by Vite, usually `http://localhost:5173`.
 
 ## Update your details
 
-- Edit `src/data/portfolio.ts` for your introduction, education, projects, volunteering, email, social links, and CV path. The footer's contact buttons become active when you add real links.
+- Edit `src/data/portfolio.ts` for your hero headline, introduction, education, projects, volunteering, email, social links, and CV path. The hero and footer social buttons become active when you add real links.
 - Replace `public/Gehan-Malshan-CV-Template.pdf` with your finished CV, then set `cvPath` to its filename and `cvIsTemplate` to `false`.
 - The hero uses `public/gehan-editorial.png`, a generated black-and-white cutout based on your supplied photo.
 - For a project, set `placeholder: false` and add its live or repository URL. Add more objects to the `projects` array as needed.
