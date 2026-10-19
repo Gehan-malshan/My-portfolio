@@ -10,8 +10,8 @@ export default function PagePreloader() {
       return
     }
 
-    const revealTimer = window.setTimeout(() => setPhase('reveal'), 1900)
-    const doneTimer = window.setTimeout(() => setPhase('done'), 2700)
+    const revealTimer = window.setTimeout(() => setPhase('reveal'), 2550)
+    const doneTimer = window.setTimeout(() => setPhase('done'), 3350)
     return () => {
       window.clearTimeout(revealTimer)
       window.clearTimeout(doneTimer)
@@ -22,7 +22,12 @@ export default function PagePreloader() {
 
   return <div className={`page-preloader${phase === 'reveal' ? ' is-revealing' : ''}`} role="status" aria-label="Loading Gehan Malshan's portfolio">
     <div className="signature-loader">
-      <Signature color="#f5f5f5"/>
+      <Signature color="#f5f5f5" duration={0.65} stagger={0.13}/>
+      <span className="scribble-dot" aria-hidden="true"/>
+      <span className="scribble-spark scribble-spark-a" aria-hidden="true"/>
+      <span className="scribble-spark scribble-spark-b" aria-hidden="true"/>
+      <span className="scribble-flood" aria-hidden="true"/>
+      <span className="scribble-label" aria-hidden="true">GEHAN</span>
     </div>
   </div>
 }

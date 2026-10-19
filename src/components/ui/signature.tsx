@@ -53,13 +53,13 @@ export function Signature({
       key={index}
       d={path}
       stroke={color}
-      strokeWidth={1.5}
+      strokeWidth={2.4}
       strokeLinecap="round"
       strokeLinejoin="round"
       variants={variants}
       transition={transition(index)}
     />)}
-    <g mask={`url(#${maskId})`}>{paths.map((path, index) => <path key={index} d={path} fill={color}/>)}</g>
+    <g mask={`url(#${maskId})`}>{paths.map((path, index) => <path key={index} d={path} fill={color} stroke={color} strokeWidth={1.8} strokeLinejoin="round"/>)}</g>
   </motion.svg>
 }
 
