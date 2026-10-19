@@ -241,3 +241,14 @@
 .about-socials .contact-icon{border:1px solid #333;border-radius:50%;background:#151515}
 @media(max-width:1000px){.about-feature-inner{grid-template-columns:42% 58%;min-height:660px}.about-portrait{min-height:660px}.about-copy{padding:75px 34px}.about-copy h2{font-size:clamp(40px,4.8vw,56px)}}
 @media(max-width:700px){.about-feature-inner{display:flex;flex-direction:column}.about-portrait{height:430px;min-height:0}.about-portrait img{object-position:center bottom}.about-portrait::after{background:linear-gradient(0deg,#020202,transparent 25%)}.about-copy{padding:35px 24px 82px}.about-eyebrow{margin-bottom:22px}.about-copy h2{font-size:clamp(42px,9vw,58px);margin-bottom:29px}.about-copy p{font-size:15px}.about-socials.hero-socials{margin-top:35px}}
+
+/* Balance the image-free hero while retaining its grid, ticker, and contact effects. */
+.hero-no-photo .hero-copy{width:min(100% - 120px,900px);margin:0 auto;padding:86px 0 77px;align-items:center;text-align:center}
+.hero-no-photo .hero-copy h1{width:100%;font-size:clamp(72px,7.8vw,116px)}
+.hero-no-photo .hero-word{justify-content:center}
+.hero-no-photo .hero-intro{margin-top:35px}
+.hero-no-photo .hero-description{margin:16px auto 0}
+.hero-no-photo .hero-socials{justify-content:center;margin-top:auto;padding-top:35px}
+.about-portrait img{filter:grayscale(1) contrast(1.14) brightness(.72)}
+@media(max-width:700px){.hero-no-photo .hero-copy{width:calc(100% - 44px);margin:0 auto;padding:75px 0 118px}.hero-no-photo .hero-copy h1{font-size:clamp(52px,11vw,76px)}.hero-no-photo .hero-intro{margin-top:30px}.hero-no-photo .hero-socials{padding-top:28px}.hero-no-photo .hero-cta{left:50%;right:auto;bottom:28px;transform:translateX(-50%)}}
+@media(max-width:420px){.hero-no-photo .hero-copy h1{font-size:clamp(48px,12vw,60px)}}
