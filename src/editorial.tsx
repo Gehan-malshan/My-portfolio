@@ -72,8 +72,8 @@ function Home() {
       <FooterShader/>
       <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
         <div className="footer-invitation-inner">
-          <h2 id="contact-title"><span className="contact-spark" aria-hidden="true"/>Your turn. Say hello</h2>
-          <p>Have an opportunity, want to collaborate on something cool, or just say hello?</p>
+          <h2 className="contact-name" id="contact-title">GEHAN <span>MALSHAN.</span></h2>
+          <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
           <div className="footer-contact-row">
             {contactPlatforms.slice(0, 2).map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
@@ -82,7 +82,7 @@ function Home() {
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
           </div>
           {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
-          <div className="contact-signoff"><strong>GEHAN <span>MALSHAN.</span></strong><small>© {new Date().getFullYear()} Gehan Malshan</small></div>
+          <small className="contact-copyright">© {new Date().getFullYear()} Gehan Malshan</small>
         </div>
       </section>
     </footer>
