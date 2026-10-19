@@ -1,9 +1,9 @@
 .shimmer-text{
+  --shimmer-base:#b7b7b7;
   --shimmer-contrast:#fff;
   display:inline-block;
   max-width:100%;
-  color:#d2d2d2;
-  background-image:linear-gradient(100deg,currentColor 37%,var(--shimmer-contrast) 50%,currentColor 63%);
+  background-image:linear-gradient(100deg,var(--shimmer-base) 35%,var(--shimmer-contrast) 50%,var(--shimmer-base) 65%);
   background-position:100% 0;
   background-repeat:no-repeat;
   -webkit-background-clip:text;
@@ -12,8 +12,8 @@
 }
 
 .education-step-card:nth-child(odd) .shimmer-text{
+  --shimmer-base:#171717;
   --shimmer-contrast:#888;
-  color:#171717;
 }
 
 @media (prefers-reduced-motion:reduce){
