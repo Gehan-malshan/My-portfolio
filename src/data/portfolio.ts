@@ -16,12 +16,21 @@ export const portfolio = {
   linkedin: '',
   cvPath: '/Gehan-Malshan-CV-Template.pdf',
   cvIsTemplate: true,
-  education: {
-    degree: 'Undergraduate in Software Engineering',
-    institution: '',
-    period: 'Present',
-    note: 'University and graduation details can be added here.',
-  },
+  // Add, remove, or reorder entries to update the education progress cards.
+  education: [
+    {
+      title: 'Undergraduate in Software Engineering',
+      institution: 'University details to be added',
+      period: 'Present',
+      description: 'Add your university, programme details, key modules, and expected graduation date here.',
+    },
+    {
+      title: 'Add a previous qualification',
+      institution: 'School or institute',
+      period: 'Year',
+      description: 'Add an earlier education milestone, relevant subjects, achievements, or certifications.',
+    },
+  ],
   // Replace starter entries with your actual projects. Add a live or repository URL when ready.
   projects: [
     {

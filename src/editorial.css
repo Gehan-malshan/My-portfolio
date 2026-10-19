@@ -263,3 +263,25 @@
 .about-portrait img{filter:grayscale(1) contrast(1.14) brightness(.72)}
 @media(max-width:700px){.hero-no-photo .hero-copy{width:calc(100% - 44px);margin:0 auto;padding:75px 0 118px}.hero-no-photo .hero-copy h1{font-size:clamp(52px,11vw,76px)}.hero-no-photo .hero-intro{margin-top:30px}.hero-no-photo .hero-socials{padding-top:28px}.hero-no-photo .hero-cta{left:50%;right:auto;bottom:28px;transform:translateX(-50%)}}
 @media(max-width:420px){.hero-no-photo .hero-copy h1{font-size:clamp(48px,12vw,60px)}}
+
+/* Scroll-activated education progress cards adapted from the referenced Framer component. */
+.education-steps{display:grid;gap:22px}
+.education-step-card{display:grid;grid-template-columns:90px 5px minmax(0,1fr);align-items:center;gap:54px;min-height:330px;padding:44px 58px;border-radius:20px;background:#e8e8e8;color:#111;overflow:hidden;opacity:.55;transform:translateY(26px);transition:opacity .65s ease,transform .65s cubic-bezier(.16,1,.3,1)}
+.education-step-card:nth-child(even){background:#151515;color:#f1f1f1;border:1px solid #2c2c2c}
+.education-step-card.is-visible{opacity:1;transform:translateY(0)}
+.education-step-number{align-self:center;font-size:clamp(34px,4vw,54px);font-weight:600;letter-spacing:-.07em}
+.education-progress-rail{position:relative;align-self:stretch;width:5px;border-radius:99px;background:#b9b9b9;overflow:hidden}
+.education-step-card:nth-child(even) .education-progress-rail{background:#343434}
+.education-progress-rail i{position:absolute;inset:0;border-radius:inherit;background:#111;transform:translateY(101%);transition:transform 1.05s .12s cubic-bezier(.16,1,.3,1)}
+.education-step-card:nth-child(even) .education-progress-rail i{background:#f1f1f1}
+.education-step-card.is-visible .education-progress-rail i{transform:translateY(0)}
+.education-step-content{display:flex;flex-direction:column;justify-content:center;max-width:760px}
+.education-step-meta{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:25px;font:11px/1.4 'Spline Sans Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#666}
+.education-step-card:nth-child(even) .education-step-meta{color:#989898}
+.education-step-content h3{margin:0 0 16px;font-size:clamp(31px,3.3vw,47px);font-weight:600;line-height:1.08;letter-spacing:-.055em}
+.education-step-content p{max-width:680px;margin:0;color:#555;font-size:16px;line-height:1.65}
+.education-step-card:nth-child(even) .education-step-content p{color:#aaa}
+.education .cv-row{margin-top:42px;border-top:1px solid #292929;padding-top:32px}
+@media(max-width:700px){.education-step-card{grid-template-columns:48px 4px minmax(0,1fr);gap:20px;min-height:280px;padding:30px 24px;border-radius:16px}.education-step-number{font-size:28px}.education-step-meta{align-items:flex-start;flex-direction:column;gap:5px;margin-bottom:18px}.education-step-content h3{font-size:clamp(25px,7vw,34px)}.education-step-content p{font-size:14px;line-height:1.55}}
+@media(max-width:420px){.education-step-card{grid-template-columns:38px 3px minmax(0,1fr);gap:14px;padding:26px 18px}.education-step-number{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.education-step-card{opacity:1;transform:none}.education-progress-rail i{transform:none}}

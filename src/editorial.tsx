@@ -10,6 +10,7 @@ import TechLogos from './TechLogos'
 import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
+import EducationProgress from './EducationProgress'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -79,7 +80,7 @@ function Home() {
         </div>
       </section>
       <TechLogos/>
-      <section className="section education" id="education"><div className="section-inner"><h2>Education<span>.</span></h2><div className="education-row"><div><h3>{portfolio.education.degree}</h3><p>{portfolio.education.institution || portfolio.education.note}</p></div><span>{portfolio.education.period}</span></div><div className="cv-row"><div><h3>Resume.</h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2>Education<span>.</span></h2><p className="section-intro">My academic path, qualifications, and continued learning.</p><EducationProgress items={portfolio.education}/><p className="section-note">Update these education steps in <code>src/data/portfolio.ts</code>.</p><div className="cv-row"><div><h3>Resume.</h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2>Volunteering<span>.</span></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><div className="timeline">{portfolio.volunteering.map((item, index) => <article className={`timeline-item timeline-item-${index % 2}`} key={`${item.category}-${index}`}><div className="timeline-meta"><span className="timeline-icon">✳</span><strong>{item.organization}</strong><small>{item.period}</small></div><div className="timeline-card"><span>{item.category}</span><h3>{item.role}</h3><p>{item.description}</p></div></article>)}</div><p className="section-note">Add your real roles and dates in <code>src/data/portfolio.ts</code>.</p></div></section>
     </main>
     <div className="site-footer contact-shell">
