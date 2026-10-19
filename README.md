@@ -13,7 +13,7 @@ npm run dev
 
 - Edit `src/data/portfolio.ts` for your introduction, education, projects, volunteering, contact links, and CV path.
 - Replace `public/Gehan-Malshan-CV-Template.pdf` with your finished CV, then set `cvPath` to its filename and `cvIsTemplate` to `false`.
-- Replace `public/gehan-portrait.png` to change the portrait.
+- The hero uses `public/gehan-editorial.png`, a generated black-and-white cutout based on your supplied photo. The original is kept as `public/gehan-portrait.png`.
 - For a project, set `placeholder: false` and add its live or repository URL. Add more objects to the `projects` array as needed.
 - For volunteering, set `placeholder: false` and add entries under the appropriate category.
 
