@@ -224,7 +224,11 @@
 @media(prefers-reduced-motion:reduce){.back-to-top,.back-to-top-value{transition:none}}
 
 /* The contact invitation now closes the page without the three-column footer. */
-.site-footer{min-height:0;margin-top:150px;overflow:visible;border-top:0}
+.contact-shell{min-height:0;overflow:hidden;border-top:0}
+.site-ending{position:relative;min-height:170px;margin-top:150px;padding:55px max(30px,calc((100vw - 1160px)/2));background:#050505;color:#f2f2f2}
+.footer-ending-inner{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.footer-ending-inner strong{font-size:clamp(22px,3vw,38px);font-weight:800;letter-spacing:-.07em}
+.footer-ending-inner small{color:#929292;font-size:11px;text-align:right}
 .footer-bounce{position:absolute;z-index:3;left:0;right:0;top:-149px;height:150px;pointer-events:none;overflow:hidden}
 .footer-bounce svg{display:block;width:100%;height:100%;overflow:visible}
 .footer-bounce path{filter:drop-shadow(0 -10px 28px #ffffff0b)}
@@ -234,10 +238,9 @@
 .footer-contact-row{grid-template-columns:88px 88px 184px 88px 88px;gap:22px;width:max-content;max-width:100%;margin-top:68px}
 .site-footer .contact-orb{height:88px}
 .footer-contact-row .tactical-button{width:184px;height:66px;min-height:66px;justify-self:center;font-size:14px}
-.contact-copyright{display:block;margin-top:90px;color:#aaa;font-size:12px;letter-spacing:.01em}
 @media(max-width:850px){.footer-contact-row{grid-template-columns:70px 70px 160px 70px 70px;gap:15px}.site-footer .contact-orb{height:70px}.footer-contact-row .tactical-button{width:160px;height:60px;min-height:60px}}
-@media(max-width:600px){.footer-invitation{min-height:0;padding:82px 22px 38px}.footer-invitation .contact-name{font-size:clamp(58px,14vw,92px);white-space:normal}.footer-invitation .contact-name span{display:block}.footer-invitation .contact-intro{max-width:340px;font-size:16px}.footer-contact-row{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:min(100%,360px);margin-top:50px}.site-footer .contact-orb{height:auto}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:1;width:190px;height:62px;min-height:62px}.contact-copyright{margin-top:75px}}
-@media(prefers-reduced-motion:reduce){.footer-bounce{height:1px;top:-1px}.site-footer{margin-top:1px}}
+@media(max-width:600px){.footer-invitation{min-height:0;padding:82px 22px 70px}.footer-invitation .contact-name{font-size:clamp(58px,14vw,92px);white-space:normal}.footer-invitation .contact-name span{display:block}.footer-invitation .contact-intro{max-width:340px;font-size:16px}.footer-contact-row{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;width:min(100%,360px);margin-top:50px}.site-footer .contact-orb{height:auto}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:1;width:190px;height:62px;min-height:62px}.site-ending{min-height:150px;padding:42px 24px}.footer-ending-inner{align-items:flex-start;flex-direction:column;gap:13px}.footer-ending-inner small{text-align:left;line-height:1.5}}
+@media(prefers-reduced-motion:reduce){.footer-bounce{height:1px;top:-1px}.site-ending{margin-top:1px}}
 
 /* Editorial About portrait and introduction. */
 .about-feature{position:relative;overflow:hidden;padding:0;background:#020202}
