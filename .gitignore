@@ -4,3 +4,4 @@ dist/
 *.local
 tsconfig.tsbuildinfo
 cv-preview.png
+cv-monochrome-preview.png
