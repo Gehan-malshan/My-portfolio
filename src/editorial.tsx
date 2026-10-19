@@ -63,7 +63,22 @@ function Home() {
         <div className="hero-cta"><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
       <section className="section projects" id="projects"><div className="section-inner"><h2>Some projects<span>.</span></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3>{project.title}</h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
-      <section className="section fragments" id="about"><div className="section-inner"><h2>Fragments of me<span>.</span></h2><div className="fragment-grid"><article className="fragment-card"><div className="fragment-art about-art"><span>think.<br/>make.<br/>learn.</span><b>✳</b></div><div className="fragment-caption"><h3>A little about me</h3><p>{portfolio.about}</p></div></article><article className="fragment-card"><div className="fragment-art terminal"><div className="terminal-bar"><i/><i/><i/></div><div className="terminal-text"><span>&gt; whoami</span><br/>Gehan Malshan<br/><span>&gt; current_focus</span><br/>learning + building<span>_</span></div></div><div className="fragment-caption"><h3>I like to code</h3><p>And I’m always looking for the next meaningful problem to solve.</p></div></article><article className="fragment-card interest-card"><div className="fragment-art interest-art">{portfolio.interests.map((item, i) => <div key={item}><small>0{i+1}</small><span>{item}</span></div>)}</div><div className="fragment-caption"><h3>What keeps me curious</h3><p>Interests that shape the way I approach software.</p></div></article></div></div></section>
+      <section className="section about-feature" id="about" aria-labelledby="about-title">
+        <div className="about-feature-inner">
+          <div className="about-portrait"><img src="/gehan-about-hoodie.png" alt="Black and white portrait of Gehan Malshan wearing a dark hoodie" loading="lazy"/></div>
+          <div className="about-copy">
+            <span className="about-eyebrow">Know about me</span>
+            <h2 id="about-title">Curious about code and <em>everything around it.</em></h2>
+            <p>{portfolio.about}</p>
+            <p>{portfolio.aboutMore}</p>
+            <div className="about-actions"><TacticalLink href="#education" label="More about me"/></div>
+            <nav className="about-socials hero-socials" aria-label="About social links">
+              {[contactPlatforms[0], contactPlatforms[3]].map(({ label, href, Icon }) =>
+                <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
+            </nav>
+          </div>
+        </div>
+      </section>
       <TechLogos/>
       <section className="section education" id="education"><div className="section-inner"><h2>Education<span>.</span></h2><div className="education-row"><div><h3>{portfolio.education.degree}</h3><p>{portfolio.education.institution || portfolio.education.note}</p></div><span>{portfolio.education.period}</span></div><div className="cv-row"><div><h3>Resume.</h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2>Volunteering<span>.</span></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><div className="timeline">{portfolio.volunteering.map((item, index) => <article className={`timeline-item timeline-item-${index % 2}`} key={`${item.category}-${index}`}><div className="timeline-meta"><span className="timeline-icon">✳</span><strong>{item.organization}</strong><small>{item.period}</small></div><div className="timeline-card"><span>{item.category}</span><h3>{item.role}</h3><p>{item.description}</p></div></article>)}</div><p className="section-note">Add your real roles and dates in <code>src/data/portfolio.ts</code>.</p></div></section>

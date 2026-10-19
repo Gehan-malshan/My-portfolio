@@ -7,7 +7,9 @@ export const portfolio = {
   heroWords: ['Design', 'Develop', 'Test', 'Deploy', 'Improve'],
   intro: 'I’m learning to turn thoughtful ideas into useful digital experiences.',
   about:
-    'I’m a software engineering undergraduate who enjoys the space where problem solving, clean code, and good design meet. This portfolio is a living record of what I build, learn, and contribute to.',
+    'I’m Gehan Malshan, a software engineering undergraduate curious about how thoughtful technology can solve real problems.',
+  aboutMore:
+    'I enjoy frontend development, problem solving, and the details that make software useful. This portfolio shares what I build, learn, and contribute to along the way.',
   email: '',
   github: '',
   dribbble: '',
