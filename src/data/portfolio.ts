@@ -9,6 +9,8 @@ export const portfolio = {
     'I’m a software engineering undergraduate who enjoys the space where problem solving, clean code, and good design meet. This portfolio is a living record of what I build, learn, and contribute to.',
   email: '',
   github: '',
+  instagram: '',
+  dribbble: '',
   linkedin: '',
   cvPath: '/Gehan-Malshan-CV-Template.pdf',
   cvIsTemplate: true,
