@@ -263,3 +263,10 @@
 .about-portrait img{filter:grayscale(1) contrast(1.14) brightness(.72)}
 @media(max-width:700px){.hero-no-photo .hero-copy{width:calc(100% - 44px);margin:0 auto;padding:75px 0 118px}.hero-no-photo .hero-copy h1{font-size:clamp(52px,11vw,76px)}.hero-no-photo .hero-intro{margin-top:30px}.hero-no-photo .hero-socials{padding-top:28px}.hero-no-photo .hero-cta{left:50%;right:auto;bottom:28px;transform:translateX(-50%)}}
 @media(max-width:420px){.hero-no-photo .hero-copy h1{font-size:clamp(48px,12vw,60px)}}
+
+/* Scroll-driven circle morph from a white field into the black About section. */
+.scroll-morph{position:relative;height:190vh;background:#000}
+.scroll-morph-sticky{position:sticky;top:0;height:100vh;overflow:hidden;background:#fff}
+.scroll-morph-circle{position:absolute;left:50%;top:var(--morph-y);width:var(--morph-size);height:var(--morph-size);border-radius:50%;background:#000;transform:translate(-50%,-50%);will-change:top,width,height}
+@media(max-width:700px){.scroll-morph{height:175vh}}
+@media(prefers-reduced-motion:reduce){.scroll-morph{height:18vh;background:#000}.scroll-morph-sticky{height:18vh;background:#000}.scroll-morph-circle{display:none}}

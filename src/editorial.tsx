@@ -10,6 +10,7 @@ import TechLogos from './TechLogos'
 import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
+import ScrollMorph from './ScrollMorph'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -62,6 +63,7 @@ function Home() {
         <div className="hero-cta"><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
       <section className="section projects" id="projects"><div className="section-inner"><h2>Some projects<span>.</span></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3>{project.title}</h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
+      <ScrollMorph/>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
         <div className="about-feature-inner">
           <div className="about-portrait"><img src="/gehan-color-cutout.png" alt="Black and white portrait of Gehan Malshan in a suit" loading="lazy"/></div>
