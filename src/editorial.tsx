@@ -4,6 +4,7 @@ import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } fr
 import { ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import FooterShader from './FooterShader'
+import FooterBounce from './FooterBounce'
 import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
 import TechLogos from './TechLogos'
@@ -83,6 +84,7 @@ function Home() {
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2>Volunteering<span>.</span></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><div className="timeline">{portfolio.volunteering.map((item, index) => <article className={`timeline-item timeline-item-${index % 2}`} key={`${item.category}-${index}`}><div className="timeline-meta"><span className="timeline-icon">✳</span><strong>{item.organization}</strong><small>{item.period}</small></div><div className="timeline-card"><span>{item.category}</span><h3>{item.role}</h3><p>{item.description}</p></div></article>)}</div><p className="section-note">Add your real roles and dates in <code>src/data/portfolio.ts</code>.</p></div></section>
     </main>
     <footer className="site-footer" id="footer">
+      <FooterBounce/>
       <FooterShader/>
       <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
         <div className="footer-invitation-inner">
