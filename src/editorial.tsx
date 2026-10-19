@@ -4,7 +4,6 @@ import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } fr
 import { ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import FooterShader from './FooterShader'
-import FooterBounce from './FooterBounce'
 import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
 import TechLogos from './TechLogos'
@@ -97,16 +96,10 @@ function Home() {
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
           </div>
           {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
+          <small className="contact-copyright">© {new Date().getFullYear()} Gehan Malshan</small>
         </div>
       </section>
     </div>
-    <footer className="site-ending" id="footer">
-      <FooterBounce/>
-      <div className="footer-ending-inner">
-        <strong>GEHAN MALSHAN.</strong>
-        <small>© {new Date().getFullYear()} Gehan Malshan · Software Engineering Undergraduate</small>
-      </div>
-    </footer>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
     <BackToTop/>
   </>
