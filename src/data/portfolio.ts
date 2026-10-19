@@ -4,7 +4,11 @@ export const portfolio = {
   name: 'Gehan Malshan',
   role: 'Software Engineering Undergraduate',
   location: 'Sri Lanka',
-  heroHeadline: ['Building', 'Software', 'With Care.'],
+  heroHeadlines: [
+    ['Building', 'Software', 'With Care.'],
+    ['Solving', 'Problems', 'With Code.'],
+    ['Learning', 'By Doing', 'Every Day.'],
+  ],
   intro: 'I’m learning to turn thoughtful ideas into useful digital experiences.',
   about:
     'I’m a software engineering undergraduate who enjoys the space where problem solving, clean code, and good design meet. This portfolio is a living record of what I build, learn, and contribute to.',

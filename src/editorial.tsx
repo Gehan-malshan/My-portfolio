@@ -33,7 +33,13 @@ function Home() {
         <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#171717" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={70} hover={85}/></div>
         <div className="hero-photo"><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan in a navy suit" fetchPriority="high"/></div>
         <div className="hero-copy">
-          <h1>{portfolio.heroHeadline.map(line => <span key={line}>{line}</span>)}</h1>
+          <h1 className="hero-ticker-headline" aria-label={portfolio.heroHeadlines[0].join(' ')}>
+            {portfolio.heroHeadlines.map((lines, index) =>
+              <span className="hero-ticker-set" aria-hidden="true" style={{ animationDelay: `${index * 4 - 0.4}s` }} key={lines.join('-')}>
+                {lines.map(line => <span key={line}>{line}</span>)}
+              </span>
+            )}
+          </h1>
           <div className="hero-intro">
             <p className="hero-identity">Hi, I’m {portfolio.name}<br/>{portfolio.role}</p>
             <p className="hero-description">{portfolio.intro}</p>
