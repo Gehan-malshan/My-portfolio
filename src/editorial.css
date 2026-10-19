@@ -200,3 +200,17 @@
 .contact-notice{position:fixed;z-index:50;left:50%;bottom:24px;width:max-content;max-width:calc(100vw - 32px);padding:12px 18px;border:1px solid #666;border-radius:8px;background:#1d1d1d;color:#fff;box-shadow:0 12px 35px #0009;font-size:13px;text-align:center;transform:translateX(-50%)}
 @media(max-width:700px){.hero-socials{gap:12px}.hero-socials .contact-icon{width:40px;height:40px}}
 @media(prefers-reduced-motion:reduce){.contact-icon-fill,.contact-icon svg,.contact-icon-tooltip,.contact-icon-surface{transition:none}}
+
+/* Floating back-to-top control with a ring that tracks page progress. */
+.back-to-top{position:fixed;z-index:40;right:27px;bottom:27px;display:grid;place-items:center;width:54px;height:54px;padding:0;border:1px solid #ffffff45;border-radius:50%;background:#111;color:#fff;box-shadow:0 8px 30px #0008;opacity:0;transform:translateY(12px) scale(.9);pointer-events:none;transition:opacity .25s ease-out,transform .25s ease-out,background .2s,border-color .2s}
+.back-to-top.is-visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.back-to-top:hover{background:#f2f2f2;color:#111;border-color:#f2f2f2;transform:translateY(-3px) scale(1.05)}
+.back-to-top:active{transform:scale(.94)}
+.back-to-top:focus-visible{outline:2px solid #fff;outline-offset:7px}
+.back-to-top-progress{position:absolute;inset:-9px;width:70px;height:70px;overflow:visible;transform:rotate(-90deg);pointer-events:none}
+.back-to-top-progress circle{fill:none;stroke-width:2.5}
+.back-to-top-track{stroke:#ffffff30}
+.back-to-top-value{stroke:#fff;stroke-linecap:round;transition:stroke-dasharray .08s linear}
+.back-to-top:hover .back-to-top-value{stroke:#fff}
+@media(max-width:600px){.back-to-top{right:20px;bottom:20px;width:50px;height:50px}.back-to-top-progress{inset:-10px}}
+@media(prefers-reduced-motion:reduce){.back-to-top,.back-to-top-value{transition:none}}

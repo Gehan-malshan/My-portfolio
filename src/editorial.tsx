@@ -8,6 +8,7 @@ import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
 import TechLogos from './TechLogos'
 import PageScrollBlur from './PageScrollBlur'
+import BackToTop from './BackToTop'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -101,6 +102,7 @@ function Home() {
       </div>
     </footer>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
+    <BackToTop/>
   </>
 }
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><RouterProvider router={router}/></React.StrictMode>)
