@@ -49,25 +49,24 @@ function Home() {
     <PageScrollBlur/>
     <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
-      <section className="hero hero-no-photo" aria-label="Introduction">
-        <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#171717" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={70} hover={85}/></div>
+      <section className="hero hero-with-portrait" aria-label="Introduction">
+        <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#1a1a1a" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={78} hover={105}/></div>
+        <div className="hero-portrait"><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan" fetchPriority="high"/></div>
         <div className="hero-copy">
           <BlurredHeroTicker words={portfolio.heroWords}/>
           <div className="hero-intro">
             <p className="hero-identity">Hi, I’m {portfolio.name}<br/>{portfolio.role}</p>
             <p className="hero-description">{portfolio.intro}</p>
           </div>
-          <nav className="hero-socials" aria-label="Social links">
+          <div className="hero-bottom-row"><nav className="hero-socials" aria-label="Social links">
             {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
-          </nav>
+          </nav><TacticalLink href="#contact" label="Contact me"/></div>
         </div>
-        <div className="hero-cta"><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
       <section className="section projects" id="projects"><div className="section-inner"><h2><FlippingWordSwap word1="Some projects." stagger={30}/></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3><FlippingWordSwap word1={project.title} stagger={24}/></h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
         <div className="about-feature-inner">
-          <div className="about-portrait"><img src="/gehan-color-cutout.png" alt="Black and white portrait of Gehan Malshan in a suit" loading="lazy"/></div>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
             <h2 id="about-title">Curious about code and <em><FlippingWordSwap word1="everything around it." stagger={25}/></em></h2>
