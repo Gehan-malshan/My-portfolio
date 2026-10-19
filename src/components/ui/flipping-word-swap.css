@@ -6,6 +6,4 @@
 .flip-heading-character{display:inline-block;backface-visibility:hidden;will-change:transform,opacity}
 .flip-heading-layer:nth-child(2) .flip-heading-character{opacity:0}
 .flip-heading-space{white-space:pre}
-.flip-heading-shimmer .flip-heading-character{background-image:linear-gradient(100deg,#999 32%,#fff 45%,#fff 55%,#999 68%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% 100%;animation:flip-heading-shimmer 2.4s linear infinite}
-@keyframes flip-heading-shimmer{from{background-position:100% 0}to{background-position:0 0}}
-@media(prefers-reduced-motion:reduce){.flip-heading-character{will-change:auto}.flip-heading-shimmer .flip-heading-character{background-image:none;animation:none;-webkit-text-fill-color:currentColor}}
+@media(prefers-reduced-motion:reduce){.flip-heading-character{will-change:auto}}

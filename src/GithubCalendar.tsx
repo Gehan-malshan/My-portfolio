@@ -103,7 +103,7 @@ export default function GithubCalendar({ username }: { username: string }) {
     <section className="section github-activity" id="activity" aria-labelledby="activity-title">
       <div className="section-inner">
         <p className="github-activity-eyebrow">Developer insights</p>
-        <h2 id="activity-title"><FlippingWordSwap word1="GitHub Activity." className="flip-heading-shimmer" stagger={28}/></h2>
+        <h2 id="activity-title"><FlippingWordSwap word1="GitHub Activity." stagger={28}/></h2>
         <div className="github-calendar-scroll">
           <div className="github-calendar" style={{ '--calendar-weeks': weeks.length } as React.CSSProperties} role="img" aria-label={data ? `GitHub contribution calendar for ${username}: ${summary}` : 'GitHub contribution calendar awaiting a username'}>
             <div className="github-calendar-months" aria-hidden="true">

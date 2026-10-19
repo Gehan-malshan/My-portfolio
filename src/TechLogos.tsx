@@ -56,7 +56,7 @@ const loopRows = [logos.slice(0, 24), logos.slice(24)]
 export default function TechLogos() {
   return <section className="section tech-section" id="toolkit" aria-labelledby="toolkit-title">
     <div className="section-inner">
-      <h2 id="toolkit-title"><FlippingWordSwap word1="Technologies" className="flip-heading-shimmer" stagger={28}/></h2>
+      <h2 id="toolkit-title"><FlippingWordSwap word1="Technologies" stagger={28}/></h2>
       <div className="tech-loop-stack">
         {loopRows.map((row, index) => <LogoLoop
           key={index}
