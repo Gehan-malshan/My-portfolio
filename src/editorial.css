@@ -268,15 +268,16 @@
 /* Keep the grid continuous behind the copy and the transparent portrait. */
 .hero-with-portrait{display:grid;grid-template-columns:minmax(0,52%) minmax(0,48%);height:min(850px,100svh);min-height:720px;align-items:stretch;justify-content:stretch;background:#000}
 .hero-with-portrait .hero-grid{opacity:.58;mask-image:none}
-.hero-portrait{position:relative;z-index:1;grid-column:2;grid-row:1;min-width:0;overflow:hidden;pointer-events:none}
-.hero-portrait img{position:absolute;inset:4% -4% 0 -2%;display:block;width:106%;height:96%;object-fit:contain;object-position:center bottom;filter:grayscale(1) contrast(1.14) brightness(.72)}
+.hero-portrait{position:relative;z-index:1;grid-column:2;grid-row:1;min-width:0;overflow:visible;pointer-events:none}
+.hero-portrait img{position:absolute;inset:4% -4% 0 -2%;display:block;width:106%;height:96%;object-fit:contain;object-position:center bottom;pointer-events:auto;filter:grayscale(1) contrast(1.14) brightness(.72);transition:filter .45s ease}
+@media(hover:hover){.hero-portrait img:hover{filter:grayscale(1) contrast(1.1) brightness(.92) drop-shadow(0 0 24px #ffffff28)}}
 .hero-portrait::after{display:none}
 .hero-with-portrait .hero-copy{grid-column:1;grid-row:1;z-index:2;width:auto;min-height:0;margin:0;padding:84px 0 54px clamp(28px,7vw,110px);align-items:stretch;text-align:left}
 .hero-with-portrait .hero-copy h1{width:100%;font-size:clamp(68px,6.8vw,106px)}
 .hero-with-portrait .hero-word{justify-content:flex-start}
 .hero-with-portrait .hero-intro{max-width:470px;margin-top:42px}
 .hero-with-portrait .hero-description{margin-left:0}
-.hero-bottom-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:auto;padding-top:28px}
+.hero-bottom-row{position:absolute;z-index:3;left:clamp(28px,7vw,110px);right:clamp(28px,4vw,70px);bottom:54px;display:flex;align-items:center;justify-content:space-between;gap:18px;margin:0;padding:0}
 .hero-bottom-row .hero-socials{gap:14px;margin:0;padding:0}
 .hero-bottom-row .tactical-button{flex:none}
 .about-feature-inner{display:block;max-width:1160px;min-height:0;margin:auto;padding:112px 0 120px}
@@ -285,6 +286,8 @@
 @media(max-width:1000px){.hero-with-portrait{grid-template-columns:minmax(0,51%) minmax(0,49%)}.hero-with-portrait .hero-copy{padding:88px 0 46px 28px}.hero-with-portrait .hero-copy h1{font-size:clamp(62px,7.5vw,85px)}.hero-bottom-row{gap:8px}.hero-bottom-row .hero-socials{gap:5px}.hero-bottom-row .tactical-button{padding:0 15px}}
 @media(max-width:700px){.hero-with-portrait{display:block;height:800px;min-height:800px}.hero-portrait{position:absolute;inset:285px -20% 0 20%;opacity:.75}.hero-portrait img{inset:0;width:100%;height:100%;object-position:left bottom;filter:grayscale(1) contrast(1.18) brightness(.55)}.hero-with-portrait .hero-copy{position:relative;z-index:2;display:flex;width:calc(100% - 44px);height:100%;margin:0 22px;padding:72px 0 28px;align-items:stretch;text-align:left}.hero-with-portrait .hero-copy h1{max-width:440px;font-size:clamp(54px,11vw,76px)}.hero-with-portrait .hero-intro{max-width:330px;margin-top:30px}.hero-bottom-row{gap:10px;padding-top:20px}.hero-bottom-row .hero-socials{gap:5px}.hero-bottom-row .hero-socials .contact-icon{width:37px;height:37px}.hero-bottom-row .tactical-button{min-height:46px;padding:0 12px;font-size:11px}.about-feature-inner{padding:80px 0 90px}.about-copy{max-width:none;padding:0 24px}}
 @media(max-width:420px){.hero-with-portrait{height:750px;min-height:750px}.hero-portrait{inset:275px -23% 0 18%}.hero-with-portrait .hero-copy{padding-top:65px}.hero-with-portrait .hero-copy h1{font-size:clamp(49px,12vw,60px)}.hero-with-portrait .hero-intro{margin-top:25px}.hero-bottom-row .hero-socials .contact-icon{width:35px;height:35px}.hero-bottom-row .tactical-button{padding:0 10px}}
+@media(max-width:1000px){.hero-bottom-row{left:28px;right:28px;bottom:46px}}
+@media(max-width:700px){.hero-bottom-row{left:22px;right:22px;bottom:28px}.hero-portrait{overflow:hidden}.hero-portrait img{object-position:left bottom}}
 
 /* Scroll-activated education progress cards adapted from the referenced Framer component. */
 .education-steps{display:grid;gap:22px}
@@ -308,8 +311,9 @@
 
 /* Layered scroll depth; interactive text and buttons stay steady. */
 .hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scale(1.12);transform-origin:center top;will-change:transform}
-.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 190px),0);will-change:transform}
+.hero-with-portrait .hero-portrait img{transform:translate3d(-105px,calc(var(--hero-parallax,0) * 190px),0) scaleX(-1);will-change:transform}
 .projects .project-screen{transform:translate3d(0,var(--projects-parallax,0px),0);will-change:transform}
 .about-feature::before{inset:-100px 0;background:radial-gradient(ellipse at 74% 12%,#ffffff14,transparent 45%),repeating-linear-gradient(115deg,transparent 0 54px,#ffffff0a 55px 56px,transparent 57px 112px);transform:translate3d(0,var(--about-parallax,0px),0);will-change:transform}
-@media(max-width:700px){.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 55px),0) scale(1.1)}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0)}}
-@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-grid,.hero-with-portrait .hero-portrait img,.projects .project-screen,.about-feature::before{transform:none}}
+@media(max-width:700px){.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 55px),0) scale(1.1)}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scaleX(-1)}}
+@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-grid,.projects .project-screen,.about-feature::before{transform:none}.hero-with-portrait .hero-portrait img{transform:translateX(-105px) scaleX(-1)}}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:scaleX(-1)}}

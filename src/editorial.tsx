@@ -95,11 +95,11 @@ function Home() {
             <p className="hero-identity">Hi, I’m {portfolio.name}<br/>{portfolio.role}</p>
             <p className="hero-description">{portfolio.intro}</p>
           </div>
-          <div className="hero-bottom-row"><nav className="hero-socials" aria-label="Social links">
-            {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
-              <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
-          </nav><TacticalLink href="#contact" label="Contact me"/></div>
         </div>
+        <div className="hero-bottom-row"><nav className="hero-socials" aria-label="Social links">
+          {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
+            <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
+        </nav><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
       <section className="section projects" id="projects"><div className="section-inner"><h2><FlippingWordSwap word1="Some projects." stagger={30}/></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3><FlippingWordSwap word1={project.title} stagger={24}/></h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
