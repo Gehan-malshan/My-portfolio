@@ -5,7 +5,9 @@
 .logo-loop-sequence{display:flex;align-items:center;flex:none;gap:var(--logo-loop-gap);width:max-content;margin:0;padding:0 var(--logo-loop-gap) 0 0;list-style:none}
 .logo-loop-item{position:relative;display:grid;place-items:center;flex:none;width:var(--logo-loop-slot);height:var(--logo-loop-height)}
 .logo-loop-item img{display:block;width:100%;height:100%;object-fit:contain;max-width:var(--logo-loop-height);pointer-events:none;transition:filter .35s,opacity .35s,transform .35s}
-.logo-loop-muted .logo-loop-item img{filter:grayscale(1) brightness(0) invert(.76);opacity:var(--logo-loop-opacity)}
+.logo-loop-muted .logo-loop-item img{filter:grayscale(.72) brightness(2.2) contrast(1.05);opacity:1}
+.logo-loop-muted .logo-loop-item.is-dark-brand img{filter:grayscale(1) brightness(0) invert(.85)}
+.logo-loop-muted .logo-loop-item img:is([src$="/python.png"],[src$="/css3.png"]){filter:grayscale(.65) brightness(3.2) contrast(1.05)}
 .logo-loop-muted .logo-loop-item:hover img{filter:none;opacity:1}
 .logo-loop-item.is-dark-brand:hover{background:#e8e8e8;border-radius:10px}
 .logo-loop-scale .logo-loop-item:hover img{transform:scale(1.15)}

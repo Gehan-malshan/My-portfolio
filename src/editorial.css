@@ -333,3 +333,14 @@
 /* PNG logo colors appear on hover; dark official marks receive a light backing. */
 .technology-loop .logo-loop-item:hover img{filter:none!important;opacity:1}
 .technology-loop .logo-loop-item.is-dark-brand:hover{background:#e8e8e8;border-radius:10px}
+
+/* Match the reference composition and retain the portrait's original direction. */
+.hero-with-portrait{grid-template-columns:minmax(0,53%) minmax(0,47%)}
+.hero-with-portrait .hero-copy{padding-left:clamp(32px,11vw,210px)}
+.hero-bottom-row{left:clamp(32px,11vw,210px)}
+.hero-with-portrait .hero-portrait img{transform:translate3d(-35px,calc(var(--hero-parallax,0) * 190px),0);filter:grayscale(1) contrast(1.14) brightness(.79)}
+.hero-bottom-row .tactical-button{margin-right:clamp(65px,8vw,145px)}
+@media(max-width:1000px){.hero-with-portrait .hero-copy{padding-left:7vw}.hero-bottom-row{left:7vw}.hero-bottom-row .tactical-button{margin-right:clamp(25px,5vw,60px)}}
+@media(max-width:700px){.hero-with-portrait .hero-copy{padding-left:0}.hero-bottom-row{left:22px}.hero-bottom-row .tactical-button{margin-right:0}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0)}}
+@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:translateX(-35px)}}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:none}}
