@@ -344,3 +344,6 @@
 @media(max-width:700px){.hero-with-portrait .hero-copy{padding-left:0}.hero-bottom-row{left:22px}.hero-bottom-row .tactical-button{margin-right:0}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0)}}
 @media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:translateX(-35px)}}
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:none}}
+@media(hover:hover){.hero-with-portrait .hero-portrait img:hover{filter:grayscale(1) contrast(1.18) brightness(1.12) drop-shadow(0 0 42px #ffffff55);transform:translate3d(-35px,calc(var(--hero-parallax,0) * 190px),0) scale(1.025)}}
+@media(max-width:700px) and (hover:hover){.hero-with-portrait .hero-portrait img:hover{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scale(1.025)}}
+@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:translateX(-35px)}}

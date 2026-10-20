@@ -14,6 +14,7 @@ const deviconName: Record<string, string> = {
   amazonaws: 'amazonwebservices',
   mui: 'materialui',
   nextdotjs: 'nextjs',
+  intellijidea: 'intellij',
   nodedotjs: 'nodejs',
   azure: 'azure',
 }
@@ -38,9 +39,14 @@ for (const [name, slug] of technologies) {
     }
   }
   source ??= await readFile(`${existing}${slug}.svg`)
-  await sharp(source, { density: 240 })
+  if (slug === 'solidity') {
+    source = Buffer.from(source.toString().replace('<svg ', '<svg fill="#dedede" '))
+  }
+  const pipeline = sharp(source, { density: 240 })
     .resize(144, 144, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .extend({ top: 8, bottom: 8, left: 8, right: 8, background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  if (slug === 'nextdotjs') pipeline.negate({ alpha: false })
+  await pipeline
     .png()
     .toFile(`${folder}${slug}.png`)
   process.stdout.write(`${name}: ${origin}\n`)

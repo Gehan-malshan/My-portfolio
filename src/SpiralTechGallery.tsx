@@ -24,8 +24,8 @@ export default function SpiralTechGallery() {
     const draw = (now: number) => {
       if (!start) start = now
       const elapsed = motion.matches ? 0 : now - start
-      const radius = Math.min(170, root.clientWidth * .31)
-      const travel = Math.min(570, root.clientHeight * .78)
+      const radius = Math.min(140, root.clientWidth * .29)
+      const travel = Math.min(490, root.clientHeight * .76)
       cards.forEach((card, index) => {
         const phase = ((index / cards.length + elapsed / 44000 + manualOffset) % 1 + 1) % 1
         const angle = phase * Math.PI * 4

@@ -18,7 +18,7 @@ export const technologies = [
 ] as const
 
 // These brands use a predominantly black official mark. Reveal a light tile on hover.
-export const darkTechnologyIcons = new Set(['amazonaws', 'apachekafka', 'express', 'github', 'nextdotjs', 'vercel'])
+export const darkTechnologyIcons = new Set(['amazonaws', 'apachekafka', 'express', 'github', 'vercel'])
 
 export const spiralTechnologySlugs = [
   'react', 'typescript', 'python', 'docker', 'figma', 'nodedotjs',
