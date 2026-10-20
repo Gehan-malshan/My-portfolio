@@ -59,8 +59,8 @@ function Home() {
         const progress = reducedMotion.matches ? 0 : Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight))
         hero.style.setProperty('--hero-parallax', progress.toFixed(3))
       }
-      projects?.style.setProperty('--projects-parallax', reducedMotion.matches ? '0px' : offset(projects, 44))
-      about?.style.setProperty('--about-parallax', reducedMotion.matches ? '0px' : offset(about, 90))
+      projects?.style.setProperty('--projects-parallax', reducedMotion.matches ? '0px' : offset(projects, 104))
+      about?.style.setProperty('--about-parallax', reducedMotion.matches ? '0px' : offset(about, 170))
     }
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
     window.addEventListener('scroll', schedule, { passive: true })
