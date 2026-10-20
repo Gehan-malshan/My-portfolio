@@ -317,3 +317,19 @@
 @media(max-width:700px){.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 55px),0) scale(1.1)}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scaleX(-1)}}
 @media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-grid,.projects .project-screen,.about-feature::before{transform:none}.hero-with-portrait .hero-portrait img{transform:translateX(-105px) scaleX(-1)}}
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:scaleX(-1)}}
+
+/* Place the invitation over the lower portrait while leaving breathing room at the edge. */
+.hero-bottom-row .tactical-button{margin-right:clamp(105px,11vw,175px)}
+@media(max-width:1000px){.hero-bottom-row .tactical-button{margin-right:clamp(35px,7vw,90px)}}
+@media(max-width:700px){.hero-bottom-row .tactical-button{margin-right:0}}
+
+/* About combines the original copy with a slowly turning gallery of tool artwork. */
+.about-feature-inner{display:grid;grid-template-columns:minmax(0,48%) minmax(0,52%);align-items:center;max-width:1380px;min-height:710px;margin:auto;padding:34px 42px 46px}
+.about-copy{max-width:none;padding:65px clamp(25px,3vw,65px) 65px 24px}
+.about-copy h2{font-size:clamp(43px,4.15vw,66px)}
+@media(max-width:1000px){.about-feature-inner{grid-template-columns:44% 56%;padding:25px 20px}.about-copy{padding:50px 24px}.about-copy h2{font-size:clamp(37px,4.5vw,52px)}}
+@media(max-width:700px){.about-feature-inner{display:flex;flex-direction:column;align-items:stretch;padding:15px 0 70px}.about-copy{padding:26px 24px 10px}.about-copy h2{font-size:clamp(42px,9vw,58px)}}
+
+/* PNG logo colors appear on hover; dark official marks receive a light backing. */
+.technology-loop .logo-loop-item:hover img{filter:none!important;opacity:1}
+.technology-loop .logo-loop-item.is-dark-brand:hover{background:#e8e8e8;border-radius:10px}

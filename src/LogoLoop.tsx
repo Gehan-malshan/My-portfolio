@@ -4,7 +4,7 @@ import './LogoLoop.css'
 // A small local adaptation of the React Bits Logo Loop interaction.
 // https://www.reactbits.dev/animations/logo-loop
 
-type LogoItem = { src: string; alt: string; title?: string }
+type LogoItem = { src: string; alt: string; title?: string; darkOnLight?: boolean }
 
 type LogoLoopProps = {
   logos: readonly LogoItem[]
@@ -145,7 +145,7 @@ export default function LogoLoop({
   >
     <div className="logo-loop-track" ref={trackRef}>
       {[0, 1].map(copy => <ul className="logo-loop-sequence" ref={copy === 0 ? sequenceRef : undefined} key={copy} aria-hidden={copy === 1 ? true : undefined}>
-        {logos.map(({ src, alt, title }) => <li className="logo-loop-item" key={src} title={title ?? alt}>
+        {logos.map(({ src, alt, title, darkOnLight }) => <li className={`logo-loop-item${darkOnLight ? ' is-dark-brand' : ''}`} key={src} title={title ?? alt}>
           <img src={src} alt={copy === 0 ? alt : ''} loading="lazy" decoding="async" draggable={false}/>
           {labels === 'hover' && <span className="logo-loop-tip" aria-hidden="true">{title ?? alt}</span>}
         </li>)}

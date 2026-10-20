@@ -1,57 +1,8 @@
 import FlippingWordSwap from './components/ui/flipping-word-swap'
+import LogoLoop from './LogoLoop'
+import { darkTechnologyIcons, technologies } from './technologies'
 
-const logos = [
-  ['JavaScript', 'javascript'],
-  ['TypeScript', 'typescript'],
-  ['React', 'react'],
-  ['HTML5', 'html5'],
-  ['CSS3', 'css3'],
-  ['Python', 'python'],
-  ['C#', 'csharp'],
-  ['Angular', 'angular'],
-  ['AWS', 'amazonaws'],
-  ['Apache Kafka', 'apachekafka'],
-  ['Bootstrap', 'bootstrap'],
-  ['C', 'c'],
-  ['Docker', 'docker'],
-  ['Express', 'express'],
-  ['Figma', 'figma'],
-  ['Git', 'git'],
-  ['GitLab', 'gitlab'],
-  ['GitHub', 'github'],
-  ['IntelliJ IDEA', 'intellijidea'],
-  ['Java', 'java'],
-  ['Jira', 'jira'],
-  ['Kubernetes', 'kubernetes'],
-  ['Linux', 'linux'],
-  ['Material UI', 'mui'],
-  ['MongoDB', 'mongodb'],
-  ['MySQL', 'mysql'],
-  ['Next.js', 'nextdotjs'],
-  ['Nginx', 'nginx'],
-  ['npm', 'npm'],
-  ['Node.js', 'nodedotjs'],
-  ['PostgreSQL', 'postgresql'],
-  ['Redis', 'redis'],
-  ['Spring', 'spring'],
-  ['VS Code', 'vscode'],
-  ['ESLint', 'eslint'],
-  ['Solidity', 'solidity'],
-  ['Ubuntu', 'ubuntu'],
-  ['Vercel', 'vercel'],
-  ['WebStorm', 'webstorm'],
-  ['Apache', 'apache'],
-  ['Selenium', 'selenium'],
-  ['.NET', 'dotnet'],
-  ['Oracle', 'oracle'],
-  ['Prometheus', 'prometheus'],
-  ['Microsoft Azure', 'azure'],
-  ['Zed', 'zedindustries'],
-  ['GitHub Actions', 'githubactions'],
-  ['Terraform', 'terraform'],
-] as const
-
-const loopRows = [logos.slice(0, 24), logos.slice(24)]
+const loopRows = [technologies.slice(0, 24), technologies.slice(24)]
 
 export default function TechLogos() {
   return <section className="section tech-section" id="toolkit" aria-labelledby="toolkit-title">
@@ -60,7 +11,7 @@ export default function TechLogos() {
       <div className="tech-loop-stack">
         {loopRows.map((row, index) => <LogoLoop
           key={index}
-          logos={row.map(([name, icon]) => ({ src: `/tech/${icon}.svg`, alt: name, title: name }))}
+          logos={row.map(([name, icon]) => ({ src: `/tech-png/${icon}.png`, alt: name, title: name, darkOnLight: darkTechnologyIcons.has(icon) }))}
           ariaLabel={`Technology logos, row ${index + 1}`}
           className="technology-loop"
           speed={index === 0 ? 72 : 64}
@@ -76,5 +27,4 @@ export default function TechLogos() {
     </div>
   </section>
 }
-import LogoLoop from './LogoLoop'
 

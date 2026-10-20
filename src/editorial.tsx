@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
-import { ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
+import { Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import SplashCursor from './SplashCursor'
 import FooterShader from './FooterShader'
@@ -13,6 +13,7 @@ import BackToTop from './BackToTop'
 import BlurredHeroTicker from './BlurredHeroTicker'
 import EducationProgress from './EducationProgress'
 import GithubCalendar from './GithubCalendar'
+import SpiralTechGallery from './SpiralTechGallery'
 import FlippingWordSwap from './components/ui/flipping-word-swap'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
@@ -21,7 +22,7 @@ const rootRoute = createRootRoute({ component: () => <Outlet /> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
 const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute]) })
 declare module '@tanstack/react-router' { interface Register { router: typeof router } }
-const links = [['Projects', '#projects'], ['About', '#about'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
+const links = [['About', '#about'], ['Technology', '#toolkit'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
   { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
@@ -41,7 +42,6 @@ function Home() {
   const [contactNotice, setContactNotice] = React.useState('')
   React.useEffect(() => {
     const hero = document.querySelector<HTMLElement>('.hero')
-    const projects = document.querySelector<HTMLElement>('.projects')
     const about = document.querySelector<HTMLElement>('.about-feature')
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frame = 0
@@ -59,7 +59,6 @@ function Home() {
         const progress = reducedMotion.matches ? 0 : Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight))
         hero.style.setProperty('--hero-parallax', progress.toFixed(3))
       }
-      projects?.style.setProperty('--projects-parallax', reducedMotion.matches ? '0px' : offset(projects, 104))
       about?.style.setProperty('--about-parallax', reducedMotion.matches ? '0px' : offset(about, 170))
     }
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
@@ -101,9 +100,9 @@ function Home() {
             <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
         </nav><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
-      <section className="section projects" id="projects"><div className="section-inner"><h2><FlippingWordSwap word1="Some projects." stagger={30}/></h2><div className="project-grid">{portfolio.projects.map((project, index) => <article className="project-card" key={project.number}><div className={`project-visual visual-${index % 2}`} aria-hidden="true"><div className="project-screen"><div className="screen-top"><i/><i/><i/></div><div className="screen-body"><b/><i/><i/><div><em/><em/></div></div></div></div><div className="project-copy"><h3><FlippingWordSwap word1={project.title} stagger={24}/></h3><p>{project.description}</p></div>{project.url ? <a className="project-arrow" href={project.url} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}><ArrowUpRight/></a> : <span className="project-arrow" aria-hidden="true"><ArrowUpRight/></span>}</article>)}</div><p className="section-note">Starter spaces for your projects. Edit <code>src/data/portfolio.ts</code>.</p></div></section>
       <section className="section about-feature" id="about" aria-labelledby="about-title">
         <div className="about-feature-inner">
+          <SpiralTechGallery/>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
             <h2 id="about-title">Curious about code and <em><FlippingWordSwap word1="everything around it." stagger={25}/></em></h2>
