@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
 import { ArrowUpRight, Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
+import SplashCursor from './SplashCursor'
 import FooterShader from './FooterShader'
 import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
@@ -46,6 +47,7 @@ function Home() {
   const onMissingContact = (label: string) => setContactNotice(`${label} contact details are coming soon.`)
   return <>
     <PagePreloader/>
+    <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={25}/>
     <PageScrollBlur/>
     <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
