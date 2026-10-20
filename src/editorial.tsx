@@ -40,6 +40,41 @@ function ContactIcon({ label, href, Icon, variant, onMissing }: { label: string,
 function Home() {
   const [contactNotice, setContactNotice] = React.useState('')
   React.useEffect(() => {
+    const hero = document.querySelector<HTMLElement>('.hero')
+    const projects = document.querySelector<HTMLElement>('.projects')
+    const about = document.querySelector<HTMLElement>('.about-feature')
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      const scale = window.innerWidth <= 700 ? 0.5 : 1
+      const offset = (element: HTMLElement | null, distance: number) => {
+        if (!element) return '0px'
+        const rect = element.getBoundingClientRect()
+        const travel = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
+        return `${((Math.min(1, Math.max(0, travel)) - 0.5) * distance * scale).toFixed(1)}px`
+      }
+      if (hero) {
+        const progress = reducedMotion.matches ? 0 : Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight))
+        hero.style.setProperty('--hero-parallax', progress.toFixed(3))
+      }
+      projects?.style.setProperty('--projects-parallax', reducedMotion.matches ? '0px' : offset(projects, 44))
+      about?.style.setProperty('--about-parallax', reducedMotion.matches ? '0px' : offset(about, 90))
+    }
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    reducedMotion.addEventListener('change', schedule)
+    update()
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+      reducedMotion.removeEventListener('change', schedule)
+    }
+  }, [])
+  React.useEffect(() => {
     if (!contactNotice) return
     const timeout = window.setTimeout(() => setContactNotice(''), 4000)
     return () => window.clearTimeout(timeout)

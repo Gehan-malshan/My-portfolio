@@ -305,3 +305,10 @@
 @media(max-width:700px){.education-step-card{grid-template-columns:48px 4px minmax(0,1fr);gap:20px;min-height:280px;padding:30px 24px;border-radius:16px}.education-step-number{font-size:28px}.education-step-meta{align-items:flex-start;flex-direction:column;gap:5px;margin-bottom:18px}.education-step-content h3{font-size:clamp(25px,7vw,34px)}.education-step-content p{font-size:14px;line-height:1.55}}
 @media(max-width:420px){.education-step-card{grid-template-columns:38px 3px minmax(0,1fr);gap:14px;padding:26px 18px}.education-step-number{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.education-step-card{opacity:1;transform:none}.education-progress-rail i{transform:none}}
+
+/* Gentle scroll depth; the hero ticker and body copy stay fixed in their layout. */
+.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 35px),0) scale(1.07);transform-origin:center top;will-change:transform}
+.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 75px),0);will-change:transform}
+.projects .project-screen{transform:translate3d(0,var(--projects-parallax,0px),0);will-change:transform}
+.about-feature::before{inset:-55px 0;transform:translate3d(0,var(--about-parallax,0px),0);will-change:transform}
+@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-grid,.hero-with-portrait .hero-portrait img,.projects .project-screen,.about-feature::before{transform:none}}
