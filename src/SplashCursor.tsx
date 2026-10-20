@@ -19,6 +19,7 @@ export interface SplashCursorProps {
   clickSplash?: boolean;
   intro?: boolean;
   contained?: boolean;
+  excludeSelector?: string;
   theme?: 'dark' | 'light';
   zIndex?: number;
   className?: string;
@@ -330,6 +331,7 @@ function SplashCursor({
   clickSplash = true,
   intro = true,
   contained = false,
+  excludeSelector,
   theme = 'dark',
   zIndex = 50,
   className = '',
@@ -369,6 +371,35 @@ function SplashCursor({
       parent.style.position = previous;
     };
   }, [contained]);
+
+  // Keep the fixed canvas clipped below a top section as that section scrolls away.
+  useEffect(() => {
+    const root = rootRef.current;
+    const excluded = excludeSelector ? document.querySelector<HTMLElement>(excludeSelector) : null;
+    if (!root || !excluded) return undefined;
+
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const bottom = Math.min(window.innerHeight, Math.max(0, excluded.getBoundingClientRect().bottom));
+      root.style.clipPath = `inset(${bottom}px 0 0 0)`;
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    const resizeObserver = new ResizeObserver(schedule);
+    resizeObserver.observe(excluded);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(raf);
+      resizeObserver.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      root.style.clipPath = '';
+    };
+  }, [excludeSelector]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -922,6 +953,11 @@ function SplashCursor({
     };
 
     const locate = (clientX: number, clientY: number) => {
+      const excluded = excludeSelector ? document.querySelector<HTMLElement>(excludeSelector) : null;
+      if (excluded) {
+        const bounds = excluded.getBoundingClientRect();
+        if (clientX >= bounds.left && clientX <= bounds.right && clientY >= bounds.top && clientY <= bounds.bottom) return null;
+      }
       const rect = canvas.getBoundingClientRect();
       if (!rect.width || !rect.height) return null;
       const x = (clientX - rect.left) / rect.width;
@@ -1020,7 +1056,7 @@ function SplashCursor({
       canvas.removeEventListener('webglcontextrestored', onRestored);
       release();
     };
-  }, [generation]);
+  }, [generation, excludeSelector]);
 
   return (
     <div

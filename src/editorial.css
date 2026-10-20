@@ -267,7 +267,7 @@
 
 /* Keep the grid continuous behind the copy and the transparent portrait. */
 .hero-with-portrait{display:grid;grid-template-columns:minmax(0,52%) minmax(0,48%);height:min(850px,100svh);min-height:720px;align-items:stretch;justify-content:stretch;background:#000}
-.hero-with-portrait .hero-grid{opacity:.46;mask-image:none}
+.hero-with-portrait .hero-grid{opacity:.58;mask-image:none}
 .hero-portrait{position:relative;z-index:1;grid-column:2;grid-row:1;min-width:0;overflow:hidden;pointer-events:none}
 .hero-portrait img{position:absolute;inset:4% -4% 0 -2%;display:block;width:106%;height:96%;object-fit:contain;object-position:center bottom;filter:grayscale(1) contrast(1.14) brightness(.72)}
 .hero-portrait::after{display:none}

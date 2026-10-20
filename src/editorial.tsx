@@ -47,12 +47,12 @@ function Home() {
   const onMissingContact = (label: string) => setContactNotice(`${label} contact details are coming soon.`)
   return <>
     <PagePreloader/>
-    <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={25}/>
+    <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={25} excludeSelector=".hero"/>
     <PageScrollBlur/>
     <nav className="toc-nav" aria-label="Main navigation">{links.map(([label, href]) => <a href={href} key={href} aria-label={label}><span className="toc-label" aria-hidden="true">{label}</span><span className="toc-line" aria-hidden="true"/></a>)}</nav>
     <main id="top">
       <section className="hero hero-with-portrait" aria-label="Introduction">
-        <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#1a1a1a" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={78} hover={105}/></div>
+        <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#242424" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={86} hover={115}/></div>
         <div className="hero-portrait"><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan" fetchPriority="high"/></div>
         <div className="hero-copy">
           <BlurredHeroTicker words={portfolio.heroWords}/>
