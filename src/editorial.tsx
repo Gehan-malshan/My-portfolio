@@ -14,15 +14,19 @@ import BlurredHeroTicker from './BlurredHeroTicker'
 import EducationProgress from './EducationProgress'
 import GithubCalendar from './GithubCalendar'
 import SpiralTechGallery from './SpiralTechGallery'
+import ProjectShowcase from './ProjectShowcase'
+import ProjectDetail from './ProjectDetail'
 import FlippingWordSwap from './components/ui/flipping-word-swap'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
 const rootRoute = createRootRoute({ component: () => <Outlet /> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
-const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute]) })
+const projectRoute = createRoute({ getParentRoute: () => rootRoute, path: '/projects/$slug', component: ProjectDetailRoute })
+const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute, projectRoute]) })
 declare module '@tanstack/react-router' { interface Register { router: typeof router } }
-const links = [['About', '#about'], ['Technology', '#toolkit'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
+function ProjectDetailRoute() { const { slug } = projectRoute.useParams(); return <ProjectDetail slug={slug}/> }
+const links = [['About', '#about'], ['Projects', '#projects'], ['Technology', '#toolkit'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
   { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
@@ -116,6 +120,7 @@ function Home() {
           </div>
         </div>
       </section>
+      <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
       <section className="section education" id="education"><div className="section-inner"><h2><FlippingWordSwap word1="Education." stagger={35}/></h2><p className="section-intro">My academic path, qualifications, and continued learning.</p><EducationProgress items={portfolio.education}/><p className="section-note">Update these education steps in <code>src/data/portfolio.ts</code>.</p><div className="cv-row"><div><h3><FlippingWordSwap word1="Resume." stagger={35}/></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
