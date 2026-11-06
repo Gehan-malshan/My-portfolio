@@ -95,23 +95,11 @@
 .cv-row .tactical-button:hover{border:0;color:#fff}
 @media(max-width:700px){.hero-bottom>.tactical-button{height:46px;min-height:46px;padding:0 16px;font-size:11px}.cv-row .tactical-button{padding:0 18px}}
 
-/* Signature stroke, moving dot, sparks, and ink flood before the portfolio appears. */
+/* The signature is the only element shown while the portfolio loads. */
 .page-preloader{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;background:#050505;pointer-events:auto;transition:opacity .78s cubic-bezier(.76,0,.24,1),visibility .78s}
-.page-preloader::after{content:"";position:absolute;inset:0;opacity:.16;background-image:radial-gradient(#fff 0.6px,transparent 0.8px);background-size:5px 5px;mix-blend-mode:soft-light;pointer-events:none}
 .page-preloader.is-revealing{opacity:0;visibility:hidden;pointer-events:none}
 .signature-loader{position:relative;display:grid;place-items:center;width:min(80vw,430px);min-height:190px;color:#f5f5f5}
 .signature-svg{position:relative;z-index:3;display:block;max-width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 12px #ffffff18);transform:rotate(-5deg)}
-.scribble-dot{position:absolute;z-index:5;left:10%;top:60%;width:13px;height:13px;border-radius:50%;background:#f5f5f5;box-shadow:0 0 9px #fff8;opacity:0;transform:translate(-50%,-50%);animation:signature-dot 1.28s .06s cubic-bezier(.16,1,.3,1) forwards}
-.scribble-flood{position:absolute;z-index:4;left:86%;top:49%;width:22px;height:22px;border-radius:50%;background:#f5f5f5;transform:translate(-50%,-50%) scale(0);animation:scribble-flood .95s 1.42s cubic-bezier(.76,0,.24,1) forwards}
-.scribble-spark{position:absolute;z-index:6;left:86%;top:49%;width:4px;height:24px;border-radius:99px;background:#f5f5f5;opacity:0}
-.scribble-spark-a{animation:scribble-spark-a .55s 1.3s ease-out forwards}
-.scribble-spark-b{transform:rotate(75deg);animation:scribble-spark-b .55s 1.35s ease-out forwards}
-.scribble-label{position:absolute;z-index:7;color:#050505;font:700 12px/1 'Spline Sans Mono',monospace;letter-spacing:.42em;opacity:0;transform:translateY(8px);animation:scribble-label .5s 1.94s ease-out forwards}
-@keyframes signature-dot{0%{left:10%;top:60%;opacity:0}10%{opacity:1}28%{left:32%;top:42%}48%{left:50%;top:55%}70%{left:68%;top:43%}95%{left:86%;top:49%;opacity:1}100%{left:86%;top:49%;opacity:0}}
-@keyframes scribble-flood{to{transform:translate(-50%,-50%) scale(105)}}
-@keyframes scribble-spark-a{0%{opacity:0;transform:translate(0,0) rotate(22deg) scaleY(.3)}35%{opacity:1}100%{opacity:0;transform:translate(38px,-52px) rotate(22deg) scaleY(1)}}
-@keyframes scribble-spark-b{0%{opacity:0;transform:translate(0,0) rotate(75deg) scaleY(.3)}35%{opacity:1}100%{opacity:0;transform:translate(-42px,42px) rotate(75deg) scaleY(1)}}
-@keyframes scribble-label{to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){.signature-loader{width:min(80vw,330px);min-height:150px}}
 @media(prefers-reduced-motion:reduce){.page-preloader{display:none}}
 
@@ -309,14 +297,8 @@
 @media(max-width:420px){.education-step-card{grid-template-columns:38px 3px minmax(0,1fr);gap:14px;padding:26px 18px}.education-step-number{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.education-step-card{opacity:1;transform:none}.education-progress-rail i{transform:none}}
 
-/* Layered scroll depth; interactive text and buttons stay steady. */
-.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scale(1.12);transform-origin:center top;will-change:transform}
-.hero-with-portrait .hero-portrait img{transform:translate3d(-105px,calc(var(--hero-parallax,0) * 190px),0) scaleX(-1);will-change:transform}
-.projects .project-screen{transform:translate3d(0,var(--projects-parallax,0px),0);will-change:transform}
-.about-feature::before{inset:-100px 0;background:radial-gradient(ellipse at 74% 12%,#ffffff14,transparent 45%),repeating-linear-gradient(115deg,transparent 0 54px,#ffffff0a 55px 56px,transparent 57px 112px);transform:translate3d(0,var(--about-parallax,0px),0);will-change:transform}
-@media(max-width:700px){.hero-with-portrait .hero-grid{transform:translate3d(0,calc(var(--hero-parallax,0) * 55px),0) scale(1.1)}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scaleX(-1)}}
-@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-grid,.projects .project-screen,.about-feature::before{transform:none}.hero-with-portrait .hero-portrait img{transform:translateX(-105px) scaleX(-1)}}
-@media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:scaleX(-1)}}
+/* Static decorative texture for the About section. */
+.about-feature::before{background:radial-gradient(ellipse at 74% 12%,#ffffff14,transparent 45%),repeating-linear-gradient(115deg,transparent 0 54px,#ffffff0a 55px 56px,transparent 57px 112px)}
 
 /* Place the invitation over the lower portrait while leaving breathing room at the edge. */
 .hero-bottom-row .tactical-button{margin-right:clamp(105px,11vw,175px)}
@@ -338,12 +320,44 @@
 .hero-with-portrait{grid-template-columns:minmax(0,53%) minmax(0,47%)}
 .hero-with-portrait .hero-copy{padding-left:clamp(32px,11vw,210px)}
 .hero-bottom-row{left:clamp(32px,11vw,210px)}
-.hero-with-portrait .hero-portrait img{transform:translate3d(-35px,calc(var(--hero-parallax,0) * 190px),0);filter:grayscale(1) contrast(1.14) brightness(.79)}
+.hero-with-portrait .hero-portrait img{transform:translateX(-35px);filter:grayscale(1) contrast(1.14) brightness(.79)}
 .hero-bottom-row .tactical-button{margin-right:clamp(65px,8vw,145px)}
 @media(max-width:1000px){.hero-with-portrait .hero-copy{padding-left:7vw}.hero-bottom-row{left:7vw}.hero-bottom-row .tactical-button{margin-right:clamp(25px,5vw,60px)}}
-@media(max-width:700px){.hero-with-portrait .hero-copy{padding-left:0}.hero-bottom-row{left:22px}.hero-bottom-row .tactical-button{margin-right:0}.hero-with-portrait .hero-portrait img{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0)}}
-@media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:translateX(-35px)}}
-@media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img{transform:none}}
-@media(hover:hover){.hero-with-portrait .hero-portrait img:hover{filter:grayscale(1) contrast(1.18) brightness(1.12) drop-shadow(0 0 42px #ffffff55);transform:translate3d(-35px,calc(var(--hero-parallax,0) * 190px),0) scale(1.025)}}
-@media(max-width:700px) and (hover:hover){.hero-with-portrait .hero-portrait img:hover{transform:translate3d(0,calc(var(--hero-parallax,0) * 100px),0) scale(1.025)}}
+@media(max-width:700px){.hero-with-portrait .hero-copy{padding-left:0}.hero-bottom-row{left:22px}.hero-bottom-row .tactical-button{margin-right:0}.hero-with-portrait .hero-portrait img{transform:none}}
+@media(hover:hover){.hero-with-portrait .hero-portrait img:hover{filter:grayscale(0) contrast(1.08) brightness(1.05) drop-shadow(0 0 30px #ffffff38);transform:translateX(-35px) scale(1.025)}}
+@media(max-width:700px) and (hover:hover){.hero-with-portrait .hero-portrait img:hover{transform:scale(1.025)}}
 @media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:translateX(-35px)}}
+@media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:none}}
+
+/* Keep the full name together and place the contact button after the icons. */
+.footer-invitation .contact-name{font-size:clamp(55px,8.5vw,110px);white-space:nowrap}
+.footer-contact-row{grid-template-columns:88px 88px 88px 184px;gap:22px;width:max-content;max-width:100%;margin:68px auto 0}
+.footer-contact-row .tactical-button{grid-column:4;justify-self:start}
+@media(max-width:850px){.footer-contact-row{grid-template-columns:70px 70px 70px 160px;gap:15px}}
+@media(max-width:600px){.footer-invitation .contact-name{font-size:clamp(38px,10.5vw,62px);white-space:nowrap}.footer-contact-row{grid-template-columns:repeat(3,70px);gap:12px;width:max-content;max-width:100%;margin-top:50px}.footer-contact-row .contact-icon{grid-row:1}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:2;justify-self:start}}
+
+/* Credentials and recognition sit beneath the academic progress card. */
+.profile-highlights{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(36px,6vw,100px);margin-top:78px}
+.profile-highlight-group{min-width:0}
+.profile-highlight-kicker{margin:0 0 9px;color:#929292;font:11px 'Spline Sans Mono',monospace;letter-spacing:.16em;text-transform:uppercase}
+.profile-highlight-group h3{margin:0 0 29px;color:#f1f1f1;font-size:clamp(28px,3vw,40px);font-weight:600;letter-spacing:-.06em}
+.profile-highlight-list{border-top:1px solid #383838}
+.profile-highlight-row{display:flex;flex-direction:column;gap:7px;padding:19px 0;border-bottom:1px solid #2e2e2e}
+.profile-highlight-row strong{color:#e9e9e9;font-size:16px;font-weight:550;line-height:1.35}
+.profile-highlight-row span{color:#929292;font-size:13px;line-height:1.45}
+.profile-highlight-row p{margin:2px 0 0;color:#aaa;font-size:13px;line-height:1.55}
+@media(max-width:700px){.profile-highlights{grid-template-columns:1fr;gap:48px;margin-top:58px}.profile-highlight-group h3{margin-bottom:20px}}
+
+/* Alternate two monochrome background levels to separate the main sections. */
+:root{--section-dark:#050505;--section-raised:#151515}
+.about-feature,.tech-section,.education{background:var(--section-raised)}
+.volunteering{background:var(--section-dark)}
+.site-footer{background:var(--section-dark)}
+
+/* Static section light and fine lines. */
+:is(.project-showcase,.tech-section,.github-activity,.education,.volunteering,.footer-invitation){position:relative;isolation:isolate;overflow:hidden}
+:is(.project-showcase,.tech-section,.github-activity,.education,.volunteering,.footer-invitation)::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 28% 30% at 18% 38%,#ffffff1c,transparent 85%),radial-gradient(ellipse 24% 26% at 84% 72%,#ffffff12,transparent 85%),repeating-linear-gradient(90deg,transparent 0 calc(20% - 1px),#ffffff08 calc(20% - 1px) 20%)}
+:is(.project-showcase,.tech-section,.github-activity,.education,.volunteering)>.section-inner,.footer-invitation>.footer-invitation-inner{position:relative;z-index:1}
+
+/* Clip decorative overflow without creating a scroll container around the sticky milestone image. */
+#root,.volunteering{overflow:clip}

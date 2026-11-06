@@ -30,9 +30,9 @@ export default function ProjectShowcase() {
         >
           <motion.img
             src={project.image}
-            alt={`${project.title} image placeholder`}
-            initial={reducedMotion ? false : { opacity: 0, scale: 1.08, filter: 'blur(10px)' }}
-            whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            alt={`${project.title} project image`}
+            initial={reducedMotion ? false : { opacity: 0, scale: 1.08 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: .18 }}
             transition={{ duration: reducedMotion ? 0 : .7, ease: [.22, 1, .36, 1], delay: index * .09 }}
           />
@@ -46,7 +46,6 @@ export default function ProjectShowcase() {
           </span>
         </Link>)}
       </div>
-      <p className="project-edit-hint">Project images and details are placeholders. Update them in <code>src/data/portfolio.ts</code> and <code>public/projects/</code>.</p>
     </div>
   </section>
 }

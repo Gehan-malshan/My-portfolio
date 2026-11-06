@@ -13,6 +13,33 @@ type ContributionData = {
   totalContributions: number
 }
 
+type ApiDay = { date: string; count: number; level: number }
+type ApiResponse = { contributions: ApiDay[]; total: Record<string, number> }
+
+function periodStart() {
+  const today = new Date()
+  return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 12, 1))
+}
+
+function periodEnd() {
+  const today = new Date()
+  return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 0))
+}
+
+function normalizeContributions(result: ApiResponse): ContributionData {
+  if (!Array.isArray(result.contributions)) throw new Error('GitHub activity is unavailable right now.')
+  const byDate = new Map(result.contributions.map(day => [day.date, day]))
+  const firstDate = periodStart().toISOString().slice(0, 10)
+  const lastDate = periodEnd().toISOString().slice(0, 10)
+  const weeks = emptyWeeks().map(week => week.map(day => {
+    const contribution = day.date >= firstDate && day.date <= lastDate ? byDate.get(day.date) : undefined
+    const level = Math.max(0, Math.min(4, Number(contribution?.level ?? 0)))
+    const levels: ContributionDay['contributionLevel'][] = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE']
+    return { ...day, contributionCount: Number(contribution?.count ?? 0), contributionLevel: levels[level] }
+  }))
+  return { contributions: weeks, totalContributions: weeks.flat().reduce((total, day) => total + day.contributionCount, 0) }
+}
+
 const levelClass: Record<ContributionDay['contributionLevel'], string> = {
   NONE: 'level-0',
   FIRST_QUARTILE: 'level-1',
@@ -22,10 +49,9 @@ const levelClass: Record<ContributionDay['contributionLevel'], string> = {
 }
 
 function emptyWeeks() {
-  const today = new Date()
-  const end = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
-  const start = new Date(end)
-  start.setUTCDate(start.getUTCDate() - 364 - start.getUTCDay())
+  const end = periodEnd()
+  const start = periodStart()
+  start.setUTCDate(start.getUTCDate() - start.getUTCDay())
   const weeks: ContributionDay[][] = []
 
   for (let cursor = new Date(start); cursor <= end; cursor.setUTCDate(cursor.getUTCDate() + 7)) {
@@ -39,18 +65,15 @@ function emptyWeeks() {
 }
 
 function monthLabels(weeks: ContributionDay[][]) {
-  const labels: { index: number; label: string }[] = []
-  let previousMonth = -1
-  weeks.forEach((week, index) => {
-    const first = week[0]
-    if (!first) return
-    const month = new Date(`${first.date}T00:00:00Z`).getUTCMonth()
-    if (month !== previousMonth) {
-      if (index > 0) labels.push({ index, label: new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(new Date(`${first.date}T00:00:00Z`)) })
-      previousMonth = month
+  const start = periodStart()
+  return Array.from({ length: 12 }, (_, monthOffset) => {
+    const monthStart = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + monthOffset, 1))
+    const date = monthStart.toISOString().slice(0, 10)
+    return {
+      index: weeks.findIndex(week => week.some(day => day.date === date)),
+      label: new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(monthStart),
     }
-  })
-  return labels
+  }).filter(({ index }) => index >= 0)
 }
 
 export default function GithubCalendar({ username }: { username: string }) {
@@ -70,14 +93,13 @@ export default function GithubCalendar({ username }: { username: string }) {
     const controller = new AbortController()
     setLoading(true)
     setError('')
-    fetch(`https://github-contributions-api.kawarimidoll.deno.net/${encodeURIComponent(username)}.json`, { signal: controller.signal })
+    const years = [...new Set([periodStart().getUTCFullYear(), periodEnd().getUTCFullYear()])]
+    const yearQuery = years.map(year => `y=${year}`).join('&')
+    fetch(`https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(username)}?${yearQuery}`, { signal: controller.signal })
       .then(async response => {
         if (!response.ok) throw new Error('GitHub activity is unavailable right now.')
-        const result: unknown = await response.json()
-        if (!result || typeof result !== 'object' || !('contributions' in result) || !Array.isArray(result.contributions)) {
-          throw new Error('GitHub activity is unavailable right now.')
-        }
-        return result as ContributionData
+        const result = await response.json() as ApiResponse
+        return normalizeContributions(result)
       })
       .then(setData)
       .catch((reason: unknown) => {
@@ -94,27 +116,29 @@ export default function GithubCalendar({ username }: { username: string }) {
   const weeks = data?.contributions ?? placeholderWeeks
   const total = Number(data?.totalContributions ?? 0)
   const labels = monthLabels(weeks)
+  const firstDate = periodStart().toISOString().slice(0, 10)
+  const lastDate = periodEnd().toISOString().slice(0, 10)
   const summary = data
     ? `${total.toLocaleString()} contributions in the last year`
     : loading ? 'Loading GitHub activity…'
       : error || 'GitHub contributions coming soon.'
 
   return (
-    <section className="section github-activity" id="activity" aria-labelledby="activity-title">
+    <section className="section github-activity" id="activity" aria-labelledby="activity-title" style={{ '--calendar-weeks': weeks.length } as React.CSSProperties}>
       <div className="section-inner">
         <p className="github-activity-eyebrow">Developer insights</p>
         <h2 id="activity-title"><FlippingWordSwap word1="GitHub Activity." stagger={28}/></h2>
         <div className="github-calendar-scroll">
-          <div className="github-calendar" style={{ '--calendar-weeks': weeks.length } as React.CSSProperties} role="img" aria-label={data ? `GitHub contribution calendar for ${username}: ${summary}` : 'GitHub contribution calendar awaiting a username'}>
+          <div className="github-calendar" role="img" aria-busy={loading} aria-label={validUsername ? `GitHub contribution calendar for ${username}: ${summary}` : 'GitHub contribution calendar awaiting a username'}>
             <div className="github-calendar-months" aria-hidden="true">
               {labels.map(({ index, label }) => <span key={index} style={{ gridColumnStart: index + 1 }}>{label}</span>)}
             </div>
             <div className="github-calendar-weeks" aria-hidden="true">
               {weeks.map((week, index) => <div className="github-calendar-week" key={week[0]?.date ?? index}>
                 {week.map(day => <span
-                  className={`github-calendar-day ${data ? levelClass[day.contributionLevel] : 'level-0'}`}
+                  className={`github-calendar-day ${data ? levelClass[day.contributionLevel] : 'level-0'}${day.date < firstDate || day.date > lastDate ? ' is-outside-period' : ''}`}
                   key={day.date}
-                  title={data ? `${day.contributionCount} contributions on ${day.date}` : undefined}
+                  title={day.date < firstDate || day.date > lastDate ? undefined : data ? `${day.contributionCount} contributions on ${day.date}` : day.date}
                 />)}
               </div>)}
             </div>

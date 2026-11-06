@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } from '@tanstack/react-router'
-import { Dribbble, Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
+import { Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import SplashCursor from './SplashCursor'
 import FooterShader from './FooterShader'
@@ -10,27 +10,30 @@ import PagePreloader from './PagePreloader'
 import TechLogos from './TechLogos'
 import PageScrollBlur from './PageScrollBlur'
 import BackToTop from './BackToTop'
+import ScrollReveals from './ScrollReveals'
 import BlurredHeroTicker from './BlurredHeroTicker'
 import EducationProgress from './EducationProgress'
 import GithubCalendar from './GithubCalendar'
 import SpiralTechGallery from './SpiralTechGallery'
 import ProjectShowcase from './ProjectShowcase'
 import ProjectDetail from './ProjectDetail'
+import AboutPage from './AboutPage'
+import VolunteeringMilestones from './VolunteeringMilestones'
 import FlippingWordSwap from './components/ui/flipping-word-swap'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
-const rootRoute = createRootRoute({ component: () => <Outlet /> })
+const rootRoute = createRootRoute({ component: () => <><Outlet/><BackToTop/><ScrollReveals/></> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
+const aboutRoute = createRoute({ getParentRoute: () => rootRoute, path: '/about', component: AboutPage })
 const projectRoute = createRoute({ getParentRoute: () => rootRoute, path: '/projects/$slug', component: ProjectDetailRoute })
-const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute, projectRoute]) })
+const router = createRouter({ routeTree: rootRoute.addChildren([indexRoute, aboutRoute, projectRoute]) })
 declare module '@tanstack/react-router' { interface Register { router: typeof router } }
 function ProjectDetailRoute() { const { slug } = projectRoute.useParams(); return <ProjectDetail slug={slug}/> }
 const links = [['About', '#about'], ['Projects', '#projects'], ['Technology', '#toolkit'], ['Activity', '#activity'], ['Education', '#education'], ['Volunteering', '#volunteering'], ['Contact', '#contact']]
 const contactPlatforms = [
   { label: 'GitHub', href: portfolio.github, Icon: Github },
   { label: 'Email', href: portfolio.email ? `mailto:${portfolio.email}` : '', Icon: Mail },
-  { label: 'Dribbble', href: portfolio.dribbble, Icon: Dribbble },
   { label: 'LinkedIn', href: portfolio.linkedin, Icon: Linkedin },
 ]
 
@@ -44,39 +47,6 @@ function ContactIcon({ label, href, Icon, variant, onMissing }: { label: string,
 
 function Home() {
   const [contactNotice, setContactNotice] = React.useState('')
-  React.useEffect(() => {
-    const hero = document.querySelector<HTMLElement>('.hero')
-    const about = document.querySelector<HTMLElement>('.about-feature')
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let frame = 0
-
-    const update = () => {
-      frame = 0
-      const scale = window.innerWidth <= 700 ? 0.5 : 1
-      const offset = (element: HTMLElement | null, distance: number) => {
-        if (!element) return '0px'
-        const rect = element.getBoundingClientRect()
-        const travel = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-        return `${((Math.min(1, Math.max(0, travel)) - 0.5) * distance * scale).toFixed(1)}px`
-      }
-      if (hero) {
-        const progress = reducedMotion.matches ? 0 : Math.min(1, Math.max(0, -hero.getBoundingClientRect().top / hero.offsetHeight))
-        hero.style.setProperty('--hero-parallax', progress.toFixed(3))
-      }
-      about?.style.setProperty('--about-parallax', reducedMotion.matches ? '0px' : offset(about, 170))
-    }
-    const schedule = () => { if (!frame) frame = requestAnimationFrame(update) }
-    window.addEventListener('scroll', schedule, { passive: true })
-    window.addEventListener('resize', schedule)
-    reducedMotion.addEventListener('change', schedule)
-    update()
-    return () => {
-      cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', schedule)
-      window.removeEventListener('resize', schedule)
-      reducedMotion.removeEventListener('change', schedule)
-    }
-  }, [])
   React.useEffect(() => {
     if (!contactNotice) return
     const timeout = window.setTimeout(() => setContactNotice(''), 4000)
@@ -100,7 +70,7 @@ function Home() {
           </div>
         </div>
         <div className="hero-bottom-row"><nav className="hero-socials" aria-label="Social links">
-          {[contactPlatforms[3], contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
+          {[contactPlatforms[2], contactPlatforms[1], contactPlatforms[0]].map(({ label, href, Icon }) =>
             <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
         </nav><TacticalLink href="#contact" label="Contact me"/></div>
       </section>
@@ -112,9 +82,9 @@ function Home() {
             <h2 id="about-title">Curious about code and <em><FlippingWordSwap word1="everything around it." stagger={25}/></em></h2>
             <p>{portfolio.about}</p>
             <p>{portfolio.aboutMore}</p>
-            <div className="about-actions"><TacticalLink href="#education" label="More about me"/></div>
+            <div className="about-actions"><TacticalLink label="More about me" onClick={() => void router.navigate({ to: '/about' })}/></div>
             <nav className="about-socials hero-socials" aria-label="About social links">
-              {[contactPlatforms[0], contactPlatforms[3]].map(({ label, href, Icon }) =>
+              {[contactPlatforms[0], contactPlatforms[2]].map(({ label, href, Icon }) =>
                 <ContactIcon label={label} href={href} Icon={Icon} variant="hero" onMissing={onMissingContact} key={label}/>)}
             </nav>
           </div>
@@ -123,21 +93,19 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><FlippingWordSwap word1="Education." stagger={35}/></h2><p className="section-intro">My academic path, qualifications, and continued learning.</p><EducationProgress items={portfolio.education}/><p className="section-note">Update these education steps in <code>src/data/portfolio.ts</code>.</p><div className="cv-row"><div><h3><FlippingWordSwap word1="Resume." stagger={35}/></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
-      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><FlippingWordSwap word1="Volunteering." stagger={32}/></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><div className="timeline">{portfolio.volunteering.map((item, index) => <article className={`timeline-item timeline-item-${index % 2}`} key={`${item.category}-${index}`}><div className="timeline-meta"><span className="timeline-icon">✳</span><strong>{item.organization}</strong><small>{item.period}</small></div><div className="timeline-card"><span>{item.category}</span><h3><FlippingWordSwap word1={item.role} stagger={24}/></h3><p>{item.description}</p></div></article>)}</div><p className="section-note">Add your real roles and dates in <code>src/data/portfolio.ts</code>.</p></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><FlippingWordSwap word1="Education." stagger={35}/></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="profile-highlights"><div className="profile-highlight-group"><p className="profile-highlight-kicker">Continued learning</p><h3>Certifications</h3><div className="profile-highlight-list">{portfolio.certifications.map(item => <div className="profile-highlight-row" key={item.title}><strong>{item.title}</strong><span>{item.issuer} · {item.issued}</span></div>)}</div></div><div className="profile-highlight-group"><p className="profile-highlight-kicker">Recognition</p><h3>Honors & awards</h3><div className="profile-highlight-list">{portfolio.awards.map(item => <div className="profile-highlight-row" key={item.title}><strong>{item.title}</strong><span>{item.issuer} · {item.issued}</span><p>{item.description}</p></div>)}</div></div></div><div className="cv-row"><div><h3><FlippingWordSwap word1="Resume." stagger={35}/></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
+      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><FlippingWordSwap word1="Volunteering." stagger={32}/></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
     <div className="site-footer contact-shell">
       <FooterShader/>
       <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
         <div className="footer-invitation-inner">
-          <h2 className="contact-name" id="contact-title"><span className="contact-name-part"><FlippingWordSwap word1="GEHAN" stagger={28}/></span> <span className="contact-name-part"><FlippingWordSwap word1="MALSHAN." stagger={28}/></span></h2>
+          <h2 className="contact-name" id="contact-title"><FlippingWordSwap word1="Gehan Malshan" stagger={28}/></h2>
           <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
           <div className="footer-contact-row">
-            {contactPlatforms.slice(0, 2).map(({ label, href, Icon }) =>
+            {contactPlatforms.map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
             <TacticalLink label="Contact me" href={portfolio.email ? `mailto:${portfolio.email}` : undefined} onClick={() => onMissingContact('Email')}/>
-            {contactPlatforms.slice(2).map(({ label, href, Icon }) =>
-              <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
           </div>
           {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
           <small className="contact-copyright">© {new Date().getFullYear()} Gehan Malshan</small>
@@ -145,7 +113,6 @@ function Home() {
       </section>
     </div>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
-    <BackToTop/>
   </>
 }
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><RouterProvider router={router}/></React.StrictMode>)

@@ -1,0 +1,6 @@
+.scroll-reveal.scroll-reveal{transition:opacity .82s cubic-bezier(.22,1,.36,1),filter .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.scroll-reveal-pending{opacity:0;filter:blur(12px);transform:translateY(32px)}
+.scroll-reveal-heading.scroll-reveal-pending{filter:blur(18px);transform:translateY(42px)}
+.scroll-reveal-image.scroll-reveal-pending{filter:blur(14px);transform:scale(.97)}
+.scroll-reveal-visible{opacity:1;filter:blur(0);transform:none}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{transition:none!important}.scroll-reveal-pending,.scroll-reveal-visible{opacity:1;filter:none;transform:none}}
