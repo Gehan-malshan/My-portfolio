@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import FlippingWordSwap from './components/ui/flipping-word-swap'
+import TitleShine from './components/ui/TitleShine'
 
 type EducationItem = {
   period: string
@@ -61,7 +62,7 @@ function EducationStep({ item, index }: { item: EducationItem; index: number }) 
           <span>{item.institution}</span>
           <time>{item.period}</time>
         </div>
-        <h3><FlippingWordSwap word1={item.title} stagger={20}/></h3>
+        <h3><TitleShine><FlippingWordSwap word1={item.title} stagger={20}/></TitleShine></h3>
         <p>{item.description}</p>
       </div>
     </article>

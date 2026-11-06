@@ -20,6 +20,8 @@ import ProjectDetail from './ProjectDetail'
 import AboutPage from './AboutPage'
 import VolunteeringMilestones from './VolunteeringMilestones'
 import FlippingWordSwap from './components/ui/flipping-word-swap'
+import TitleShine from './components/ui/TitleShine'
+import TrueFocus from './components/ui/TrueFocus'
 import { portfolio } from './data/portfolio'
 import './editorial.css'
 
@@ -79,7 +81,7 @@ function Home() {
           <SpiralTechGallery/>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
-            <h2 id="about-title">Curious about code and <em><FlippingWordSwap word1="everything around it." stagger={25}/></em></h2>
+            <h2 id="about-title"><TitleShine>Curious about code and</TitleShine>{' '}<em><TitleShine><FlippingWordSwap word1="everything around it." stagger={25}/></TitleShine></em></h2>
             <p>{portfolio.about}</p>
             <p>{portfolio.aboutMore}</p>
             <div className="about-actions"><TacticalLink label="More about me" onClick={() => void router.navigate({ to: '/about' })}/></div>
@@ -93,19 +95,19 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><FlippingWordSwap word1="Education." stagger={35}/></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><FlippingWordSwap word1="Resume." stagger={35}/></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
-      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><FlippingWordSwap word1="Volunteering." stagger={32}/></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine><FlippingWordSwap word1="Education." stagger={35}/></TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine><FlippingWordSwap word1="Resume." stagger={35}/></TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
+      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering.</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
     <div className="site-footer contact-shell">
       <FooterShader/>
       <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
         <div className="footer-invitation-inner">
-          <h2 className="contact-name" id="contact-title"><FlippingWordSwap word1="Gehan Malshan" stagger={28}/></h2>
+          <h2 className="contact-name" id="contact-title"><TrueFocus sentence={portfolio.name} borderColor="#f2f2f2" glowColor="rgba(255,255,255,.22)" blurAmount={2} unfocusedOpacity={.85} cornerSize={22} borderWidth={2} animationDuration={.65} pauseBetweenAnimations={1.8}/></h2>
           <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
           <div className="footer-contact-row">
             {contactPlatforms.map(({ label, href, Icon }) =>
               <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
-            <TacticalLink label="Contact me" href={portfolio.email ? `mailto:${portfolio.email}` : undefined} onClick={() => onMissingContact('Email')}/>
+            <TacticalLink label="Let’s connect" href={portfolio.linkedin}/>
           </div>
           {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
           <small className="contact-copyright">© {new Date().getFullYear()} Gehan Malshan</small>

@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, GraduationCap, Medal, ScrollText } from 'lucide-react'
 import TacticalLink from './TacticalLink'
 import { portfolio } from './data/portfolio'
+import TitleShine from './components/ui/TitleShine'
 import './AboutPage.css'
 
 // Add uploaded organization logos in public/about-logos and map them here.
@@ -34,13 +35,13 @@ export default function AboutPage() {
     <div className="about-cv-container">
       <header className="about-cv-intro">
         <span className="about-cv-kicker">About / Gehan Malshan</span>
-        <h1>The Long Version <span>/</span></h1>
+        <h1><TitleShine>The Long Version</TitleShine> <span>/</span></h1>
         <p>A closer look at my academic journey, technical learning, and the teams and communities I contribute to.</p>
         <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><a href={`mailto:${portfolio.email}`}>Get in touch <ArrowUpRight size={15} aria-hidden="true"/></a></div>
       </header>
 
       <section className="about-cv-section" id="about-experience" aria-labelledby="about-experience-title">
-        <div className="about-cv-section-label"><BriefcaseBusiness size={19} aria-hidden="true"/><h2 id="about-experience-title">Experience & volunteering</h2></div>
+        <div className="about-cv-section-label"><BriefcaseBusiness size={19} aria-hidden="true"/><h2 id="about-experience-title"><TitleShine>Experience & volunteering</TitleShine></h2></div>
         <div className="about-cv-rows">
           {portfolio.volunteering.map(item => <article className="about-cv-row" key={`${item.organization}-${item.role}`}>
             <LogoSlot name={item.organization}/>
@@ -55,7 +56,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-cv-section" id="about-education" aria-labelledby="about-education-title">
-        <div className="about-cv-section-label"><GraduationCap size={20} aria-hidden="true"/><h2 id="about-education-title">Education</h2></div>
+        <div className="about-cv-section-label"><GraduationCap size={20} aria-hidden="true"/><h2 id="about-education-title"><TitleShine>Education</TitleShine></h2></div>
         <div className="about-cv-rows">
           {portfolio.education.map(item => <article className="about-cv-row" key={item.institution}>
             <LogoSlot name={item.institution}/>
@@ -70,7 +71,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-cv-section" id="about-certifications" aria-labelledby="about-certifications-title">
-        <div className="about-cv-section-label"><ScrollText size={19} aria-hidden="true"/><h2 id="about-certifications-title">Certifications & qualifications</h2></div>
+        <div className="about-cv-section-label"><ScrollText size={19} aria-hidden="true"/><h2 id="about-certifications-title"><TitleShine>Certifications & qualifications</TitleShine></h2></div>
         <div className="about-cv-rows">
           {portfolio.certifications.map(item => <article className="about-cv-row about-cv-row-compact" key={item.title}>
             <LogoSlot name={item.issuer}/>
@@ -81,7 +82,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-cv-section" id="about-awards" aria-labelledby="about-awards-title">
-        <div className="about-cv-section-label"><Medal size={19} aria-hidden="true"/><h2 id="about-awards-title">Honors & awards</h2></div>
+        <div className="about-cv-section-label"><Medal size={19} aria-hidden="true"/><h2 id="about-awards-title"><TitleShine>Honors & awards</TitleShine></h2></div>
         <div className="about-cv-rows">
           {portfolio.awards.map(item => <article className="about-cv-row" key={item.title}>
             <LogoSlot name={item.issuer}/>
@@ -93,7 +94,7 @@ export default function AboutPage() {
 
       <footer className="about-cv-outro">
         <span className="about-cv-kicker">The next chapter</span>
-        <h2>Let’s build something <em>useful.</em></h2>
+        <h2><TitleShine>Let’s build something</TitleShine> <em><TitleShine>useful.</TitleShine></em></h2>
         <p>I’m open to internships, software projects, and thoughtful collaborations.</p>
         <div className="about-cv-actions"><TacticalLink href={`mailto:${portfolio.email}`} label="Contact me"/><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div>
         <Link to="/" className="about-cv-home-link">Back to portfolio <ArrowUpRight size={17} aria-hidden="true"/></Link>

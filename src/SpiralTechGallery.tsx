@@ -24,8 +24,8 @@ export default function SpiralTechGallery() {
     const draw = (now: number) => {
       if (!start) start = now
       const elapsed = motion.matches ? 0 : now - start
-      const radius = Math.min(140, root.clientWidth * .29)
-      const travel = Math.min(490, root.clientHeight * .76)
+      const radius = Math.min(210, root.clientWidth * .37)
+      const travel = Math.min(590, root.clientHeight * .82)
       cards.forEach((card, index) => {
         const phase = ((index / cards.length + elapsed / 44000 + manualOffset) % 1 + 1) % 1
         const angle = phase * Math.PI * 4
@@ -85,7 +85,6 @@ export default function SpiralTechGallery() {
   }, [])
 
   return <div className="spiral-tech" ref={rootRef} role="list" aria-label="Tools and technologies in a rotating spiral. Drag or use arrow keys to browse." tabIndex={0}>
-    <div className="spiral-tech-axis" aria-hidden="true"/>
     {galleryItems.map(({ slug, name }) => <div className="spiral-tech-card" role="listitem" key={slug} title={name}>
       <img src={`/tech-png/${slug}.png`} alt={name} loading="lazy" decoding="async" draggable={false}/>
     </div>)}

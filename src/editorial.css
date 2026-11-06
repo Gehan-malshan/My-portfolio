@@ -116,9 +116,8 @@
 
 /* Invitation and contact buttons at the top of the footer. */
 .site-footer{padding:0;background:#050505}
-.site-footer::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(12.5% - 1px),#ffffff0b calc(12.5% - 1px),#ffffff0b 12.5%);z-index:1}
 .footer-invitation{position:relative;z-index:2;min-height:560px;display:flex;align-items:center;justify-content:center;padding:95px 30px 105px;border-bottom:1px solid #ffffff1c;scroll-margin-top:0;background:radial-gradient(ellipse at 18% 65%,#ffffff17,transparent 50%)}
-.footer-invitation-inner{width:min(100%,1040px);text-align:center}
+.footer-invitation-inner{width:min(100%,1300px);text-align:center}
 .footer-invitation h2{position:relative;width:max-content;max-width:100%;margin:0 auto 24px;color:#f4f4f4;font-family:Georgia,'Times New Roman',serif;font-size:clamp(48px,6.1vw,82px);font-weight:400;line-height:1;letter-spacing:-.065em}
 .contact-spark{position:absolute;width:29px;height:29px;left:-14px;top:.12em;border-radius:50%;background:#efefef;z-index:-1}
 .footer-invitation p{margin:0;color:#aaa;font-size:clamp(15px,1.45vw,20px);line-height:1.5;letter-spacing:-.035em}
@@ -215,7 +214,7 @@
 .contact-shell{background:radial-gradient(ellipse at 50% 45%,#292929 0%,#101010 48%,#020202 100%)}
 .contact-shell .footer-invitation{background:transparent}
 .footer-invitation{min-height:650px;padding:100px 30px 42px;border-bottom:0}
-.footer-invitation .contact-name{width:100%;margin:0 auto 25px;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(58px,9.5vw,125px);font-weight:800;line-height:.9;letter-spacing:-.095em;white-space:nowrap}
+.footer-invitation .contact-name{width:100%;margin:0 auto 25px;color:#fff;font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(64px,10vw,150px);font-weight:800;line-height:1;letter-spacing:-.045em;white-space:nowrap}
 .footer-invitation .contact-intro{max-width:620px;margin:0 auto;color:#b8b8b8;font-size:clamp(16px,1.4vw,19px);line-height:1.5}
 .footer-contact-row{grid-template-columns:88px 88px 184px 88px 88px;gap:22px;width:max-content;max-width:100%;margin-top:68px}
 .site-footer .contact-orb{height:88px}
@@ -226,7 +225,7 @@
 
 /* Editorial About portrait and introduction. */
 .about-feature{position:relative;overflow:hidden;padding:0;background:#020202}
-.about-feature::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 74% 12%,#ffffff0b,transparent 45%),repeating-linear-gradient(115deg,transparent 0 54px,#ffffff05 55px 56px,transparent 57px 112px);pointer-events:none}
+.about-feature::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 74% 12%,#ffffff14,transparent 45%);pointer-events:none}
 .about-feature-inner{position:relative;display:grid;grid-template-columns:minmax(0,43%) minmax(0,57%);align-items:stretch;max-width:1440px;min-height:750px;margin:auto}
 .about-portrait{position:relative;overflow:hidden;min-height:750px;background:#030303}
 .about-portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 72%,#020202 100%),linear-gradient(0deg,#020202,transparent 18%);pointer-events:none}
@@ -297,9 +296,6 @@
 @media(max-width:420px){.education-step-card{grid-template-columns:38px 3px minmax(0,1fr);gap:14px;padding:26px 18px}.education-step-number{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.education-step-card{opacity:1;transform:none}.education-progress-rail i{transform:none}}
 
-/* Static decorative texture for the About section. */
-.about-feature::before{background:radial-gradient(ellipse at 74% 12%,#ffffff14,transparent 45%),repeating-linear-gradient(115deg,transparent 0 54px,#ffffff0a 55px 56px,transparent 57px 112px)}
-
 /* Place the invitation over the lower portrait while leaving breathing room at the edge. */
 .hero-bottom-row .tactical-button{margin-right:clamp(105px,11vw,175px)}
 @media(max-width:1000px){.hero-bottom-row .tactical-button{margin-right:clamp(35px,7vw,90px)}}
@@ -330,11 +326,10 @@
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:none}}
 
 /* Keep the full name together and place the contact button after the icons. */
-.footer-invitation .contact-name{font-size:clamp(55px,8.5vw,110px);white-space:nowrap}
-.footer-contact-row{grid-template-columns:88px 88px 88px 184px;gap:22px;width:max-content;max-width:100%;margin:68px auto 0}
-.footer-contact-row .tactical-button{grid-column:4;justify-self:start}
-@media(max-width:850px){.footer-contact-row{grid-template-columns:70px 70px 70px 160px;gap:15px}}
-@media(max-width:600px){.footer-invitation .contact-name{font-size:clamp(38px,10.5vw,62px);white-space:nowrap}.footer-contact-row{grid-template-columns:repeat(3,70px);gap:12px;width:max-content;max-width:100%;margin-top:50px}.footer-contact-row .contact-icon{grid-row:1}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:2;justify-self:start}}
+.footer-contact-row{grid-template-columns:repeat(3,88px);gap:22px;width:max-content;max-width:100%;margin:64px auto 0}
+.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:2;justify-self:center;width:190px;text-align:center}
+@media(max-width:850px){.footer-contact-row{grid-template-columns:repeat(3,70px);gap:15px}}
+@media(max-width:600px){.footer-invitation .contact-name{font-size:clamp(32px,9vw,54px);letter-spacing:-.035em;white-space:nowrap}.footer-contact-row{grid-template-columns:repeat(3,70px);gap:12px;width:max-content;max-width:100%;margin-top:50px}.footer-contact-row .contact-icon{grid-row:1}.footer-contact-row .tactical-button{grid-column:1/-1;grid-row:2;justify-self:center}}
 
 /* Alternate two monochrome background levels to separate the main sections. */
 :root{--section-dark:#050505;--section-raised:#151515}
@@ -344,8 +339,13 @@
 
 /* Static section light and fine lines. */
 :is(.project-showcase,.tech-section,.github-activity,.education,.volunteering,.footer-invitation){position:relative;isolation:isolate;overflow:hidden}
-:is(.project-showcase,.tech-section,.github-activity,.education,.volunteering,.footer-invitation)::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 28% 30% at 18% 38%,#ffffff1c,transparent 85%),radial-gradient(ellipse 24% 26% at 84% 72%,#ffffff12,transparent 85%),repeating-linear-gradient(90deg,transparent 0 calc(20% - 1px),#ffffff08 calc(20% - 1px) 20%)}
+:is(.project-showcase,.tech-section,.github-activity,.education,.volunteering,.footer-invitation)::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 28% 30% at 18% 38%,#ffffff1c,transparent 85%),radial-gradient(ellipse 24% 26% at 84% 72%,#ffffff12,transparent 85%)}
 :is(.project-showcase,.tech-section,.github-activity,.education,.volunteering)>.section-inner,.footer-invitation>.footer-invitation-inner{position:relative;z-index:1}
 
 /* Clip decorative overflow without creating a scroll container around the sticky milestone image. */
 #root,.volunteering{overflow:clip}
+
+/* Full-width rules separate the landing page sections. */
+#top > :is(.hero,.section){border-bottom:1px solid #ffffff2e}
+#top > .project-showcase{border-top:0}
+.site-footer{border-top:0}

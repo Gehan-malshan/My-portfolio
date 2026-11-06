@@ -1,4 +1,5 @@
 import FlippingWordSwap from './components/ui/flipping-word-swap'
+import TitleShine from './components/ui/TitleShine'
 import LogoLoop from './LogoLoop'
 import { darkTechnologyIcons, technologies } from './technologies'
 
@@ -7,7 +8,7 @@ const loopRows = [technologies.slice(0, 24), technologies.slice(24)]
 export default function TechLogos() {
   return <section className="section tech-section" id="toolkit" aria-labelledby="toolkit-title">
     <div className="section-inner">
-      <h2 id="toolkit-title"><FlippingWordSwap word1="Technologies" stagger={28}/></h2>
+      <h2 id="toolkit-title"><TitleShine><FlippingWordSwap word1="Technologies" stagger={28}/></TitleShine></h2>
       <div className="tech-loop-stack">
         {loopRows.map((row, index) => <LogoLoop
           key={index}

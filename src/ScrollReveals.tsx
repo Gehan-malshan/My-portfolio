@@ -43,12 +43,10 @@ export default function ScrollReveals() {
     const watched = new WeakSet<Element>()
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue
-        entry.target.classList.remove('scroll-reveal-pending')
-        entry.target.classList.add('scroll-reveal-visible')
-        observer.unobserve(entry.target)
+        entry.target.classList.toggle('scroll-reveal-pending', !entry.isIntersecting)
+        entry.target.classList.toggle('scroll-reveal-visible', entry.isIntersecting)
       }
-    }, { rootMargin: '0px 0px -5% 0px', threshold: 0.06 })
+    }, { rootMargin: '0px 0px -5% 0px', threshold: 0 })
 
     const scan = () => {
       root.querySelectorAll<HTMLElement>(revealSelector).forEach(element => {
@@ -58,13 +56,14 @@ export default function ScrollReveals() {
         if (element.matches(imageSelector)) element.classList.add('scroll-reveal-image')
         else if (element.matches(headingSelector)) element.classList.add('scroll-reveal-heading')
 
-        // Content already on screen stays visible when returning from a project page.
-        if (element.getBoundingClientRect().top < window.innerHeight * 0.88) {
+        // Keep content in the viewport visible on route changes and refreshes.
+        const bounds = element.getBoundingClientRect()
+        if (bounds.top < window.innerHeight * .95 && bounds.bottom > 0) {
           element.classList.add('scroll-reveal-visible')
         } else {
           element.classList.add('scroll-reveal-pending')
-          observer.observe(element)
         }
+        observer.observe(element)
       })
     }
 
