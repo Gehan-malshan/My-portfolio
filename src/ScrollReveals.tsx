@@ -15,7 +15,6 @@ const revealSelector = [
   '.github-calendar-scroll',
   '.education > .section-inner > h2',
   '.education > .section-inner > .section-intro',
-  '.profile-highlight-group',
   '.volunteering > .section-inner > h2',
   '.volunteering > .section-inner > .section-intro',
   '.footer-invitation .contact-name',
