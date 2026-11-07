@@ -32,9 +32,11 @@ export const portfolio = {
   ],
   certifications: [
     { title: 'LFS101: Introduction to Linux', issuer: 'The Linux Foundation', issued: 'Nov 2026' },
-    { title: 'LFS158: Introduction to Kubernetes', issuer: 'The Linux Foundation', issued: '' },
+    { title: 'LFS158: Introduction to Kubernetes', issuer: 'The Linux Foundation', issued: 'Nov 2026' },
+    { title: 'Oracle Cloud Infrastructure 2026 Foundations Associate', issuer: 'Oracle', issued: 'Nov 2026' },
     { title: 'Redis Associate Software Operator', issuer: 'Redis', issued: 'Oct 2026' },
     { title: 'AWS Academy Graduate – Cloud Foundations', issuer: 'Amazon Web Services', issued: 'Sep 2026' },
+    { title: 'DevOps Pre-Requisite Course', issuer: 'KodeKloud', issued: 'Jun 2026' },
     { title: 'Docker Training Course for the Absolute Beginner', issuer: 'KodeKloud', issued: 'Aug 2026' },
     { title: '12 Factor App', issuer: 'KodeKloud', issued: 'Jun 2026' },
   ],
