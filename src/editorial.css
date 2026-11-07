@@ -399,15 +399,15 @@
 /* Mobile hero: keep the portrait and ticker together, then a compact introduction and contact row. */
 @media(max-width:700px){
   .site-scroll-blur{display:none}
-  .hero.hero-with-portrait{--mobile-portrait-height:clamp(410px,110vw,530px);height:clamp(735px,calc(100vw + 340px),850px);min-height:0}
-  .hero-with-portrait .hero-portrait{position:absolute;z-index:1;top:-32px;left:-12px;right:auto;bottom:auto;width:min(88vw,470px);height:var(--mobile-portrait-height);overflow:visible;opacity:1}
+  .hero.hero-with-portrait{--mobile-portrait-height:clamp(410px,110vw,530px);height:clamp(755px,calc(100vw + 360px),870px);min-height:0}
+  .hero-with-portrait .hero-portrait{position:absolute;z-index:1;top:-12px;left:-12px;right:auto;bottom:auto;width:min(88vw,470px);height:var(--mobile-portrait-height);overflow:visible;opacity:1}
   .hero-with-portrait .hero-portrait img{inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:grayscale(1) contrast(1.1) brightness(.86);transform:none;mask-image:linear-gradient(to bottom,#000 0%,#000 79%,transparent 100%);transition:filter .4s ease}
   .hero-with-portrait .hero-portrait.is-color img{filter:grayscale(0) contrast(1.08) brightness(.96)}
   .hero-with-portrait .hero-copy{position:static;z-index:auto;display:block;width:100%;height:auto;min-height:0;margin:0;padding:0}
   .hero-with-portrait .hero-copy h1{position:absolute;z-index:2;top:clamp(225px,58vw,310px);left:43%;width:57%;max-width:none;margin:0;font-size:clamp(50px,13vw,78px);text-align:left}
   .hero-with-portrait .hero-copy h1::before{content:"";position:absolute;inset:12% -6% 5% -18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 58% 52%,#000c 0%,#0009 43%,transparent 76%);filter:blur(13px)}
   .hero-copy .hero-word-window{mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 82%,transparent 100%)}
-  .hero-with-portrait .hero-intro{position:absolute;z-index:2;top:calc(18px + var(--mobile-portrait-height));left:22px;right:22px;max-width:none;margin:0}
+  .hero-with-portrait .hero-intro{position:absolute;z-index:2;top:calc(38px + var(--mobile-portrait-height));left:22px;right:22px;max-width:none;margin:0}
   .hero-with-portrait .hero-identity{max-width:100%}
   .hero-with-portrait .hero-description{max-width:350px;margin-top:16px}
   .hero-with-portrait .hero-bottom-row{bottom:49px}
