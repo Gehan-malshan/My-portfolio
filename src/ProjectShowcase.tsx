@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, type MouseEvent } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
 import { Link } from '@tanstack/react-router'
@@ -11,6 +11,12 @@ const projects = portfolio.projects
 export default function ProjectShowcase() {
   const [active, setActive] = useState(0)
   const reducedMotion = useReducedMotion()
+  const handleCardClick = (event: MouseEvent<HTMLAnchorElement>, index: number) => {
+    if (!window.matchMedia('(max-width: 700px)').matches || event.detail === 0) return
+    if ((event.target as HTMLElement).closest('.project-image-action')) return
+    event.preventDefault()
+    setActive(index)
+  }
 
   return <section className="section project-showcase" id="projects" aria-labelledby="projects-title">
     <div className="section-inner">
@@ -27,6 +33,7 @@ export default function ProjectShowcase() {
           className={`project-image-card${active === index ? ' is-active' : ''}`}
           onMouseEnter={() => setActive(index)}
           onFocus={() => setActive(index)}
+          onClick={event => handleCardClick(event, index)}
           aria-label={`View ${project.title} project details`}
         >
           <motion.img

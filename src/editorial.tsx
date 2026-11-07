@@ -48,6 +48,7 @@ function ContactIcon({ label, href, Icon, variant, onMissing }: { label: string,
 
 function Home() {
   const [contactNotice, setContactNotice] = React.useState('')
+  const [portraitColor, setPortraitColor] = React.useState(false)
   React.useEffect(() => {
     if (!contactNotice) return
     const timeout = window.setTimeout(() => setContactNotice(''), 4000)
@@ -62,7 +63,7 @@ function Home() {
     <main id="top">
       <section className="hero hero-with-portrait" aria-label="Introduction">
         <div className="hero-grid" aria-hidden="true"><GridTrails background="#000000" lineColor="#242424" accent="#ffffff" cellSize={72} lights={0} trailLength={4} glow={86} hover={115}/></div>
-        <div className="hero-portrait"><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan" fetchPriority="high"/></div>
+        <div className={`hero-portrait${portraitColor ? ' is-color' : ''}`} role="button" tabIndex={0} aria-label="Toggle portrait color" aria-pressed={portraitColor} onClick={() => setPortraitColor(value => !value)} onKeyDown={event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); setPortraitColor(value => !value) } }}><img src="/gehan-color-cutout.png" alt="Portrait of Gehan Malshan" fetchPriority="high"/></div>
         <div className="hero-copy">
           <BlurredHeroTicker words={portfolio.heroWords}/>
           <div className="hero-intro">

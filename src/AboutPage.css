@@ -1,16 +1,17 @@
 .about-cv{position:relative;isolation:isolate;min-height:100vh;background:#080808;color:#f1f1f1}
-.about-cv> :not(.page-blinking-dots){position:relative;z-index:1}
+.about-cv> :not(.page-blinking-dots):not(.splash-cursor){position:relative;z-index:1}
 .about-cv-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:28px clamp(22px,4vw,68px);border-bottom:1px solid #242424;font:11px 'Spline Sans Mono',monospace;letter-spacing:.08em;text-transform:uppercase}
 .about-cv-back{display:inline-flex;align-items:center;gap:12px;color:#e9e9e9;transition:color .2s,transform .2s}
 .about-cv-back:hover{color:#fff;transform:translateX(-3px)}
+@media(max-width:700px){.about-cv-back{gap:5px;font-size:9px}.about-cv-back svg{width:12px;height:12px}}
 .about-cv-nav-name{color:#858585}
 .about-cv-container{width:min(100% - 56px,1160px);margin:0 auto}
-.about-cv-intro{padding:clamp(82px,11vw,156px) 0 clamp(92px,11vw,142px)}
+.about-cv-intro{padding:clamp(52px,7vw,96px) 0 clamp(58px,7vw,92px)}
 .about-cv-kicker{display:block;color:#858585;font:11px 'Spline Sans Mono',monospace;letter-spacing:.17em;text-transform:uppercase}
 .about-cv-intro h1{max-width:100%;margin:22px 0 27px;font-size:clamp(58px,7.2vw,104px);font-weight:700;line-height:1.08;letter-spacing:-.075em}
 .about-cv-intro h1 .shiny-text{padding-block:.04em}
 .about-cv-intro h1 span{color:#848484}
-.about-cv-meta{display:flex;flex-wrap:wrap;gap:14px 36px;margin-top:46px;color:#898989;font:11px/1.5 'Spline Sans Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+.about-cv-meta{display:flex;flex-wrap:wrap;gap:14px 36px;margin-top:30px;color:#898989;font:11px/1.5 'Spline Sans Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 .about-cv-meta>a{display:inline-flex;align-items:center;gap:5px;color:#eee;border-bottom:1px solid #7c7c7c}
 .about-cv-meta>a:hover{border-color:#fff}
 .about-cv-meta>.tactical-button{margin-top:-17px;border:0;padding:0 22px;text-transform:none;letter-spacing:-.025em}
@@ -18,7 +19,7 @@
 .about-cv-profile-portrait{position:relative;align-self:stretch;min-height:600px;overflow:hidden;background:radial-gradient(ellipse at 48% 45%,#ffffff11,transparent 65%)}
 .about-cv-profile-portrait img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:grayscale(1) contrast(1.14) brightness(.79);mask-image:linear-gradient(to bottom,#000 0%,#000 64%,transparent 100%);transition:filter .45s ease,transform .45s ease}
 .about-cv-profile-portrait::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,transparent 58%,#080808 100%),linear-gradient(to right,transparent 80%,#080808 100%)}
-@media(hover:hover){.about-cv-profile-portrait:hover img{filter:grayscale(0) contrast(1.08) brightness(1.05) drop-shadow(0 0 30px #ffffff38);transform:scale(1.025)}}
+@media(hover:hover){.about-cv-profile-portrait:hover img{filter:grayscale(0) contrast(1.08) brightness(1) drop-shadow(0 0 12px #ffffff08);transform:scale(1.012)}}
 .about-cv-profile-copy{position:relative;z-index:1;padding:60px 0}
 .about-cv-profile-copy h2{max-width:620px;margin:24px 0 34px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(44px,4.4vw,70px);font-weight:400;line-height:1.06;letter-spacing:-.055em}
 .about-cv-profile-copy p{max-width:590px;margin:0 0 22px;color:#bbb;font-size:clamp(16px,1.25vw,18px);line-height:1.7}

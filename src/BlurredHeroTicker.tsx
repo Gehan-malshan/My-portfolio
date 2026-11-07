@@ -21,6 +21,7 @@ export default function BlurredHeroTicker({ words }: { words: string[] }) {
     if (!track || !words.length) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const mobile = window.matchMedia('(max-width: 700px)')
     let frame = 0
     let start = 0
 
@@ -38,8 +39,10 @@ export default function BlurredHeroTicker({ words }: { words: string[] }) {
       wordRefs.current.forEach((element, index) => {
         if (!element) return
         const distance = Math.abs(index - position)
-        element.style.opacity = String(Math.max(0, 1 - distance * .78))
-        element.style.filter = `blur(${Math.min(8, distance * 3.8)}px)`
+        const adjacentFade = mobile.matches ? .55 : .78
+        const adjacentBlur = mobile.matches ? 2.8 : 3.8
+        element.style.opacity = String(Math.max(0, 1 - distance * adjacentFade))
+        element.style.filter = `blur(${Math.min(8, distance * adjacentBlur)}px)`
       })
 
       if (!reducedMotion && words.length > 1) frame = window.requestAnimationFrame(draw)

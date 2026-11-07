@@ -139,7 +139,7 @@
 .hero-grid{opacity:.34}
 .hero-photo{inset:0 2% 0 48%}
 .hero-photo img{filter:grayscale(1) contrast(1.2) brightness(.66);object-position:center bottom}
-.hero-photo img:hover{filter:grayscale(1) contrast(1.1) brightness(.85) drop-shadow(0 0 26px #ffffff22)}
+.hero-photo img:hover{filter:grayscale(1) contrast(1.1) brightness(.74) drop-shadow(0 0 12px #ffffff08)}
 .hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;width:min(47%,560px);min-height:100%;margin-left:max(7%,calc((100vw - 1160px)/2));padding:88px 0 68px}
 .hero-copy h1{margin:0;color:#fff;font-size:clamp(64px,6.4vw,102px);font-weight:800;line-height:.88;letter-spacing:-.075em;white-space:normal}
 .hero-copy h1 span{display:block;color:#fff}
@@ -166,12 +166,12 @@
 /* SocialIconsBar-inspired fill and tooltip, shared by both contact rows. */
 .hero-socials{gap:24px}
 .hero-socials .contact-icon,.site-footer .contact-orb.contact-icon{position:relative;display:flex;align-items:center;justify-content:center;padding:0;appearance:none;cursor:pointer;text-decoration:none;font:inherit}
-.hero-socials .contact-icon{width:44px;height:44px;color:#8e8e8e;background:transparent;border:0;transform:none}
+.hero-socials .contact-icon{width:44px;height:44px;color:#8e8e8e;background:linear-gradient(145deg,#333,#202020);border:1px solid #444;border-radius:50%;transform:none}
 .hero-socials .contact-icon:hover{transform:none}
 .hero-socials .contact-icon-surface,.site-footer .contact-icon-surface{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;overflow:hidden;border-radius:inherit}
-.hero-socials .contact-icon-surface{border:1px solid transparent;border-radius:50%}
+.hero-socials .contact-icon-surface{border-radius:50%}
 .hero-socials .contact-icon span{width:auto;height:auto;transform:none}
-.hero-socials .contact-icon .contact-icon-surface{width:100%;height:100%}
+.hero-socials .contact-icon .contact-icon-surface{width:100%;height:100%;border:1px solid #ffffff30;border-radius:50%;background:linear-gradient(145deg,#333,#202020);box-shadow:inset 0 1px #ffffff13,0 10px 30px #0005}
 .hero-socials .contact-icon .contact-icon-fill{position:absolute;inset:0;transform:translateY(101%)}
 .contact-icon-fill{position:absolute;inset:0;background:#f4f4f4;transform:translateY(101%);transition:transform .24s ease-out;pointer-events:none}
 .contact-icon svg{position:relative;z-index:1;transition:color .24s ease-out}
@@ -184,6 +184,7 @@
 .contact-icon:active .contact-icon-surface,.site-footer .contact-email:active{transform:scale(.93)}
 .contact-icon-surface{transition:transform .15s ease-out}
 .site-footer .contact-orb.contact-icon:hover{background:linear-gradient(145deg,#333,#202020);border-color:#ffffff7a;transform:none}
+.hero-socials .contact-icon:hover{background:linear-gradient(145deg,#333,#202020);border-color:#ffffff7a}
 .site-footer .contact-orb.contact-icon .contact-icon-surface{border-radius:999px}
 .site-footer .contact-email{cursor:pointer;font-family:inherit}
 .site-footer .contact-email:hover{background:#444;border-color:#ffffff7a;transform:none}
@@ -202,7 +203,7 @@
 .back-to-top-track{stroke:#ffffff30}
 .back-to-top-value{stroke:#fff;stroke-linecap:round;transition:stroke-dasharray .08s linear}
 .back-to-top:hover .back-to-top-value{stroke:#fff}
-@media(max-width:600px){.back-to-top{right:20px;bottom:20px;width:50px;height:50px}.back-to-top-progress{inset:-10px}}
+@media(max-width:600px){.back-to-top{right:24px;bottom:24px;width:26px;height:26px}.back-to-top-progress{inset:-5px;width:36px;height:36px}.back-to-top>svg:not(.back-to-top-progress){width:12px;height:12px}.back-to-top::after{content:"";position:absolute;inset:-10px;border-radius:50%}}
 @media(prefers-reduced-motion:reduce){.back-to-top,.back-to-top-value{transition:none}}
 
 /* The contact invitation now closes the page without the three-column footer. */
@@ -355,19 +356,18 @@
   .hero-with-portrait .hero-intro{margin-top:24px}
 }
 
-/* Give the hero contact marks their original visual weight. */
-.hero-bottom-row .hero-socials .contact-icon{width:48px;height:48px}
-.hero-bottom-row .hero-socials .contact-icon svg{width:42px;height:42px}
-.about-socials.hero-socials .contact-icon svg{width:34px;height:34px}
-.hero-bottom-row .hero-socials{translate:0 -14px}
+/* Match the footer's dark circular social buttons and icon proportions. */
+.hero-bottom-row .hero-socials .contact-icon,.about-socials.hero-socials .contact-icon{width:72px;height:72px;border:0;background:transparent;box-shadow:none;color:#eee}
+.hero-bottom-row .hero-socials .contact-icon svg,.about-socials.hero-socials .contact-icon svg{width:28px;height:28px;stroke-width:1.9}
+.hero-bottom-row .hero-socials{translate:0 0}
+.hero-bottom-row .hero-socials,.about-socials.hero-socials{gap:22px}
 @media(max-width:700px){
-  .hero-bottom-row .hero-socials{translate:0 -8px}
-  .hero-bottom-row .hero-socials .contact-icon{width:42px;height:42px}
-  .hero-bottom-row .hero-socials .contact-icon svg{width:38px;height:38px}
+  .hero-bottom-row .hero-socials .contact-icon,.about-socials.hero-socials .contact-icon{width:50px;height:50px}
+  .hero-bottom-row .hero-socials .contact-icon svg,.about-socials.hero-socials .contact-icon svg{width:23px;height:23px}
 }
 @media(max-width:420px){
-  .hero-bottom-row .hero-socials .contact-icon{width:40px;height:40px}
-  .hero-bottom-row .hero-socials .contact-icon svg{width:35px;height:35px}
+  .hero-bottom-row .hero-socials .contact-icon,.about-socials.hero-socials .contact-icon{width:46px;height:46px}
+  .hero-bottom-row .hero-socials .contact-icon svg,.about-socials.hero-socials .contact-icon svg{width:21px;height:21px}
 }
 
 /* Keep the full name together and place the contact button after the icons. */
@@ -394,3 +394,24 @@
 #top > :is(.hero,.section){border-bottom:1px solid #ffffff2e}
 #top > .project-showcase{border-top:0}
 .site-footer{border-top:0}
+
+/* Mobile hero: keep the portrait and ticker together, then a compact introduction and contact row. */
+@media(max-width:700px){
+  .site-scroll-blur{display:none}
+  .hero.hero-with-portrait{--mobile-portrait-height:clamp(410px,110vw,530px);height:clamp(735px,calc(100vw + 340px),850px);min-height:0}
+  .hero-with-portrait .hero-portrait{position:absolute;z-index:1;top:-32px;left:-12px;right:auto;bottom:auto;width:min(88vw,470px);height:var(--mobile-portrait-height);overflow:visible;opacity:1}
+  .hero-with-portrait .hero-portrait img{inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:grayscale(1) contrast(1.1) brightness(.86);transform:none;mask-image:linear-gradient(to bottom,#000 0%,#000 79%,transparent 100%);transition:filter .4s ease}
+  .hero-with-portrait .hero-portrait.is-color img{filter:grayscale(0) contrast(1.08) brightness(.96)}
+  .hero-with-portrait .hero-copy{position:static;z-index:auto;display:block;width:100%;height:auto;min-height:0;margin:0;padding:0}
+  .hero-with-portrait .hero-copy h1{position:absolute;z-index:2;top:clamp(225px,58vw,310px);left:43%;width:57%;max-width:none;margin:0;font-size:clamp(50px,13vw,78px);text-align:left}
+  .hero-with-portrait .hero-copy h1::before{content:"";position:absolute;inset:12% -6% 5% -18%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 58% 52%,#000c 0%,#0009 43%,transparent 76%);filter:blur(13px)}
+  .hero-copy .hero-word-window{mask-image:linear-gradient(to bottom,transparent 0%,#000 18%,#000 82%,transparent 100%)}
+  .hero-with-portrait .hero-intro{position:absolute;z-index:2;top:calc(18px + var(--mobile-portrait-height));left:22px;right:22px;max-width:none;margin:0}
+  .hero-with-portrait .hero-identity{max-width:100%}
+  .hero-with-portrait .hero-description{max-width:350px;margin-top:16px}
+  .hero-with-portrait .hero-bottom-row{bottom:19px}
+}
+@media(max-width:420px){
+  .hero-with-portrait .hero-portrait{left:-16px}
+  .hero-with-portrait .hero-copy h1{left:43%;width:57%}
+}

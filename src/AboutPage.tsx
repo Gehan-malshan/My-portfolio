@@ -6,6 +6,7 @@ import AboutPixelGallery from './AboutPixelGallery'
 import { portfolio } from './data/portfolio'
 import TitleShine from './components/ui/TitleShine'
 import BlinkingDotsFallback from './components/ui/BlinkingDotsFallback'
+import SplashCursor from './SplashCursor'
 import './AboutPage.css'
 
 const aboutLogos: Record<string, string> = {
@@ -18,7 +19,7 @@ const aboutLogos: Record<string, string> = {
   'LFS158: Introduction to Kubernetes': '/about-logos/lfs158-kubernetes.png',
   'Redis Associate Software Operator': '/about-logos/redis-associate.png',
   'AWS Academy Graduate – Cloud Foundations': '/about-logos/aws-cloud-foundations.png',
-  'Oracle Cloud Infrastructure 2026 Foundations Associate': '/about-logos/oracle-cloud-foundations-2026.jpg',
+  'Oracle Cloud Infrastructure 2026 Foundations Associate': '/about-logos/oracle-cloud-foundations-2026.png',
   KodeKloud: '/about-logos/cloud-logo.png',
   '2nd Runner-up · Master Designer v3.0': '/about-logos/master-designer.png',
   'Inter-Faculty Taekwondo Championship': '/about-logos/university-of-sri-jayewardenepura.png',
@@ -76,6 +77,7 @@ export default function AboutPage() {
 
   return <main className="about-cv" id="top">
     <BlinkingDotsFallback/>
+    <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={0}/>
     <nav className="about-cv-nav" aria-label="About page navigation">
       <Link to="/" hash="about" className="about-cv-back"><ArrowLeft size={18} aria-hidden="true"/><span>Back to portfolio</span></Link>
       <span className="about-cv-nav-name">Gehan Malshan / About</span>
@@ -85,7 +87,7 @@ export default function AboutPage() {
       <header className="about-cv-intro">
         <span className="about-cv-kicker">About / Gehan Malshan</span>
         <h1><TitleShine>The Long Version</TitleShine> <span>/</span></h1>
-        <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><TacticalLink href={`mailto:${portfolio.email}`} label="Get in touch"/></div>
+        <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><a className="about-cv-back" href={`mailto:${portfolio.email}`}>Get in touch <ArrowUpRight size={16} aria-hidden="true"/></a></div>
       </header>
 
       <section className="about-cv-profile" aria-labelledby="about-profile-title">

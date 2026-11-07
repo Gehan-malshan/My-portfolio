@@ -5,6 +5,7 @@ import TacticalLink from './TacticalLink'
 import { portfolio } from './data/portfolio'
 import TitleShine from './components/ui/TitleShine'
 import BlinkingDotsFallback from './components/ui/BlinkingDotsFallback'
+import SplashCursor from './SplashCursor'
 import './ProjectShowcase.css'
 
 export default function ProjectDetail({ slug }: { slug: string }) {
@@ -21,6 +22,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
 
   return <main className="project-detail-page">
     <BlinkingDotsFallback/>
+    <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={0}/>
     <div className="project-detail-top"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><span>{project.number} / {String(portfolio.projects.length).padStart(2, '0')}</span></div>
     <header className="project-detail-header"><span className="project-kicker">{project.category} / Project details</span><h1><TitleShine>{project.title}</TitleShine><span>.</span></h1><p>{project.description}</p><div className="project-feature-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></header>
     <div className={`project-detail-art${project.slug === 'govilink' ? ' project-detail-art-portrait' : ''}`}><img src={project.image} alt={`${project.title} project image`}/></div>
