@@ -22,7 +22,7 @@ export default function ProjectShowcase() {
     <div className="section-inner">
       <div className="project-showcase-heading">
         <div><span className="project-kicker">Selected work / {String(projects.length).padStart(2, '0')}</span><h2 id="projects-title"><TitleShine>Projects</TitleShine><span className="project-heading-period">.</span></h2></div>
-        <p>Explore the work I build and the ideas I develop. Open a card for the full story.</p>
+        <p>Explore my software and cloud projects, from service architecture to deployment. Open a card for the full story.</p>
       </div>
 
       <div className="project-image-accordion" aria-label="Project cards">

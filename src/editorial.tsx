@@ -95,7 +95,7 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">The academic foundation behind my software, systems, and cloud work.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>My CV will be available here soon.</p></div><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering.</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
     <ContactFooter/>

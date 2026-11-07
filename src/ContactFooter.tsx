@@ -15,7 +15,7 @@ export default function ContactFooter() {
     <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
       <div className="footer-invitation-inner">
         <h2 className="contact-name" id="contact-title">{portfolio.name}</h2>
-        <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
+        <p className="contact-intro">Interested in software engineering, DevOps, or cloud infrastructure? Let’s build and learn together.</p>
         <div className="footer-contact-row">
           {contactLinks.map(({ label, href, Icon }) => <a className="contact-orb contact-icon" href={href} target={href.startsWith('mailto:') ? undefined : '_blank'} rel={href.startsWith('mailto:') ? undefined : 'noreferrer'} aria-label={label} key={label}>
             <span className="contact-icon-tooltip" aria-hidden="true">{label}</span>
