@@ -96,10 +96,10 @@ export default function AboutPage() {
         </div>
         <div className="about-cv-profile-copy">
           <span className="about-cv-kicker">A little more about me</span>
-          <h2 id="about-profile-title"><TitleShine>From ideas to working software.</TitleShine></h2>
-          <p>I’m Gehan Malshan, an Information Technology undergraduate at the University of Sri Jayewardenepura. I focus on building software and understanding how it runs in production.</p>
-          <p>University projects have given me hands-on experience with frontend and backend development, Go services, databases, containers, and cloud infrastructure. I’m especially interested in deployment, reliability, and the work that connects development with operations.</p>
-          <p>I’m strengthening my Linux, Docker, and Kubernetes skills and looking for a DevOps or Software Engineering internship. My roles with ICTS, VoiceTech, and IEEE ComSoc USJ have also taught me to coordinate teams, communicate clearly, and deliver work with others.</p>
+          <h2 id="about-profile-title"><TitleShine>Building software from code to cloud.</TitleShine></h2>
+          <p>I’m Gehan Malshan, an Information Technology undergraduate at the University of Sri Jayewardenepura. I’m interested in the full path from writing an application to deploying and operating it.</p>
+          <p>In university team projects, I’ve worked with frontend and backend code, Go services, databases, containers, and cloud infrastructure. StudEd and MatchMate have helped me explore service boundaries, deployment workflows, and the practical needs of distributed applications.</p>
+          <p>I’m continuing to learn Linux, Docker, Kubernetes, and cloud platforms, and I’m seeking a DevOps or Software Engineering internship. My roles with ICTS, VoiceTech, and IEEE ComSoc USJ have strengthened the teamwork and communication needed to deliver reliable software together.</p>
         </div>
       </section>
 
@@ -166,7 +166,7 @@ export default function AboutPage() {
       <div className="about-cv-outro-inner">
         <span className="about-cv-kicker">The next chapter</span>
         <h2><TitleShine>Let’s build something</TitleShine> <em><TitleShine>useful.</TitleShine></em></h2>
-        <p>I’m open to internships, software projects, and thoughtful collaborations.</p>
+        <p>I’m open to DevOps and software engineering internships, cloud projects, and technical collaborations.</p>
         <div className="about-cv-actions"><TacticalLink href={`mailto:${portfolio.email}`} label="Contact me"/><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div>
         <Link to="/" className="about-cv-home-link">Back to portfolio <ArrowUpRight size={17} aria-hidden="true"/></Link>
       </div>
