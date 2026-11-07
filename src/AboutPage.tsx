@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, GraduationCap, Medal, ScrollText } from 'lucide-react'
 import TacticalLink from './TacticalLink'
+import AboutPixelGallery from './AboutPixelGallery'
 import { portfolio } from './data/portfolio'
 import TitleShine from './components/ui/TitleShine'
 import BlinkingDotsFallback from './components/ui/BlinkingDotsFallback'
@@ -156,13 +157,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <footer className="about-cv-outro">
+    </div>
+    <AboutPixelGallery/>
+    <footer className="about-cv-outro">
+      <div className="about-cv-outro-inner">
         <span className="about-cv-kicker">The next chapter</span>
         <h2><TitleShine>Let’s build something</TitleShine> <em><TitleShine>useful.</TitleShine></em></h2>
         <p>I’m open to internships, software projects, and thoughtful collaborations.</p>
-        <div className="about-cv-actions"><TacticalLink href={`mailto:${portfolio.email}`} label="Contact me"/><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div>
+        <div className="about-cv-actions"><TacticalLink href={`mailto:${portfolio.email}`} label="Contact me"/><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div>
         <Link to="/" className="about-cv-home-link">Back to portfolio <ArrowUpRight size={17} aria-hidden="true"/></Link>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </main>
 }

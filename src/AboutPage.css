@@ -84,3 +84,12 @@
 @media(prefers-reduced-motion:reduce){.about-award-row,.about-award-row .about-cv-logo,.about-award-row .about-cv-logo img,.about-award-title,.about-award-description,.about-award-date{transition:none}}
 @media(prefers-reduced-motion:reduce){.about-cv-back,.about-cv-row{transition:none}}
 @media(prefers-reduced-motion:reduce){.about-cv-profile-portrait img{transition:none}.about-cv-profile-portrait:hover img{transform:none}}
+.about-cv-outro{min-height:640px;padding:clamp(100px,11vw,160px) 28px 72px;border-top:1px solid #303030;background:radial-gradient(ellipse at 50% 76%,#ffffff1c,transparent 55%),#080808;text-align:center}
+.about-cv-outro-inner{width:min(100%,1160px);margin:0 auto}
+.about-cv-outro h2{max-width:1080px;margin:22px auto 24px;font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(55px,7.8vw,112px);font-weight:800;line-height:1.13;letter-spacing:-.07em;text-wrap:balance}
+.about-cv-outro h2 .shiny-text{padding-block:.04em}
+.about-cv-outro h2 em{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-.055em}
+.about-cv-outro-inner>p{max-width:650px;margin:0 auto;color:#aaa;font-size:clamp(16px,1.5vw,20px);line-height:1.6}
+.about-cv-actions{justify-content:center;align-items:center;margin-top:52px}
+.about-cv-home-link{margin-top:85px}
+@media(max-width:700px){.about-cv-outro{min-height:0;padding:92px 22px 56px}.about-cv-outro h2{font-size:clamp(48px,10vw,72px)}.about-cv-actions{gap:16px}.about-cv-home-link{margin-top:70px}}

@@ -1,0 +1,17 @@
+.about-pixel-gallery{padding:105px 0 115px;border-top:1px solid #303030;background:#101010}
+.about-pixel-gallery-heading{width:min(100% - 56px,1160px);margin:0 auto 38px}
+.about-pixel-gallery-heading h2{margin:12px 0 8px;font-family:Inter,Arial,Helvetica,sans-serif;font-size:clamp(42px,5.5vw,78px);font-weight:750;line-height:1.08;letter-spacing:-.075em}
+.about-pixel-gallery-heading p{margin:0;color:#a0a0a0;font-size:15px}
+.about-pixel-gallery canvas{display:block;width:100%;height:560px;outline:none;cursor:grab;touch-action:pan-y}
+.about-pixel-gallery canvas:active{cursor:grabbing}
+.about-pixel-gallery canvas:focus-visible{outline:2px solid #fff;outline-offset:-3px}
+.about-pixel-gallery-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.about-gallery-lightbox{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;gap:24px;padding:32px;background:#000e;backdrop-filter:blur(14px)}
+.about-gallery-lightbox figure{display:flex;flex-direction:column;align-items:center;max-width:min(100%,1100px);max-height:100%;margin:0}
+.about-gallery-lightbox img{display:block;max-width:100%;max-height:calc(100vh - 130px);object-fit:contain}
+.about-gallery-lightbox figcaption{display:flex;justify-content:space-between;gap:28px;width:100%;padding-top:15px;color:#ddd;font:12px/1.5 'Spline Sans Mono',monospace}
+.about-gallery-lightbox button{flex:none;display:grid;place-items:center;width:48px;height:48px;border:1px solid #888;background:#181818;color:#fff}
+.about-gallery-lightbox button:hover{background:#eee;color:#111}
+.about-gallery-lightbox .about-gallery-close{position:absolute;top:25px;right:25px}
+@media(max-width:700px){.about-pixel-gallery{padding:75px 0 85px}.about-pixel-gallery-heading{width:calc(100% - 44px);margin-bottom:25px}.about-pixel-gallery canvas{height:410px}.about-gallery-lightbox{gap:6px;padding:55px 10px 22px}.about-gallery-lightbox button{width:35px;height:42px}.about-gallery-lightbox figcaption{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.about-pixel-gallery canvas{cursor:default}}

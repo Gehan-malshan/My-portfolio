@@ -337,6 +337,24 @@
 @media(prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:translateX(-35px)}}
 @media(max-width:700px) and (prefers-reduced-motion:reduce){.hero-with-portrait .hero-portrait img:hover{transform:none}}
 
+/* Mobile hero: keep the portrait below the introduction so the copy remains readable. */
+@media(max-width:700px){
+  .hero-with-portrait{height:840px;min-height:840px}
+  .hero-with-portrait .hero-copy{width:calc(100% - 44px);height:auto;min-height:0;margin:0 22px;padding:66px 0 0}
+  .hero-with-portrait .hero-copy h1{max-width:100%;font-size:clamp(50px,11vw,74px)}
+  .hero-with-portrait .hero-intro{max-width:315px;margin-top:28px}
+  .hero-with-portrait .hero-description{max-width:300px;line-height:1.48}
+  .hero-with-portrait .hero-portrait{inset:365px -18% 0 18%;opacity:.62}
+  .hero-with-portrait .hero-portrait img{object-position:left bottom;filter:grayscale(1) contrast(1.12) brightness(.54)}
+  .hero-with-portrait .hero-bottom-row{left:22px;right:22px;bottom:24px;align-items:center}
+}
+@media(max-width:420px){
+  .hero-with-portrait{height:790px;min-height:790px}
+  .hero-with-portrait .hero-portrait{inset:345px -22% 0 16%}
+  .hero-with-portrait .hero-copy{padding-top:58px}
+  .hero-with-portrait .hero-intro{margin-top:24px}
+}
+
 /* Give the hero contact marks their original visual weight. */
 .hero-bottom-row .hero-socials .contact-icon{width:48px;height:48px}
 .hero-bottom-row .hero-socials .contact-icon svg{width:42px;height:42px}

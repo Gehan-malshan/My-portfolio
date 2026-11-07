@@ -4,7 +4,7 @@ import { createRootRoute, createRoute, createRouter, Outlet, RouterProvider } fr
 import { Github, Linkedin, Mail, type LucideIcon } from 'lucide-react'
 import GridTrails from './GridTrails'
 import SplashCursor from './SplashCursor'
-import FooterShader from './FooterShader'
+import ContactFooter from './ContactFooter'
 import TacticalLink from './TacticalLink'
 import PagePreloader from './PagePreloader'
 import TechLogos from './TechLogos'
@@ -94,25 +94,10 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering.</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
-    <div className="site-footer contact-shell">
-      <FooterShader/>
-      <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
-        <div className="footer-invitation-inner">
-          <h2 className="contact-name" id="contact-title">{portfolio.name}</h2>
-          <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
-          <div className="footer-contact-row">
-            {contactPlatforms.map(({ label, href, Icon }) =>
-              <ContactIcon label={label} href={href} Icon={Icon} variant="footer" onMissing={onMissingContact} key={label}/>)}
-            <TacticalLink label="Let’s connect" href={portfolio.linkedin}/>
-          </div>
-          {!portfolio.email && <small className="contact-edit-note">Add your email and social links in <code>src/data/portfolio.ts</code> to connect these buttons.</small>}
-          <small className="contact-copyright">© {new Date().getFullYear()} Gehan Malshan</small>
-        </div>
-      </section>
-    </div>
+    <ContactFooter/>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
   </>
 }
