@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { portfolio } from './data/portfolio'
 import TitleShine from './components/ui/TitleShine'
+import BlinkingDotsFallback from './components/ui/BlinkingDotsFallback'
 import './ProjectShowcase.css'
 
 export default function ProjectDetail({ slug }: { slug: string }) {
@@ -12,6 +13,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
   if (!project) return <main className="project-detail-page project-not-found"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><h1><TitleShine>Project not found.</TitleShine></h1><p>Choose a project from the portfolio.</p></main>
 
   return <main className="project-detail-page">
+    <BlinkingDotsFallback/>
     <div className="project-detail-top"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><span>{project.number} / {String(portfolio.projects.length).padStart(2, '0')}</span></div>
     <header className="project-detail-header"><span className="project-kicker">{project.category} / Project details</span><h1><TitleShine>{project.title}</TitleShine><span>.</span></h1><p>{project.description}</p><div className="project-feature-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></header>
     <div className={`project-detail-art${project.slug === 'govilink' ? ' project-detail-art-portrait' : ''}`}><img src={project.image} alt={`${project.title} project image`}/></div>

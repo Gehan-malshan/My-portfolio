@@ -28,7 +28,8 @@
 .project-showcase-tabs button:hover,.project-showcase-tabs button.is-active{border-color:#aaa;background:#202020;color:#fff}
 .project-showcase-arrows{display:flex;gap:8px}.project-showcase-arrows button{display:grid;place-items:center;width:46px;height:46px;border:1px solid #555;background:#121212;color:#fff}.project-showcase-arrows button:hover{background:#eee;color:#111}
 .project-edit-hint{margin:24px 0 0;color:#777;font-size:11px}.project-edit-hint code{color:#aaa}
-.project-detail-page{min-height:100vh;padding:34px max(35px,calc((100vw - 1260px)/2)) 40px;background:#050505;color:#f3f3f3}
+.project-detail-page{position:relative;isolation:isolate;min-height:100vh;padding:34px max(35px,calc((100vw - 1260px)/2)) 40px;background:#050505;color:#f3f3f3}
+.project-detail-page> :not(.page-blinking-dots){position:relative;z-index:1}
 .project-detail-top,.project-detail-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;color:#898989;font:11px 'Spline Sans Mono',monospace;letter-spacing:.07em;text-transform:uppercase}
 .project-back{display:inline-flex;align-items:center;gap:12px;color:#eee;transition:transform .2s}.project-back:hover{transform:translateX(-4px)}
 .project-detail-header{max-width:930px;padding:90px 0 53px}.project-detail-header h1{margin:14px 0 23px;font-size:clamp(64px,9vw,130px);line-height:.91;letter-spacing:-.085em}.project-detail-header p{max-width:720px;margin:0;color:#aaa;font-size:clamp(18px,1.8vw,25px);line-height:1.45;letter-spacing:-.03em}

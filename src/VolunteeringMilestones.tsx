@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
+import VolunteerGalleryStack from './VolunteerGalleryStack'
 import './VolunteeringMilestones.css'
 
 type Milestone = {
@@ -8,6 +9,7 @@ type Milestone = {
   organization: string
   period: string
   description: string
+  gallery?: readonly { src: string; alt: string }[]
 }
 
 function MilestoneArtwork({ variant }: { variant: number }) {
@@ -109,7 +111,7 @@ export default function VolunteeringMilestones({ items }: { items: readonly Mile
   return <div className="volunteer-scroll-story">
     <div className="volunteer-scroll-media-column">
       <div className="volunteer-scroll-media-sticky" ref={mediaRef}>
-        <div className="volunteer-scroll-media-frame">
+        <div className={`volunteer-scroll-media-frame${items[active]?.gallery?.length ? ' has-photos' : ''}`}>
           <AnimatePresence initial={false} mode="sync">
             <motion.div
               key={active}
@@ -119,10 +121,10 @@ export default function VolunteeringMilestones({ items }: { items: readonly Mile
               exit={reducedMotion ? { opacity: 0 } : { opacity: 0, filter: 'blur(12px)', scale: .98 }}
               transition={{ duration: reducedMotion ? 0 : .65, ease: [.22, 1, .36, 1] }}
             >
-              <MilestoneArtwork variant={active % 4}/>
+              {!items[active]?.gallery?.length && <MilestoneArtwork variant={active % 4}/>}
+              <VolunteerGalleryStack item={items[active]}/>
             </motion.div>
           </AnimatePresence>
-          <span className="volunteer-scroll-art-index" aria-hidden="true">{String(active + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}</span>
         </div>
         <p className="volunteer-scroll-media-caption">{items[active]?.organization} <span>·</span> {items[active]?.category}</p>
       </div>

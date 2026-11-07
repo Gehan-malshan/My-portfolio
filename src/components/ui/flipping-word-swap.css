@@ -1,9 +1,0 @@
-.flip-heading{display:inline-grid;max-width:100%;padding:0;border:0;border-radius:.08em;background:transparent;color:inherit;font:inherit;line-height:inherit;letter-spacing:inherit;text-align:inherit;vertical-align:baseline;cursor:pointer;appearance:none}
-.flip-heading:focus-visible{outline:2px solid currentColor;outline-offset:5px}
-.flip-heading-stack{display:grid;min-width:0;max-width:100%;perspective:800px}
-.flip-heading-layer{grid-area:1/1;display:block;min-width:0;max-width:100%;overflow:hidden}
-.flip-heading-word{display:inline-block;white-space:nowrap}
-.flip-heading-character{display:inline-block;backface-visibility:hidden;will-change:transform,opacity}
-.flip-heading-layer:nth-child(2) .flip-heading-character{opacity:0}
-.flip-heading-space{white-space:pre}
-@media(prefers-reduced-motion:reduce){.flip-heading-character{will-change:auto}}

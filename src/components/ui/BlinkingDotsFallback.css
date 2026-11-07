@@ -1,0 +1,26 @@
+.page-blinking-dots {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at 50% 45%, #000 20%, transparent 95%);
+}
+
+.page-blinking-dots__dot {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  background: #fff;
+  opacity: .05;
+  animation: page-dot-blink 4s ease-in-out infinite;
+}
+
+@keyframes page-dot-blink {
+  0%, 100% { opacity: .04; }
+  45% { opacity: var(--dot-peak); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-blinking-dots__dot { animation: none; opacity: .14; }
+}

@@ -23,9 +23,16 @@ export const portfolio = {
       period: '2024 – 2028',
       description: 'Developing a foundation in software engineering, cloud systems, and practical problem solving through university projects and independent learning.',
     },
+    {
+      title: 'G.C.E. Advanced Level Examination',
+      institution: 'Mahinda Rajapaksha College, Homagama',
+      period: '2021 – 2023',
+      description: 'Technology Stream.',
+    },
   ],
   certifications: [
     { title: 'LFS101: Introduction to Linux', issuer: 'The Linux Foundation', issued: 'Nov 2026' },
+    { title: 'LFS158: Introduction to Kubernetes', issuer: 'The Linux Foundation', issued: '' },
     { title: 'Redis Associate Software Operator', issuer: 'Redis', issued: 'Oct 2026' },
     { title: 'AWS Academy Graduate – Cloud Foundations', issuer: 'Amazon Web Services', issued: 'Sep 2026' },
     { title: 'Docker Training Course for the Absolute Beginner', issuer: 'KodeKloud', issued: 'Aug 2026' },
@@ -94,6 +101,8 @@ export const portfolio = {
     },
   ],
   volunteering: [
+    // Add a gallery to each role when event photos are ready:
+    // gallery: [{ src: '/volunteering/your-photo.jpg', alt: 'Describe the event photo' }, ...]
     {
       category: 'Leadership',
       role: 'Digital Marketing & Outreach Standing Committee Head',
@@ -116,6 +125,14 @@ export const portfolio = {
       organization: 'IEEE ComSoc USJ',
       period: 'May – Sep 2026',
       description: 'Led the public relations team for NetX IoT Challenge 2026, working with the event and visibility teams to build its reach.',
+      gallery: [
+        { src: '/volunteering/netx/netx-06.jpg', alt: 'Gehan at the NetX IoT Challenge grand finale' },
+        { src: '/volunteering/netx/netx-02.jpg', alt: 'A NetX participant presenting an IoT project to a judge' },
+        { src: '/volunteering/netx/netx-04.jpg', alt: 'Gehan working at a laptop during the NetX event' },
+        { src: '/volunteering/netx/netx-03.jpg', alt: 'The NetX IoT Challenge organizing team' },
+        { src: '/volunteering/netx/netx-05.jpg', alt: 'Gehan with fellow NetX event volunteers' },
+        { src: '/volunteering/netx/netx-01.jpg', alt: 'NetX IoT Challenge grand finale display' },
+      ],
       placeholder: false,
     },
     {

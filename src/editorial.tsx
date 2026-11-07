@@ -19,10 +19,10 @@ import ProjectShowcase from './ProjectShowcase'
 import ProjectDetail from './ProjectDetail'
 import AboutPage from './AboutPage'
 import VolunteeringMilestones from './VolunteeringMilestones'
-import FlippingWordSwap from './components/ui/flipping-word-swap'
 import TitleShine from './components/ui/TitleShine'
 import TrueFocus from './components/ui/TrueFocus'
 import { portfolio } from './data/portfolio'
+import './tailwind.css'
 import './editorial.css'
 
 const rootRoute = createRootRoute({ component: () => <><Outlet/><BackToTop/><ScrollReveals/></> })
@@ -81,7 +81,7 @@ function Home() {
           <SpiralTechGallery/>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
-            <h2 id="about-title"><TitleShine>Curious about code and</TitleShine>{' '}<em><TitleShine><FlippingWordSwap word1="everything around it." stagger={25}/></TitleShine></em></h2>
+            <h2 id="about-title"><TitleShine>Curious about code and</TitleShine>{' '}<em><TitleShine>everything around it.</TitleShine></em></h2>
             <p>{portfolio.about}</p>
             <p>{portfolio.aboutMore}</p>
             <div className="about-actions"><TacticalLink label="More about me" onClick={() => void router.navigate({ to: '/about' })}/></div>
@@ -95,7 +95,7 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine><FlippingWordSwap word1="Education." stagger={35}/></TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine><FlippingWordSwap word1="Resume." stagger={35}/></TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">My academic path and continued learning.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>A starter CV is ready to download and replace with your finished version.</p></div><TacticalLink href={portfolio.cvPath} label={portfolio.cvIsTemplate ? 'Download CV template' : 'Download my CV'} download/></div></div></section>
       <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering.</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
     <div className="site-footer contact-shell">
