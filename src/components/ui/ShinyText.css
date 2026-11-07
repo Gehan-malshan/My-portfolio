@@ -2,6 +2,7 @@
   position: relative;
   display: inline-block;
   max-width: 100%;
+  line-height: 1.12;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   -webkit-background-clip: text;

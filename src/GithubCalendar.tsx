@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import TitleShine from './components/ui/TitleShine'
+import TacticalLink from './TacticalLink'
 import './GithubCalendar.css'
 
 type ContributionDay = {
@@ -152,7 +153,7 @@ export default function GithubCalendar({ username }: { username: string }) {
             <span>More</span>
           </div>
         </div>
-        {validUsername && <a className="github-activity-profile" href={`https://github.com/${username}`} target="_blank" rel="noreferrer">View @{username} on GitHub ↗</a>}
+        {validUsername && <TacticalLink href={`https://github.com/${username}`} label={`View @${username} on GitHub ↗`} newTab/>}
       </div>
     </section>
   )

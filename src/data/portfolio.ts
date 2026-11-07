@@ -4,7 +4,7 @@ export const portfolio = {
   name: 'Gehan Malshan',
   role: 'Information Technology Undergraduate',
   location: 'Sri Lanka',
-  heroWords: ['Design', 'Develop', 'Test', 'Deploy', 'Improve'],
+  heroWords: ['Build', 'Develop', 'Test', 'Deploy', 'Improve'],
   intro: 'Exploring software engineering and DevOps through real projects, cloud technologies, and team collaboration.',
   about:
     'I’m an Information Technology undergraduate at the University of Sri Jayewardenepura, interested in how software is built, deployed, and maintained.',
@@ -39,9 +39,28 @@ export const portfolio = {
     { title: '12 Factor App', issuer: 'KodeKloud', issued: 'Jun 2026' },
   ],
   awards: [
-    { title: '2nd Runner-up · Master Designer v3.0', issuer: 'Media Unit, SLTC Research University', issued: 'Mar 2026', description: 'Team category, representing Duo Tones with Dulanga Perera.' },
-    { title: 'Taekwondo Merit Award', issuer: 'University of Sri Jayewardenepura', issued: 'Feb 2026', description: 'Recognized for representing the university at the Sri Lanka University Games.' },
-    { title: 'Gold · Fighting & Poomsae', issuer: 'Inter-Faculty Taekwondo Championship', issued: 'Feb 2025', description: 'Gold medals in both Fighting (Kyorugi) and Poomsae.' },
+    {
+      title: '2nd Runner-up · Master Designer v3.0', issuer: 'Media Unit, SLTC Research University', issued: 'Mar 2026',
+      description: 'Team category, representing Duo Tones with Dulanga Perera.',
+      gallery: [
+        { src: '/volunteering/master-designer/master-designer-02.jpeg', alt: 'Gehan and the Duo Tones team receiving the Master Designer runner-up award' },
+        { src: '/volunteering/master-designer/master-designer-01.jpeg', alt: 'Master Designer runner-up award presentation' },
+      ],
+    },
+    {
+      title: 'Taekwondo Merit Award', issuer: 'University of Sri Jayewardenepura', issued: 'Feb 2026',
+      description: 'Recognized for representing the university at the Sri Lanka University Games.',
+      gallery: [{ src: '/volunteering/merit-award/merit-award-01.jpg', alt: 'Gehan receiving a university taekwondo merit award' }],
+    },
+    {
+      title: 'Gold · Fighting & Poomsae', issuer: 'Inter-Faculty Taekwondo Championship', issued: 'Feb 2025',
+      description: 'Gold medals in both Fighting (Kyorugi) and Poomsae.',
+      gallery: [
+        { src: '/volunteering/faculty-taekwondo/faculty-taekwondo-01.jpg', alt: 'Gehan with the taekwondo championship trophy' },
+        { src: '/volunteering/faculty-taekwondo/faculty-taekwondo-03.jpg', alt: 'Taekwondo championship team with medals and trophy' },
+        { src: '/volunteering/faculty-taekwondo/faculty-taekwondo-02.jpg', alt: 'Gehan and teammates with taekwondo awards' },
+      ],
+    },
   ],
   // Project images are Gehan's original uploads in public/projects.
   projects: [
@@ -101,14 +120,20 @@ export const portfolio = {
     },
   ],
   volunteering: [
-    // Add a gallery to each role when event photos are ready:
-    // gallery: [{ src: '/volunteering/your-photo.jpg', alt: 'Describe the event photo' }, ...]
     {
       category: 'Leadership',
       role: 'Digital Marketing & Outreach Standing Committee Head',
       organization: 'ICTS',
       period: 'Jan 2026 – Present',
       description: 'Leading digital marketing and outreach for the Information and Communication Technology Society at the University of Sri Jayewardenepura.',
+      gallery: [
+        { src: '/volunteering/icts-outreach/icts-outreach-03.jpeg', alt: 'Gehan representing ICTS during an outreach event' },
+        { src: '/volunteering/icts-outreach/icts-outreach-02.jpeg', alt: 'ICTS members collaborating at a laptop' },
+        { src: '/volunteering/icts-outreach/icts-outreach-01.jpeg', alt: 'ICTS outreach event group photo' },
+        { src: '/volunteering/icts-outreach/icts-outreach-05.jpeg', alt: 'Students taking part in an ICTS outreach workshop' },
+        { src: '/volunteering/icts-outreach/icts-outreach-06.jpeg', alt: 'ICTS volunteers and students at a workshop' },
+        { src: '/volunteering/icts-outreach/icts-outreach-04.jpeg', alt: 'ICTS presentation showing the society and its work' },
+      ],
       placeholder: false,
     },
     {
@@ -117,6 +142,12 @@ export const portfolio = {
       organization: 'VoiceTech',
       period: 'Sep 2026 – Present',
       description: 'Supporting VoiceTech through design and marketing leadership.',
+      gallery: [
+        { src: '/volunteering/voicetech/voicetech-02.jpg', alt: 'Gehan with the VoiceTech team' },
+        { src: '/volunteering/voicetech/voicetech-01.jpg', alt: 'VoiceTech annual general meeting group photo' },
+        { src: '/volunteering/voicetech/voicetech-03.jpg', alt: 'Audience and organizers at a VoiceTech event' },
+        { src: '/volunteering/voicetech/voicetech-04.jpg', alt: 'VoiceTech members at a group event' },
+      ],
       placeholder: false,
     },
     {
@@ -141,8 +172,15 @@ export const portfolio = {
       organization: 'ICTS',
       period: 'Feb – Jul 2026',
       description: 'Co-led media and marketing for CryptX 2.0, documenting and promoting its hackathon, CTF, and designathon.',
+      gallery: [
+        { src: '/volunteering/cryptx/cryptx-02.jpeg', alt: 'Gehan helping participants at CryptX 2.0' },
+        { src: '/volunteering/cryptx/cryptx-01.jpeg', alt: 'CryptX 2.0 participants group photo' },
+        { src: '/volunteering/cryptx/cryptx-04.jpeg', alt: 'CryptX 2.0 organizing team and participants' },
+        { src: '/volunteering/cryptx/cryptx-05.jpeg', alt: 'CryptX 2.0 event venue and laptops' },
+        { src: '/volunteering/cryptx/cryptx-03.jpeg', alt: 'Gehan at the CryptX 2.0 event' },
+      ],
       placeholder: false,
     },
   ],
-  interests: ['DevOps', 'Software engineering', 'Cloud systems', 'UX and product design'],
+  interests: ['DevOps', 'Software engineering', 'Cloud systems', 'Distributed systems'],
 }

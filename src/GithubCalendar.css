@@ -25,5 +25,6 @@
 .github-calendar-legend .github-calendar-day{width:12px;height:12px}
 .github-activity-profile{display:block;width:min(100%,var(--calendar-width));margin:22px auto 0;color:#8d8d8d;font-size:12px}
 .github-activity-profile:hover{color:#fff}
+.github-activity .section-inner>.tactical-button{display:flex;margin:22px auto 0}
 @media(max-width:700px){.github-activity{padding:75px 0 80px}.github-activity .section-inner{width:calc(100% - 36px)}.github-activity h2{margin-bottom:37px}.github-calendar{margin:0}.github-calendar-bottom{align-items:flex-start;flex-direction:column;gap:11px}}
 @media(prefers-reduced-motion:reduce){.github-calendar-day{transition:none}}

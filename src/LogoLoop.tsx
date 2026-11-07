@@ -68,12 +68,10 @@ export default function LogoLoop({
       render()
     }
     const onWheel = (event: WheelEvent) => {
-      const distance = Math.abs(event.deltaX) > Math.abs(event.deltaY)
-        ? event.deltaX
-        : event.deltaY
-      if (!distance || !periodRef.current) return
+      // Let vertical wheel gestures scroll the page; only horizontal gestures browse logos.
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) || !periodRef.current) return
       event.preventDefault()
-      move(distance)
+      move(event.deltaX)
     }
 
     measure()

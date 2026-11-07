@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from '@tanstack/react-router'
 import { ArrowLeft, ArrowUpRight, BriefcaseBusiness, GraduationCap, Medal, ScrollText } from 'lucide-react'
 import TacticalLink from './TacticalLink'
@@ -22,19 +22,53 @@ const aboutLogos: Record<string, string> = {
   'Inter-Faculty Taekwondo Championship': '/about-logos/university-of-sri-jayewardenepura.png',
 }
 
-function LogoSlot({ name, logoKey = name }: { name: string; logoKey?: string }) {
+type EntryPhoto = { src: string; alt: string }
+
+function LogoSlot({ name, logoKey = name, photo }: { name: string; logoKey?: string; photo?: EntryPhoto }) {
   const src = aboutLogos[logoKey] ?? aboutLogos[name]
   const mark = name.split(/\s+/).filter(Boolean).slice(0, 2).map(word => word[0]).join('').toUpperCase()
-  return <span className="about-cv-logo" aria-hidden="true">
+  return <span className={`about-cv-logo${photo ? ' has-photo' : ''}`} aria-hidden="true">
     {src ? <img src={src} alt="" loading="lazy"/> : <span>{mark}</span>}
+    {photo && <img className="about-entry-photo" src={photo.src} alt="" loading="lazy"/>}
   </span>
 }
 
+function MorphEntry({ name, logoKey, meta, title, description, date, photo }: {
+  name: string
+  logoKey?: string
+  meta: string
+  title: string
+  description: string
+  date: string
+  photo?: EntryPhoto
+}) {
+  const [expanded, setExpanded] = useState(false)
+
+  return <button
+    type="button"
+    className={`about-award-row${expanded ? ' is-open' : ''}`}
+    aria-expanded={expanded}
+    onPointerEnter={event => { if (event.pointerType === 'mouse') setExpanded(true) }}
+    onPointerLeave={event => { if (event.pointerType === 'mouse') setExpanded(false) }}
+    onFocus={() => { if (!window.matchMedia('(hover: none)').matches) setExpanded(true) }}
+    onBlur={() => setExpanded(false)}
+    onClick={event => {
+      if (window.matchMedia('(hover: none)').matches) setExpanded(current => !current)
+      else if (event.detail > 0) setExpanded(true)
+    }}
+  >
+    <LogoSlot name={name} logoKey={logoKey} photo={photo}/>
+    <span className="about-award-copy"><span className="about-cv-organization">{meta}</span><strong className="about-award-title">{title}</strong><span className="about-award-description">{description}</span></span>
+    <span className="about-award-date">{date}</span>
+  </button>
+}
+
 export default function AboutPage() {
+
   useEffect(() => {
     const previousTitle = document.title
     document.title = 'About — Gehan Malshan'
-    window.scrollTo(0, 0)
+    window.scrollTo({ top: 0, behavior: 'instant' })
     return () => { document.title = previousTitle }
   }, [])
 
@@ -49,7 +83,7 @@ export default function AboutPage() {
       <header className="about-cv-intro">
         <span className="about-cv-kicker">About / Gehan Malshan</span>
         <h1><TitleShine>The Long Version</TitleShine> <span>/</span></h1>
-        <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><a href={`mailto:${portfolio.email}`}>Get in touch <ArrowUpRight size={15} aria-hidden="true"/></a></div>
+        <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><TacticalLink href={`mailto:${portfolio.email}`} label="Get in touch"/></div>
       </header>
 
       <section className="about-cv-profile" aria-labelledby="about-profile-title">
@@ -59,24 +93,9 @@ export default function AboutPage() {
         <div className="about-cv-profile-copy">
           <span className="about-cv-kicker">A little more about me</span>
           <h2 id="about-profile-title"><TitleShine>From ideas to working software.</TitleShine></h2>
-          <p>I’m Gehan Malshan, an Information Technology undergraduate at the University of Sri Jayewardenepura. I’m interested in how digital products are designed, built, deployed, and maintained.</p>
-          <p>Through university projects, I’m exploring frontend and backend development, cloud systems, and the practical decisions that make software useful and reliable.</p>
-          <p>Outside coursework, I contribute to ICTS, VoiceTech, and IEEE ComSoc USJ through design, marketing, and outreach. I’m currently building my skills in Linux, Docker, and Kubernetes while looking for a DevOps or Software Engineering internship.</p>
-        </div>
-      </section>
-
-      <section className="about-cv-section" id="about-experience" aria-labelledby="about-experience-title">
-        <div className="about-cv-section-label"><BriefcaseBusiness size={19} aria-hidden="true"/><h2 id="about-experience-title"><TitleShine>Experience & volunteering</TitleShine></h2></div>
-        <div className="about-cv-rows">
-          {portfolio.volunteering.map(item => <article className="about-cv-row" key={`${item.organization}-${item.role}`}>
-            <LogoSlot name={item.organization}/>
-            <div className="about-cv-row-body">
-              <p className="about-cv-organization">{item.organization} <span>/ {item.category}</span></p>
-              <h3>{item.role}</h3>
-              <p className="about-cv-description">{item.description}</p>
-            </div>
-            <p className="about-cv-date">{item.period}</p>
-          </article>)}
+          <p>I’m Gehan Malshan, an Information Technology undergraduate at the University of Sri Jayewardenepura. I focus on building software and understanding how it runs in production.</p>
+          <p>University projects have given me hands-on experience with frontend and backend development, Go services, databases, containers, and cloud infrastructure. I’m especially interested in deployment, reliability, and the work that connects development with operations.</p>
+          <p>I’m strengthening my Linux, Docker, and Kubernetes skills and looking for a DevOps or Software Engineering internship. My roles with ICTS, VoiceTech, and IEEE ComSoc USJ have also taught me to coordinate teams, communicate clearly, and deliver work with others.</p>
         </div>
       </section>
 
@@ -108,12 +127,32 @@ export default function AboutPage() {
 
       <section className="about-cv-section" id="about-awards" aria-labelledby="about-awards-title">
         <div className="about-cv-section-label"><Medal size={19} aria-hidden="true"/><h2 id="about-awards-title"><TitleShine>Honors & awards</TitleShine></h2></div>
-        <div className="about-cv-rows">
-          {portfolio.awards.map(item => <article className="about-cv-row" key={item.title}>
-            <LogoSlot name={item.issuer} logoKey={item.title}/>
-            <div className="about-cv-row-body"><p className="about-cv-organization">{item.issuer}</p><h3>{item.title}</h3><p className="about-cv-description">{item.description}</p></div>
-            <p className="about-cv-date">{item.issued}</p>
-          </article>)}
+        <div className="about-cv-rows about-award-list">
+          {portfolio.awards.map(item => <MorphEntry
+            key={item.title}
+            name={item.issuer}
+            logoKey={item.title}
+            meta={item.issuer}
+            title={item.title}
+            description={item.description}
+            date={item.issued}
+            photo={item.gallery[0]}
+          />)}
+        </div>
+      </section>
+
+      <section className="about-cv-section" id="about-volunteering" aria-labelledby="about-volunteering-title">
+        <div className="about-cv-section-label"><BriefcaseBusiness size={19} aria-hidden="true"/><h2 id="about-volunteering-title"><TitleShine>Volunteering</TitleShine></h2></div>
+        <div className="about-cv-rows about-award-list">
+          {portfolio.volunteering.map(item => <MorphEntry
+            key={`${item.organization}-${item.role}`}
+            name={item.organization}
+            meta={`${item.organization} / ${item.category}`}
+            title={item.role}
+            description={item.description}
+            date={item.period}
+            photo={'gallery' in item ? item.gallery?.[0] : undefined}
+          />)}
         </div>
       </section>
 

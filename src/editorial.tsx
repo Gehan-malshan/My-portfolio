@@ -20,7 +20,6 @@ import ProjectDetail from './ProjectDetail'
 import AboutPage from './AboutPage'
 import VolunteeringMilestones from './VolunteeringMilestones'
 import TitleShine from './components/ui/TitleShine'
-import TrueFocus from './components/ui/TrueFocus'
 import { portfolio } from './data/portfolio'
 import './tailwind.css'
 import './editorial.css'
@@ -81,7 +80,7 @@ function Home() {
           <SpiralTechGallery/>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
-            <h2 id="about-title"><TitleShine>Curious about code and</TitleShine>{' '}<em><TitleShine>everything around it.</TitleShine></em></h2>
+            <h2 id="about-title"><TitleShine>Building software</TitleShine>{' '}<em><TitleShine>from code to cloud.</TitleShine></em></h2>
             <p>{portfolio.about}</p>
             <p>{portfolio.aboutMore}</p>
             <div className="about-actions"><TacticalLink label="More about me" onClick={() => void router.navigate({ to: '/about' })}/></div>
@@ -102,7 +101,7 @@ function Home() {
       <FooterShader/>
       <section className="footer-invitation" id="contact" aria-labelledby="contact-title">
         <div className="footer-invitation-inner">
-          <h2 className="contact-name" id="contact-title"><TrueFocus sentence={portfolio.name} borderColor="#f2f2f2" glowColor="rgba(255,255,255,.22)" blurAmount={2} unfocusedOpacity={.85} cornerSize={22} borderWidth={2} animationDuration={.65} pauseBetweenAnimations={1.8}/></h2>
+          <h2 className="contact-name" id="contact-title">{portfolio.name}</h2>
           <p className="contact-intro">I build thoughtful software and enjoy working with people who care about the details. Let’s connect.</p>
           <div className="footer-contact-row">
             {contactPlatforms.map(({ label, href, Icon }) =>

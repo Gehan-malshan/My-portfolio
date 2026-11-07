@@ -6,11 +6,12 @@ type TacticalLinkProps = {
   href?: string
   label: string
   download?: boolean
+  newTab?: boolean
   ariaLabel?: string
   onClick?: () => void
 }
 
-export default function TacticalLink({ href, label, download, ariaLabel, onClick }: TacticalLinkProps) {
+export default function TacticalLink({ href, label, download, newTab, ariaLabel, onClick }: TacticalLinkProps) {
   const [visibleLabel, setVisibleLabel] = useState(label)
   const timer = useRef<number | undefined>(undefined)
 
@@ -44,6 +45,6 @@ export default function TacticalLink({ href, label, download, ariaLabel, onClick
   </>
   const interactions = { onMouseEnter: startScramble, onMouseLeave: stopScramble, onFocus: startScramble, onBlur: stopScramble }
   return href
-    ? <a className="tactical-button" href={href} download={download} aria-label={ariaLabel ?? label} {...interactions}>{content}</a>
+    ? <a className="tactical-button" href={href} download={download} target={newTab ? '_blank' : undefined} rel={newTab ? 'noreferrer' : undefined} aria-label={ariaLabel ?? label} {...interactions}>{content}</a>
     : <button className="tactical-button" type="button" aria-label={ariaLabel ?? label} onClick={onClick} {...interactions}>{content}</button>
 }
