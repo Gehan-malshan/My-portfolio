@@ -394,6 +394,7 @@
 #top > :is(.hero,.section){border-bottom:1px solid #ffffff2e}
 #top > .project-showcase{border-top:0}
 .site-footer{border-top:0}
+.hero-with-portrait .hero-bottom-row{bottom:86px}
 
 /* Mobile hero: keep the portrait and ticker together, then a compact introduction and contact row. */
 @media(max-width:700px){
@@ -409,7 +410,7 @@
   .hero-with-portrait .hero-intro{position:absolute;z-index:2;top:calc(18px + var(--mobile-portrait-height));left:22px;right:22px;max-width:none;margin:0}
   .hero-with-portrait .hero-identity{max-width:100%}
   .hero-with-portrait .hero-description{max-width:350px;margin-top:16px}
-  .hero-with-portrait .hero-bottom-row{bottom:19px}
+  .hero-with-portrait .hero-bottom-row{bottom:49px}
 }
 @media(max-width:420px){
   .hero-with-portrait .hero-portrait{left:-16px}
