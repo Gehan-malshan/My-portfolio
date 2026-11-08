@@ -12,6 +12,8 @@ type ContributionDay = {
 type ContributionData = {
   contributions: ContributionDay[][]
   totalContributions: number
+  startDate: string
+  endDate: string
 }
 
 type ApiDay = { date: string; count: number; level: number }
@@ -19,26 +21,30 @@ type ApiResponse = { contributions: ApiDay[]; total: Record<string, number> }
 
 function periodStart() {
   const today = new Date()
-  return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth() - 12, 1))
+  const start = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
+  start.setUTCFullYear(start.getUTCFullYear() - 1)
+  start.setUTCDate(start.getUTCDate() + 1)
+  return start
 }
 
 function periodEnd() {
   const today = new Date()
-  return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), 0))
+  return new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()))
 }
 
 function normalizeContributions(result: ApiResponse): ContributionData {
-  if (!Array.isArray(result.contributions)) throw new Error('GitHub activity is unavailable right now.')
+  if (!Array.isArray(result.contributions) || result.contributions.length === 0) throw new Error('GitHub activity is unavailable right now.')
   const byDate = new Map(result.contributions.map(day => [day.date, day]))
-  const firstDate = periodStart().toISOString().slice(0, 10)
-  const lastDate = periodEnd().toISOString().slice(0, 10)
-  const weeks = emptyWeeks().map(week => week.map(day => {
+  const dates = result.contributions.map(day => day.date).sort()
+  const firstDate = dates[0]
+  const lastDate = dates[dates.length - 1]
+  const weeks = emptyWeeks(new Date(`${firstDate}T00:00:00Z`), new Date(`${lastDate}T00:00:00Z`)).map(week => week.map(day => {
     const contribution = day.date >= firstDate && day.date <= lastDate ? byDate.get(day.date) : undefined
     const level = Math.max(0, Math.min(4, Number(contribution?.level ?? 0)))
     const levels: ContributionDay['contributionLevel'][] = ['NONE', 'FIRST_QUARTILE', 'SECOND_QUARTILE', 'THIRD_QUARTILE', 'FOURTH_QUARTILE']
     return { ...day, contributionCount: Number(contribution?.count ?? 0), contributionLevel: levels[level] }
   }))
-  return { contributions: weeks, totalContributions: weeks.flat().reduce((total, day) => total + day.contributionCount, 0) }
+  return { contributions: weeks, totalContributions: Number(result.total?.lastYear ?? result.contributions.reduce((total, day) => total + Number(day.count || 0), 0)), startDate: firstDate, endDate: lastDate }
 }
 
 const levelClass: Record<ContributionDay['contributionLevel'], string> = {
@@ -49,9 +55,8 @@ const levelClass: Record<ContributionDay['contributionLevel'], string> = {
   FOURTH_QUARTILE: 'level-4',
 }
 
-function emptyWeeks() {
-  const end = periodEnd()
-  const start = periodStart()
+function emptyWeeks(from = periodStart(), end = periodEnd()) {
+  const start = new Date(from)
   start.setUTCDate(start.getUTCDate() - start.getUTCDay())
   const weeks: ContributionDay[][] = []
 
@@ -65,13 +70,15 @@ function emptyWeeks() {
   return weeks
 }
 
-function monthLabels(weeks: ContributionDay[][]) {
-  const start = periodStart()
-  return Array.from({ length: 12 }, (_, monthOffset) => {
+function monthLabels(weeks: ContributionDay[][], firstDate: string, lastDate: string) {
+  const start = new Date(`${firstDate}T00:00:00Z`)
+  const end = new Date(`${lastDate}T00:00:00Z`)
+  const monthCount = (end.getUTCFullYear() - start.getUTCFullYear()) * 12 + end.getUTCMonth() - start.getUTCMonth() + 1
+  return Array.from({ length: monthCount }, (_, monthOffset) => {
     const monthStart = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + monthOffset, 1))
-    const date = monthStart.toISOString().slice(0, 10)
+    const month = monthStart.toISOString().slice(0, 7)
     return {
-      index: weeks.findIndex(week => week.some(day => day.date === date)),
+      index: weeks.findIndex(week => week.some(day => day.date.startsWith(month) && day.date >= firstDate && day.date <= lastDate)),
       label: new Intl.DateTimeFormat('en', { month: 'short', timeZone: 'UTC' }).format(monthStart),
     }
   }).filter(({ index }) => index >= 0)
@@ -94,9 +101,10 @@ export default function GithubCalendar({ username }: { username: string }) {
     const controller = new AbortController()
     setLoading(true)
     setError('')
-    const years = [...new Set([periodStart().getUTCFullYear(), periodEnd().getUTCFullYear()])]
-    const yearQuery = years.map(year => `y=${year}`).join('&')
-    fetch(`https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(username)}?${yearQuery}`, { signal: controller.signal })
+    const endpoint = ['localhost', '127.0.0.1'].includes(window.location.hostname)
+      ? `https://github-contributions-api.jogruber.de/v4/${encodeURIComponent(username)}?y=last`
+      : `/api/github-contributions?username=${encodeURIComponent(username)}`
+    fetch(endpoint, { signal: controller.signal, cache: 'no-store' })
       .then(async response => {
         if (!response.ok) throw new Error('GitHub activity is unavailable right now.')
         const result = await response.json() as ApiResponse
@@ -116,9 +124,9 @@ export default function GithubCalendar({ username }: { username: string }) {
 
   const weeks = data?.contributions ?? placeholderWeeks
   const total = Number(data?.totalContributions ?? 0)
-  const labels = monthLabels(weeks)
-  const firstDate = periodStart().toISOString().slice(0, 10)
-  const lastDate = periodEnd().toISOString().slice(0, 10)
+  const firstDate = data?.startDate ?? periodStart().toISOString().slice(0, 10)
+  const lastDate = data?.endDate ?? periodEnd().toISOString().slice(0, 10)
+  const labels = monthLabels(weeks, firstDate, lastDate)
   const summary = data
     ? `${total.toLocaleString()} contributions in the last year`
     : loading ? 'Loading GitHub activity…'
