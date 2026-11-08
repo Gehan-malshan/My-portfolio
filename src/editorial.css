@@ -396,6 +396,13 @@
 .site-footer{border-top:0}
 .hero-with-portrait .hero-bottom-row{bottom:86px}
 
+/* Keep the spiral's height while giving the About copy more horizontal room. */
+.about-feature-inner{grid-template-columns:minmax(0,44%) minmax(0,56%)}
+@media(max-width:700px){
+  .about-feature-inner .about-copy{order:1}
+  .about-feature-inner .spiral-tech{order:2;align-self:center;width:92%;min-height:410px}
+}
+
 /* Mobile hero: keep the portrait and ticker together, then a compact introduction and contact row. */
 @media(max-width:700px){
   .site-scroll-blur{display:none}
