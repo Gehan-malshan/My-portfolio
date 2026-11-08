@@ -13,7 +13,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
   const navigate = useNavigate()
   useEffect(() => { window.scrollTo({ top: 0, behavior: 'instant' }) }, [slug])
 
-  if (!project) return <main className="project-detail-page project-not-found"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><h1><TitleShine>Project not found.</TitleShine></h1><p>Choose a project from the portfolio.</p></main>
+  if (!project) return <main className="project-detail-page project-not-found"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><h1><TitleShine>Project not found</TitleShine></h1><p>Choose a project from the portfolio.</p></main>
 
   const index = portfolio.projects.findIndex(item => item.slug === slug)
   const previous = portfolio.projects[(index - 1 + portfolio.projects.length) % portfolio.projects.length]
@@ -24,7 +24,7 @@ export default function ProjectDetail({ slug }: { slug: string }) {
     <BlinkingDotsFallback/>
     <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={0}/>
     <div className="project-detail-top"><Link to="/" hash="projects" className="project-back"><ArrowLeft size={19}/> Back to projects</Link><span>{project.number} / {String(portfolio.projects.length).padStart(2, '0')}</span></div>
-    <header className="project-detail-header"><span className="project-kicker">{project.category} / Project details</span><h1><TitleShine>{project.title}</TitleShine><span>.</span></h1><p>{project.description}</p><div className="project-feature-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></header>
+    <header className="project-detail-header"><span className="project-kicker">{project.category} / Project details</span><h1><TitleShine>{project.title}</TitleShine></h1><p>{project.description}</p><div className="project-feature-tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></header>
     <div className={`project-detail-art${project.slug === 'govilink' ? ' project-detail-art-portrait' : ''}`}><img src={project.image} alt={`${project.title} project image`}/></div>
     {project.gallery.length > 0 && <div className="project-detail-gallery">{project.gallery.map(image => <figure key={image.src}><img src={image.src} alt={image.alt}/><figcaption>{image.caption}</figcaption></figure>)}</div>}
     <div className="project-detail-body"><section><span>01 / Overview</span><p>{project.overview}</p></section><section><span>02 / Challenge</span><p>{project.challenge}</p></section><section><span>03 / Approach</span><p>{project.approach}</p></section><section><span>04 / Outcome</span><p>{project.outcome}</p></section></div>

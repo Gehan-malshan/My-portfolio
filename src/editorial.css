@@ -398,11 +398,11 @@
 
 /* Let the spiral span the About section's full height without changing its width. */
 .about-feature-inner{grid-template-columns:minmax(0,44%) minmax(0,56%);align-items:stretch;padding-top:0;padding-bottom:0}
-.about-feature-inner .spiral-tech{align-self:stretch;min-height:0;transform:translateX(-12px)}
+.about-feature-inner .spiral-tech{align-self:stretch;min-height:0;transform:translateX(-24px)}
 @media(max-width:700px){
   .about-feature-inner{padding-top:15px;padding-bottom:70px}
   .about-feature-inner .about-copy{order:1}
-  .about-feature-inner .spiral-tech{order:2;align-self:center;width:92%;min-height:410px;transform:translateX(-8px)}
+  .about-feature-inner .spiral-tech{order:2;align-self:center;width:92%;min-height:410px;transform:none}
 }
 
 /* Mobile hero: keep the portrait and ticker together, then a compact introduction and contact row. */
@@ -425,3 +425,6 @@
   .hero-with-portrait .hero-portrait{left:-28px}
   .hero-with-portrait .hero-copy h1{left:43%;width:57%}
 }
+
+/* Use the same sans-serif family as the Education title throughout headings. */
+:is(.about-copy h2,.footer-invitation h2){font-family:Inter,Arial,Helvetica,sans-serif}

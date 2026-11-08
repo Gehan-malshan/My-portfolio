@@ -160,7 +160,7 @@ export default function AboutPixelGallery() {
   return <section className="about-pixel-gallery" aria-labelledby="about-gallery-title">
     <div className="about-pixel-gallery-heading">
       <span className="about-cv-kicker">Community / {photos.length} frames</span>
-      <h2 id="about-gallery-title">Moments along the way.</h2>
+      <h2 id="about-gallery-title">Moments along the way</h2>
       <p>Drag to explore. Select a photo to view it in full.</p>
     </div>
     <canvas

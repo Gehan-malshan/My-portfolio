@@ -21,7 +21,7 @@ export default function ProjectShowcase() {
   return <section className="section project-showcase" id="projects" aria-labelledby="projects-title">
     <div className="section-inner">
       <div className="project-showcase-heading">
-        <div><span className="project-kicker">Selected work / {String(projects.length).padStart(2, '0')}</span><h2 id="projects-title"><TitleShine>Projects</TitleShine><span className="project-heading-period">.</span></h2></div>
+        <div><span className="project-kicker">Selected work / {String(projects.length).padStart(2, '0')}</span><h2 id="projects-title"><TitleShine>Projects</TitleShine></h2></div>
         <p>Explore my software and cloud projects, from service architecture to deployment. Open a card for the full story.</p>
       </div>
 

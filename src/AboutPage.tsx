@@ -86,7 +86,7 @@ export default function AboutPage() {
     <div className="about-cv-container">
       <header className="about-cv-intro">
         <span className="about-cv-kicker">About / Gehan Malshan</span>
-        <h1><TitleShine>The Long Version</TitleShine> <span>/</span></h1>
+        <h1><TitleShine>The Long Version</TitleShine></h1>
         <div className="about-cv-meta"><span>{portfolio.role}</span><span>{portfolio.location}</span><a className="about-cv-back" href={`mailto:${portfolio.email}`}>Get in touch <ArrowUpRight size={16} aria-hidden="true"/></a></div>
       </header>
 
@@ -96,7 +96,7 @@ export default function AboutPage() {
         </div>
         <div className="about-cv-profile-copy">
           <span className="about-cv-kicker">A little more about me</span>
-          <h2 id="about-profile-title"><TitleShine>Building software from code to cloud.</TitleShine></h2>
+          <h2 id="about-profile-title"><TitleShine>Building software from code to cloud</TitleShine></h2>
           <p>I’m Gehan Malshan, an Information Technology undergraduate at the University of Sri Jayewardenepura. I’m interested in the full path from writing an application to deploying and operating it.</p>
           <p>In university team projects, I’ve worked with frontend and backend code, Go services, databases, containers, and cloud infrastructure. StudEd and MatchMate have helped me explore service boundaries, deployment workflows, and the practical needs of distributed applications.</p>
           <p>I’m continuing to learn Linux, Docker, Kubernetes, and cloud platforms, and I’m seeking a DevOps or Software Engineering internship. My roles with ICTS, VoiceTech, and IEEE ComSoc USJ have strengthened the teamwork and communication needed to deliver reliable software together.</p>
@@ -165,7 +165,7 @@ export default function AboutPage() {
     <footer className="about-cv-outro">
       <div className="about-cv-outro-inner">
         <span className="about-cv-kicker">The next chapter</span>
-        <h2><TitleShine>Let’s build something</TitleShine> <em><TitleShine>useful.</TitleShine></em></h2>
+        <h2><TitleShine>Let’s build something useful</TitleShine></h2>
         <p>I’m open to DevOps and software engineering internships, cloud projects, and technical collaborations.</p>
         <div className="about-cv-actions"><TacticalLink href={`mailto:${portfolio.email}`} label="Contact me"/><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div>
         <Link to="/" className="about-cv-home-link">Back to portfolio <ArrowUpRight size={17} aria-hidden="true"/></Link>

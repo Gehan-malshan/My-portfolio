@@ -2,6 +2,7 @@
 .github-activity .section-inner{width:min(100% - 80px,1160px)}
 .github-activity-eyebrow{margin:0 0 17px;color:#989898;font:11px/1.4 'Spline Sans Mono',monospace;letter-spacing:.24em;text-align:center;text-transform:uppercase}
 .github-activity h2{margin:0 0 50px;font-family:Georgia,'Times New Roman',serif;font-size:clamp(45px,5vw,70px);font-weight:400;line-height:1.05;letter-spacing:-.055em;text-align:center}
+.github-activity h2{font-family:Inter,Arial,Helvetica,sans-serif}
 .github-activity h2 em{font-weight:400;color:#bcbcbc}
 .github-calendar-scroll{max-width:100%;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#444 transparent}
 .github-calendar{width:max-content;margin:auto}

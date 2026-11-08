@@ -81,7 +81,7 @@ function Home() {
           <SpiralTechGallery/>
           <div className="about-copy">
             <span className="about-eyebrow">Know about me</span>
-            <h2 id="about-title"><TitleShine>Building software</TitleShine>{' '}<em><TitleShine>from code to cloud.</TitleShine></em></h2>
+            <h2 id="about-title"><TitleShine>Building software</TitleShine>{' '}<em><TitleShine>from code to cloud</TitleShine></em></h2>
             <p>{portfolio.about}</p>
             <p>{portfolio.aboutMore}</p>
             <div className="about-actions"><TacticalLink label="More about me" onClick={() => void router.navigate({ to: '/about' })}/></div>
@@ -95,8 +95,8 @@ function Home() {
       <ProjectShowcase/>
       <TechLogos/>
       <GithubCalendar username={portfolio.githubUsername}/>
-      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education.</TitleShine></h2><p className="section-intro">The academic foundation behind my software, systems, and cloud work.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume.</TitleShine></h3><p>My CV will be available here soon.</p></div><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div></div></section>
-      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering.</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
+      <section className="section education" id="education"><div className="section-inner"><h2><TitleShine>Education</TitleShine></h2><p className="section-intro">The academic foundation behind my software, systems, and cloud work.</p><EducationProgress items={portfolio.education}/><div className="cv-row"><div><h3><TitleShine>Resume</TitleShine></h3><p>My CV will be available here soon.</p></div><TacticalLink label="Download CV" ariaLabel="CV will be available soon"/></div></div></section>
+      <section className="section volunteering" id="volunteering"><div className="section-inner"><h2><TitleShine>Volunteering</TitleShine></h2><p className="section-intro">The communities, teams, and initiatives I contribute to.</p><VolunteeringMilestones items={portfolio.volunteering}/></div></section>
     </main>
     <ContactFooter/>
     {contactNotice && <div className="contact-notice" role="status">{contactNotice}</div>}
