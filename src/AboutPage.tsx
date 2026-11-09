@@ -19,6 +19,7 @@ const aboutLogos: Record<string, string> = {
   'LFS158: Introduction to Kubernetes': '/about-logos/lfs158-kubernetes.png',
   'Redis Associate Software Operator': '/about-logos/redis-associate.png',
   'AWS Academy Graduate – Cloud Foundations': '/about-logos/aws-cloud-foundations.png',
+  'AWS Certified Cloud Practitioner': '/about-logos/aws-certified-cloud-practitioner.png',
   'Oracle Cloud Infrastructure 2026 Foundations Associate': '/about-logos/oracle-cloud-foundations-2026.png',
   KodeKloud: '/about-logos/cloud-logo.png',
   '2nd Runner-up · Master Designer v3.0': '/about-logos/master-designer.png',

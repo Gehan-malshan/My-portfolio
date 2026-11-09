@@ -31,6 +31,7 @@ export const portfolio = {
     },
   ],
   certifications: [
+    { title: 'AWS Certified Cloud Practitioner', issuer: 'Amazon Web Services', issued: 'Nov 2026' },
     { title: 'LFS101: Introduction to Linux', issuer: 'The Linux Foundation', issued: 'Nov 2026' },
     { title: 'LFS158: Introduction to Kubernetes', issuer: 'The Linux Foundation', issued: 'Nov 2026' },
     { title: 'Oracle Cloud Infrastructure 2026 Foundations Associate', issuer: 'Oracle', issued: 'Nov 2026' },
