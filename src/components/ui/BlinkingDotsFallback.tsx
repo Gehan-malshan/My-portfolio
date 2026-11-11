@@ -28,8 +28,8 @@ const scatteredDots = Array.from({ length: 290 }, (_, index) => ({
   top: `${3 + random(index * 5 + 2) * 94}%`,
   size: `${random(index * 5 + 3) > .87 ? 3 : 2}px`,
   delay: `${-random(index * 5 + 4) * 14}s`,
-  duration: `${10 + random(index * 5 + 5) * 12}s`,
-  peak: `${.13 + random(index * 5 + 6) * .2}`,
+  duration: `${7 + random(index * 5 + 5) * 9}s`,
+  peak: `${.26 + random(index * 5 + 6) * .27}`,
   driftX: `${(random(index * 5 + 7) - .5) * 26}px`,
   driftY: `${(random(index * 5 + 8) - .5) * 30}px`,
 }))

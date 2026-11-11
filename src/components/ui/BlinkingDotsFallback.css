@@ -22,15 +22,16 @@
 }
 
 .page-blinking-dots--scattered .page-blinking-dots__dot {
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, .22);
   animation-name: page-dot-float;
   animation-timing-function: ease-in-out;
   animation-direction: alternate;
 }
 
 @keyframes page-dot-float {
-  0% { opacity: .06; transform: translate3d(0, 0, 0); }
+  0% { opacity: .13; transform: translate3d(0, 0, 0); }
   50% { opacity: var(--dot-peak); }
-  100% { opacity: .08; transform: translate3d(var(--dot-drift-x), var(--dot-drift-y), 0); }
+  100% { opacity: .16; transform: translate3d(var(--dot-drift-x), var(--dot-drift-y), 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
