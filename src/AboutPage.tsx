@@ -77,7 +77,7 @@ export default function AboutPage() {
   }, [])
 
   return <main className="about-cv" id="top">
-    <BlinkingDotsFallback/>
+    <BlinkingDotsFallback scattered/>
     <SplashCursor colors={['#ffffff']} rainbow={false} colorSpeed={0.2} force={0.15} shading={0.21} swirl={7} momentum={0.4} intensity={0.7} size={0.55} trail={0.5} intro={false} quality="medium" zIndex={0}/>
     <nav className="about-cv-nav" aria-label="About page navigation">
       <Link to="/" hash="about" className="about-cv-back"><ArrowLeft size={18} aria-hidden="true"/><span>Back to portfolio</span></Link>

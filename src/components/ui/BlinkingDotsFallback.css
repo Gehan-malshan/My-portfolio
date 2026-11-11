@@ -21,6 +21,18 @@
   45% { opacity: var(--dot-peak); }
 }
 
+.page-blinking-dots--scattered .page-blinking-dots__dot {
+  animation-name: page-dot-float;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes page-dot-float {
+  0% { opacity: .06; transform: translate3d(0, 0, 0); }
+  50% { opacity: var(--dot-peak); }
+  100% { opacity: .08; transform: translate3d(var(--dot-drift-x), var(--dot-drift-y), 0); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .page-blinking-dots__dot { animation: none; opacity: .14; }
 }
