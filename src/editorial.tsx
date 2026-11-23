@@ -21,10 +21,11 @@ import AboutPage from './AboutPage'
 import VolunteeringMilestones from './VolunteeringMilestones'
 import TitleShine from './components/ui/TitleShine'
 import { portfolio } from './data/portfolio'
+import SeoHead from './SeoHead'
 import './tailwind.css'
 import './editorial.css'
 
-const rootRoute = createRootRoute({ component: () => <><Outlet/><BackToTop/><ScrollReveals/></> })
+const rootRoute = createRootRoute({ component: () => <><SeoHead/><Outlet/><BackToTop/><ScrollReveals/></> })
 const indexRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', component: Home })
 const aboutRoute = createRoute({ getParentRoute: () => rootRoute, path: '/about', component: AboutPage })
 const projectRoute = createRoute({ getParentRoute: () => rootRoute, path: '/projects/$slug', component: ProjectDetailRoute })

@@ -70,10 +70,7 @@ function MorphEntry({ name, logoKey, meta, title, description, date, photo }: {
 export default function AboutPage() {
 
   useEffect(() => {
-    const previousTitle = document.title
-    document.title = 'About — Gehan Malshan'
     window.scrollTo({ top: 0, behavior: 'instant' })
-    return () => { document.title = previousTitle }
   }, [])
 
   return <main className="about-cv" id="top">
