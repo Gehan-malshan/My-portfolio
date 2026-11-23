@@ -7,6 +7,10 @@
       "source": "/api/github-contributions",
       "destination": "/api/github-contributions"
     },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/projects/studed", "destination": "/projects/studed/index.html" },
+    { "source": "/projects/matchmate", "destination": "/projects/matchmate/index.html" },
+    { "source": "/projects/govilink", "destination": "/projects/govilink/index.html" },
     {
       "source": "/(.*)",
       "destination": "/index.html"
