@@ -431,3 +431,7 @@
 
 /* Align prose consistently across the portfolio and detail pages at every viewport size. */
 main p{text-align:justify}
+
+/* Keep the homepage sections and contact footer free of separator rules. */
+#top > :is(.hero,.section,.project-showcase,.tech-section,.github-activity){border-top:0;border-bottom:0}
+.site-footer,.footer-invitation{border-top:0;border-bottom:0}

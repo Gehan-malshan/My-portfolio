@@ -98,3 +98,4 @@
 .about-cv-home-link{margin-top:85px}
 @media(max-width:700px){.about-cv-outro{min-height:0;padding:92px 22px 56px}.about-cv-outro h2{font-size:clamp(48px,10vw,72px)}.about-cv-actions{gap:16px}.about-cv-home-link{margin-top:70px}}
 :is(.about-cv-profile-copy h2,.about-cv-section-label h2,.about-cv-outro h2 em){font-family:Inter,Arial,Helvetica,sans-serif}
+.about-cv-outro{border-top:0}
