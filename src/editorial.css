@@ -428,3 +428,6 @@
 
 /* Use the same sans-serif family as the Education title throughout headings. */
 :is(.about-copy h2,.footer-invitation h2){font-family:Inter,Arial,Helvetica,sans-serif}
+
+/* Align prose consistently across the portfolio and detail pages at every viewport size. */
+main p{text-align:justify}
